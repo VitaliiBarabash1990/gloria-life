@@ -1,0 +1,216 @@
+{
+	"Hero": {
+		"description_1": "Hello, my name is Vitalii and I am",
+		"description_2": "I develop fast and reliable web applications that solve real tasks. Clean code, optimized performance, and flawless user experience are my top priorities.",
+		"title": "FULLSTACK DEVELOPER",
+		"button": "Talk about project",
+		"toProjects": "To the projects"
+	},
+	"Navigation": {
+		"about": "About me",
+		"projects": "Projects",
+		"price": "Services and prices",
+		"steps": "Stages of cooperation",
+		"toProjects": "To the projects",
+		"button": "Talk about project"
+	},
+	"About": {
+		"about": "About me",
+		"description": "I am a fullstack developer specializing in creating fast, responsive and user-friendly websites. My goal is not just to make the site «working», but to create a technologically perfect product that will provide users with a comfortable interaction experience. I work with modern technologies such as Next.js, React, TypeScript, which allows you to create productive, SEO-optimized sites with flexible architecture. Thanks to these technologies, your site will load quickly, work correctly on all devices and easily scale as your business grows.",
+		"download": "Download resume"
+	},
+	"Programs": {
+		"title": "Technologies and applications",
+		"bottomTitle_1": "Web Development:",
+		"bottomTitle_2": "from design to launch"
+	},
+	"Footer": {
+		"title": "Let's discuss the project?",
+		"description": "Write to me in one of the messengers or leave your contacts, and I will contact you soon to provide advice and agree on the details of cooperation! I am open to discussing your project, ready to listen to your ideas and offer the best solutions for their implementation. Together we will be able to create an effective, stylish and functional web product that will meet your business goals. It is easy to work with me, I am always in touch and ready to provide support at all stages of development.",
+		"name": "Name",
+		"nameDescr": "Enter a name",
+		"email": "Email",
+		"emailDescr": "Enter your Email",
+		"answer": "Your question",
+		"answerDescr": "Write your question here ...",
+		"button": "Order a consultation",
+		"req": [
+			"ONLY WORDS!",
+			"Minimum 3 characters!",
+			"Maximum 30 characters!",
+			"This field is required!",
+			"Incorrect email!",
+			"Keep a valid email!",
+			"The message must contain from 10 to 500 characters!"
+		]
+	},
+	"Projects": {
+		"title": "Projects",
+		"text_short": [
+			"The business card site for the lash maker is the site of the Kolibry Studio beauty studio, specializing in eyelash extensions and training for professionals. It is possible to register through the form on the website, or the bus service. The main purpose of the website is to showcase the studio, its services and professional approach.",
+			"The business card site is the site of the ventilation system company, which specializes in the installation of ventilation systems in residential premises, as well as in the premises of enterprises. The website has implemented the possibility of communication through the form. The main purpose of the website is to demonstrate the professional services provided by the firm."
+		],
+		"text_long": [
+			"Kolibry Studio is a modern beauty studio website specializing in eyelash extensions and professional training. The main purpose of the platform is to present the studio, its services and high level of professionalism. \nThe site has an adaptive design and provides users with the opportunity to familiarize themselves with services, sign up for procedures or training, as well as receive advice. \n\nI performed: \n - Frontend development based on Next.js \n - Optimized site performance \n - Improved SEO and loading speed \n - Used tailwind CSS to create responsive UI/UX \n - Deployed site on Vercel \n - Configured build and CI/CD \n\nResults: \n - Improved site usability and navigation \n - Fast page loading thanks to Next.js optimization \n - Created responsive and aesthetic attractive interface",
+			"Ventilation System is a web platform of a company that specializes in installing ventilation systems in residential and commercial premises. The main purpose of the site is to demonstrate the company's professional services, as well as to help users choose and order the appropriate ventilation equipment. \nThe site has an adaptive design and provides detailed information about products, their characteristics and the ability to contact consultants. \n\nI did: \n - Frontend development using Next.js \n - Creation of dynamic pages for products and categories \n - Optimization of site loading speed and SEO \n - Implementation of feedback forms and data storage \n - Using Tailwind CSS for responsive design \n - Project deployment on Vercel \n\nResults: \n - Improved navigation and UX, which provides convenient product selection \n - Fast page loading thanks to Next.js optimization \n - Implemented a feedback form and the ability to leave applications \n - Adaptive design that works correctly on mobile devices"
+		],
+		"type": ["Business card", "Landing", "Catalog", "Shop"],
+		"button_1": "View",
+		"button_2": "Collapse",
+		"button_3": "Go to the site"
+	},
+	"Steps": {
+		"title": "Stages of cooperation",
+		"steps": [
+			{
+				"title": "Choice of technologies",
+				"text": "At this stage, we determine which technologies are best suited for your project. We analyze the requirements for speed, security and scalability of the site. We choose between Next.js, React, a database and other necessary tools for efficient work."
+			},
+			{
+				"title": "Backend Settings",
+				"text": "We connect the backend system, if the project requires it. We implement the API, configure the database, authorization and other server functions for the stable operation of the site."
+			},
+			{
+				"title": "Development of structure",
+				"text": "We form the logical structure of the future site or web application. We define key pages, components and routes to ensure convenient navigation and effective UX/UI."
+			},
+			{
+				"title": "Testing and Optimization",
+				"text": "We check the functionality of the site on different devices and browsers. We optimize performance, reduce loading time, adjust SEO and eliminate possible bugs."
+			},
+			{
+				"title": "Compilation and Integration",
+				"text": "We develop an adaptive and fast layout based on the layout. We integrate ready-made React components, configure the interaction between the frontend and the backend, if necessary."
+			},
+			{
+				"title": "Deployment and Support",
+				"text": "We deploy the site on the chosen hosting or server. We provide technical support, updates and performance monitoring for the smooth operation of the project."
+			}
+		]
+	},
+	"Services": {
+		"title": "Services",
+		"handler_1": "Website layout",
+		"handler_2": "Complex site creation: from design to launch",
+		"handler_3": "Turnkey websites",
+		"button_1": "Details",
+		"button_2": "Collapse",
+		"services": [
+			{
+				"type": "Landing",
+				"price": "From 150 USD",
+				"text_short_individual": "A landing page is a one-page site that aims to attract customers and increase conversions. It is used to present a specific product, service or event, as well as to collect contact details of potential customers. They have a well-thought-out structure, visually appealing design and clear calls to action that contribute to the achievement of marketing goals.",
+				"text_long_individual": "As a developer, I create responsive, fast and productive landing pages that not only attract attention, but also lead users to a specific action - purchase, registration or subscription. Using Next.js and React, I provide optimized loading speed, compatibility with mobile devices, cross-browser support and SEO optimization for better visibility in search engines. My landing pages can include interactive elements, animations, feedback forms, connection to CRM and analytical systems to track conversions. \n\n - What's included: market and competitor research, page structure development, data collection form setup, analytics integration, mobile responsiveness, performance testing. \n - Delivery time: 2-3 weeks.",
+				"text_short_complex": "A landing page is not just a one-page website but a powerful marketing tool designed to attract attention, present your offer, and increase conversions. A comprehensive approach to landing page development includes both effective design and technical implementation that meets business needs and user expectations.",
+				"text_long_complex": "Together with a designer, we conduct in-depth research on your target audience, competitors, and market trends to create a unique visual style that strengthens your brand. The designer develops the design concept that conveys your idea and ensures an attractive appearance. I implement this design using Next.js and React, considering SEO optimization, adaptability, and performance principles. We integrate data collection forms, analytical systems for tracking conversions, animations, and interactive elements that engage users and encourage them to take action.\n\n - Included: marketing analysis, UX/UI design, responsive layout, analytics integration, contact forms, performance testing, CRM integration.\n - Timeframe: 3-4 weeks."
+			},
+			{
+				"type": "Business card",
+				"price": "From 200 USD",
+				"text_short_individual": "A business card site is a compact site (usually 3-5 pages) that presents basic information about a company, specialist or product. This is a great option for small businesses, freelancers, or personal brands that need a professional online presence to build visibility and trust.",
+				"text_long_individual": "I develop business card sites with responsive design that look modern and inspire confidence in potential clients. Using Next.js and React, I ensure that pages load quickly, display correctly on different devices and browsers, and the functionality can be scaled in the future. In business card sites, you can implement integration with social networks, Google Maps, contact forms and connection to CMS for independent content editing. \n\n - What's included: About Us, Services, Contact page development, form integration, galleries, SSL certificate setup, analytics connectivity. \n - Delivery time: 3-4 weeks.",
+				"text_short_complex": "A business card website with a comprehensive approach is more than just an informational resource—it is a tool for shaping a brand's image and establishing communication with the audience. Such a website highlights a business’s uniqueness and presents its key advantages.",
+				"text_long_complex": "Together with a designer, we create a stylish and modern design that aligns with your brand and effectively presents your business. I handle the technical implementation, including adaptability, fast loading speed, integration of contact forms, maps, social media, and analytics. The designer focuses on the visual style, selecting colors and fonts that enhance the emotional perception of your brand. A business card website is not just an information page but an interactive platform that engages visitors and encourages further cooperation.\n\n - Included: marketing analysis, UX/UI design, responsive layout, integration of contact forms, galleries, social media, SEO optimization.\n - Timeframe: 4-5 weeks."
+			},
+			{
+				"type": "Catalog",
+				"price": "From 300 USD",
+				"text_short_individual": "A catalog is a multi-page site for the presentation of goods or services with the possibility of a detailed description, but without online shopping. It is suitable for businesses that want to provide information about their range or services, provide convenient navigation and structure.",
+				"text_long_individual": "I develop catalog sites with clear navigation, quick search, filtering and sorting of products. I use Next.js and React technologies to ensure stable site operation, optimize loading speed, and effectively manage large amounts of data. I integrate with CRM to manage product and customer data, set up SEO to increase visibility in search engines. \n\n - What is included: development of the main page, categories, product cards, integration of search filters, preparation for integration with CRM, configuration of analytics. \n - Implementation period: 4-6 weeks.",
+				"text_short_complex": "A catalog website with a comprehensive approach is a detailed, stylish, and functional tool for showcasing a wide range of products or services. It not only presents the product lineup but also helps users navigate the catalog easily and find the necessary information.",
+				"text_long_complex": "We conduct market research and analyze your product assortment to create a well-structured catalog website. The designer develops a visual style that highlights your brand identity, while I implement this design with a focus on adaptability, loading speed, and SEO optimization. We integrate convenient filters, search mechanisms, animations, and analytics to track user behavior. CRM integration for efficient customer data management is also possible.\n\n - Included: marketing analysis, UX/UI design, responsive layout, filter setup, analytics integration, interactive elements.\n - Timeframe: 5-7 weeks."
+			},
+			{
+				"type": "Store",
+				"price": "From 350 USD",
+				"text_short_individual": "An online store is a site for online sales with a shopping cart, payment systems, an order management system and personal user accounts. It is suitable for businesses looking to automate sales processes and increase revenue through an online presence.",
+				"text_long_individual": "I create online stores with full functionality, responsive design, integration of payment systems, shopping cart settings, product filtering, order management and user support. I use Next.js and React to ensure high performance, reliability and fast loading. Additionally, I configure integrations with CRM, product accounting systems, analytics and marketing tools. \n\n - What's included: product pages, shopping cart, payment systems, personal user account, analytics integration, SEO optimization, CRM setup. \n - Lead time: 6-8 weeks.",
+				"text_short_complex": "An e-commerce website with a comprehensive approach is not just a website but a full-fledged sales platform with stylish design, user-friendly navigation, and complete functionality for online commerce. It is an effective tool for scaling your business and increasing revenue.",
+				"text_long_complex": "We analyze your business, competitors, and audience needs to create a unique interface that drives purchases. The designer develops a stylish and conversion-focused design, while I implement all the technical solutions: adaptability, payment system integration, shopping cart, order management system, user accounts, analytical tools to track sales performance and user behavior. The online store will be fully SEO-optimized, scalable, and integrated with CRM.\n\n - Included: UX/UI design, responsiveness, shopping cart, payment system integration, CRM, analytics, and marketing tools integration.\n - Timeframe: 7-9 weeks."
+			}
+		]
+	},
+	"Faq": {
+		"faq": [
+			{
+				"id": 0,
+				"question": "How long does it take to develop a website?",
+				"answer": "The standard term for creating a landing page is 2-3 weeks, for an online store - 4-6 weeks. More precise terms depend on the complexity of the project."
+			},
+			{
+				"id": 1,
+				"question": "What technologies do you use?",
+				"answer": "I work with Next.js, React, TypeScript, and I also integrate APIs, configure the backend and optimize the site for fast work."
+			},
+			{
+				"id": 2,
+				"question": "Will the site be responsive?",
+				"answer": "Yes, I make all sites fully responsive so that they work correctly on smartphones, tablets and large screens."
+			},
+			{
+				"id": 3,
+				"question": "Will the site be optimized for SEO?",
+				"answer": "Yes, I use technologies that contribute to SEO optimization: fast loading, correct HTML structure, meta tags and responsiveness."
+			},
+			{
+				"id": 4,
+				"question": "Will it be possible to edit the site after launch?",
+				"answer": "Yes, the site will be created with the possibility of further editing and updating of content. If necessary, you can integrate CMS for convenient management."
+			}
+		]
+	},
+	"formik": {
+		"title": "Fill out the form:",
+		"name": "Your name:",
+		"email": "Email:",
+		"number": "Phone number:",
+		"placeholder": ["Enter a name", "Enter email", "Enter your phone number"],
+		"yup": {
+			"name": [
+				"ONLY WORDS",
+				"Minimum 3 characters!",
+				"Maximum 30 characters!",
+				"This field is required!"
+			],
+			"email": ["Invalid Email!", "Enter a valid email address!"],
+			"number": [
+				"Incorrect phone number!",
+				"Enter the number in the format +380123456789 or +48123456789 without spaces!"
+			]
+		},
+		"button": "Sign up"
+	},
+	"LocaleLayout": {
+		"title": "gloria-sun.beauty",
+		"description": "Life blog of a psychologist about spiritual development"
+	},
+	"LocaleSwitcher": {
+		"label": "Change language",
+		"locale": "{locale, select, en {en} ua {ua} other {Unknown}}"
+	},
+	"Manifest": {
+		"name": "kolibry-studio.com"
+	},
+	"PageLayout": {
+		"links": {
+			"docs": {
+				"description": "Дізнайтеся більше про next-intl в офіційних документах.",
+				"href": "https://next-intl-docs.vercel.app/",
+				"title": "Docs"
+			},
+			"source": {
+				"description": "Перегляньте вихідний код цього прикладу на GitHub.",
+				"href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router",
+				"title": "Source code"
+			}
+		}
+	},
+	"NotFoundPage": {
+		"description": "Please check your browser's address bar or use navigation to go to a familiar page.",
+		"title": "Page not found"
+	},
+	"Error": {
+		"description": "<p>Unfortunately a problem has occurred.</p><p>You can try <retry>reloading this page</retry>.</p>",
+		"title": "Something went wrong!"
+	}
+}

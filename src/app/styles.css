@@ -1,0 +1,230 @@
+:root {
+	box-sizing: border-box;
+	margin: 0 auto;
+	text-align: center;
+	width: 100%;
+}
+
+:root {
+	--font-family: "Montserrat", sans-serif;
+	--second-family: "Montserrat Alternates", sans-serif;
+	--third-family: "Inter", sans-serif;
+	--font3: "Amiora", sans-serif;
+}
+
+:root {
+	--white: #fff;
+	--black: #000;
+	--background: #000205;
+
+	/* --background-tech: #0f0f0f; */
+	--background-tech: rgba(15, 15, 15, 0.5);
+	--border-form: #323335;
+	--background-form: #0f0f0f;
+	--color-p: #fafafa;
+	--color-s: #969696;
+	--color-f: #898989;
+	--color-label: #f3dfd8;
+	--accent-button: #0f9;
+	--accent-button-rgb: rgba(0, 255, 153, 0);
+	--gray: #696969;
+	--gray-black: #282828;
+	--amiora-color: #777;
+	--amiora-color-1: #5a5a5a;
+	--amiora-color-2: #c3c3c3;
+	--arrow-color: #848484;
+	--arrow-color-2: #777777;
+}
+@font-face {
+	font-family: "Montserrat";
+	src: url("/fonts/Montserrat-Regular.ttf") format("ttf"),
+		url("/fonts/Montserrat-Regular.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Montserrat Alternates";
+	src: url("/fonts/MontserratAlternates-Regular.ttf") format("ttf"),
+		url("/fonts/MontserratAlternates-Regular.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Amiora";
+	src: url("/fonts/AmioraRegular.ttf") format("ttf"),
+		url("/fonts/AmioraRegular.woff") format("woff"),
+		url("/fonts/AmioraRegular.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Reset styles */
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 50px;
+}
+
+body {
+	background: var(--background);
+	color: var(--white);
+}
+/* 
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+} */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+}
+
+p {
+	font-family: var(--second-family);
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 150%;
+	color: var(--color-p);
+	text-align: left;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+a {
+	color: currentColor;
+	text-decoration: none;
+}
+
+address {
+	font-style: normal;
+}
+
+button {
+	cursor: pointer;
+}
+
+.button {
+	border: 0.5px solid var(--accent-button);
+	border-radius: 100px;
+
+	padding: 12px;
+	width: 340px;
+	height: 52px;
+
+	font-family: var(--second-family);
+	font-weight: 400;
+	font-size: 18px;
+	color: var(--accent-button);
+}
+.button:hover,
+.button:focus {
+	color: var(--color-p);
+	border-color: white;
+}
+
+input {
+	outline: transparent;
+}
+
+textarea {
+	outline: transparent;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+.title {
+	font-family: var(--second-family);
+	font-weight: 300;
+	font-size: 70px;
+	color: var(--color-p);
+}
+
+.container {
+	min-width: 100%;
+	/* max-width: 100%; */
+	padding-left: 15px;
+	padding-right: 15px;
+	margin: 0 auto;
+}
+
+.section {
+	padding: 15px 0;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	white-space: nowrap;
+	clip-path: inset(100%);
+	clip: rect(0 0 0 0);
+	overflow: hidden;
+}
+
+@media screen and (min-width: 375px) {
+	.container {
+		max-width: 767px;
+		padding: 0 24px;
+	}
+	.section {
+		padding: 24px 0;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.container {
+		max-width: 1279px;
+		padding: 0 56px;
+	}
+	.section {
+		padding: 40px 0;
+	}
+}
+
+@media screen and (min-width: 1280px) {
+	.container {
+		max-width: 1439px;
+		padding: 0 48px;
+	}
+	.section {
+		padding: 50px 0;
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	.container {
+		max-width: 1440px;
+		padding: 0 96px;
+	}
+	.section {
+		padding: 104px 0;
+	}
+}
+
+.no-scroll {
+	overflow: hidden;
+}
