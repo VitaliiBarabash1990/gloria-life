@@ -1,26 +1,37 @@
 {
-  "name": "gloria-sun",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "next": "15.5.0",
-    "next-intl": "^4.3.5",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.0",
-    "typescript": "^5"
-  }
+	"name": "gloria-life",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "eslint"
+	},
+	"dependencies": {
+		"@reduxjs/toolkit": "^2.8.2",
+		"axios": "^1.11.0",
+		"clsx": "^2.1.1",
+		"deepmerge-ts": "^7.1.5",
+		"formik": "^2.4.6",
+		"next": "15.5.0",
+		"next-intl": "^4.3.5",
+		"react": "19.1.0",
+		"react-dom": "19.1.0",
+		"react-redux": "^9.2.0",
+		"react-toastify": "^11.0.5",
+		"redux": "^5.0.1",
+		"redux-persist": "^6.0.0",
+		"swiper": "^11.2.10",
+		"yup": "^1.7.0"
+	},
+	"devDependencies": {
+		"@eslint/eslintrc": "^3",
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"eslint": "^9",
+		"eslint-config-next": "15.5.0",
+		"typescript": "^5"
+	}
 }

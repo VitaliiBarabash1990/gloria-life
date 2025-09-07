@@ -1,0 +1,41 @@
+{
+	"Hero": {
+		"button_1": "Psychologe",
+		"button_2": "Friseur"
+	},
+
+	"LocaleLayout": {
+		"title": "gloria-life.beauty",
+		"description": "Life blog of a psychologist about spiritual development"
+	},
+	"LocaleSwitcher": {
+		"label": "Change language",
+		"locale": "{locale, select, en {en} ua {ua} other {Unknown}}"
+	},
+	"Manifest": {
+		"description": "gloria-life.beauty",
+		"name": "gloria-life.beauty"
+	},
+	"PageLayout": {
+		"links": {
+			"docs": {
+				"description": "Дізнайтеся більше про next-intl в офіційних документах.",
+				"href": "https://next-intl-docs.vercel.app/",
+				"title": "Docs"
+			},
+			"source": {
+				"description": "Check out the source code for this example on GitHub.",
+				"href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router",
+				"title": "Source code"
+			}
+		}
+	},
+	"NotFoundPage": {
+		"description": "Please check your browser's address bar or use navigation to go to a familiar page.",
+		"title": "Page not found"
+	},
+	"Error": {
+		"description": "Unfortunately a problem has occurred.You can try reloading this page",
+		"title": "Something went wrong!"
+	}
+}

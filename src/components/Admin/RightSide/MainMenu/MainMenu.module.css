@@ -1,0 +1,165 @@
+.languageSelector {
+	display: flex;
+	height: 40px;
+	align-items: flex-start;
+	gap: 8px;
+	align-self: stretch;
+}
+.languageItem {
+	display: flex;
+	padding: 8px 24px;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	flex: 1 0 0;
+	border-radius: 60px;
+	border: 2px solid var(--Stroke);
+
+	color: var(--Dark);
+	text-align: center;
+	font-family: var(--font-family);
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	cursor: pointer;
+}
+.languageItem.errorLang {
+	border: 1px solid red;
+	color: red;
+}
+.active {
+	background: var(--Dark);
+	color: var(--white);
+	font-weight: 600;
+}
+
+.mainForm {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 40px;
+	flex: 1 0 0;
+
+	border-radius: 20px;
+}
+.mainContentList {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 24px;
+	align-self: stretch;
+}
+.error {
+	color: red;
+}
+
+.photoLabel {
+	width: 100%;
+}
+.imgList {
+	display: flex;
+	height: 221px;
+	align-items: center;
+	gap: 4px;
+}
+.imgItem {
+	display: flex;
+	width: calc((100% - 16px) / 5);
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex: 1 0 0;
+	align-self: stretch;
+	position: relative;
+	overflow: hidden;
+
+	border-radius: 30px;
+	border: 1px dashed var(--Stroke);
+}
+.upLoad {
+	border: none;
+	border-radius: 0px;
+}
+.imgMain {
+	display: flex;
+	width: 100%;
+	object-fit: contain;
+}
+
+.upLoadIcon {
+	width: 20px;
+	height: 20px;
+	stroke: var(--Dark);
+	fill: none;
+}
+.imgInputHidden {
+	display: none;
+}
+.imgUploadLabel {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	width: 80px;
+	height: 80px;
+}
+.btnBlock {
+	display: flex;
+	padding: 10px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex: 1 0 0;
+	align-self: stretch;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.replaceBlock,
+.deleteBlock {
+	display: flex;
+	width: 89px;
+	padding: 10px 72px;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+
+	border-radius: 40px;
+	border: 2px solid var(--White);
+	background: rgba(51, 55, 53, 0.4);
+	backdrop-filter: blur(2px);
+}
+.deleteIcon {
+	width: 24px;
+	height: 24px;
+	flex-shrink: 0;
+	fill: var(--white);
+}
+
+.sendBtn {
+	display: flex;
+	height: 40px;
+	padding: 10px 40px;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	border-radius: 40px;
+	border: 2px solid var(--Stroke-1);
+
+	color: var(--Dark);
+	text-align: center;
+	font-family: var(--font-family);
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+}
+.sendBtn:hover {
+	background: var(--Dark);
+	color: var(--White);
+}

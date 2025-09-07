@@ -1,0 +1,18 @@
+.burgerMenu {
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	cursor: pointer;
+}
+.burgerIcon {
+	width: 24px;
+	height: 24px;
+}
+.iconOpen {
+	stroke: var(--Dark);
+}
+.iconClose {
+	fill: var(--Dark);
+}

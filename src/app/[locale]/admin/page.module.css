@@ -1,0 +1,8 @@
+.pageAdmin {
+	display: flex;
+	width: 100%;
+	max-width: 1440px;
+	align-items: flex-start;
+	gap: 40px;
+	align-self: stretch;
+}

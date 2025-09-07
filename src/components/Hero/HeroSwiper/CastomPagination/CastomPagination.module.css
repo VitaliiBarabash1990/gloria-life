@@ -1,0 +1,26 @@
+.paginationWraper {
+	height: 40px;
+	width: 120px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.paginationItem {
+	min-width: 24px;
+	height: 24px;
+	display: flex;
+	padding: 10px;
+	align-items: center;
+	gap: 10px;
+}
+.boolitIcon,
+.boolitActiveIcon {
+	width: 6px;
+	height: 6px;
+}
+.boolitActiveIcon {
+	fill: var(--Dark);
+}
+.boolitIcon {
+	fill: var(--Stroke);
+}

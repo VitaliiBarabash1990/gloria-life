@@ -1,0 +1,28 @@
+.leftMenuList {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 4px;
+}
+.leftMenuItem {
+	display: flex;
+	height: 46px;
+	width: 156px;
+	padding: 8px 32px;
+	align-items: center;
+	gap: 16px;
+	align-self: stretch;
+	border-radius: 60px;
+	cursor: pointer;
+}
+
+.active {
+	background: var(--Dark);
+	color: var(--white);
+	font-family: var(--font-family);
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	white-space: nowrap;
+}

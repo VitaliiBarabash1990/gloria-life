@@ -1,3 +1,5 @@
+import Contacts from "@/components/Contacts/Contacts";
+import Hero from "@/components/Hero/Hero";
 import { Locale } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 
@@ -9,7 +11,12 @@ export default async function IndexPage({ params }: Props) {
 	const { locale } = await params;
 	// Enable static rendering
 	setRequestLocale(locale);
-	console.log("LOCKALE", locale);
+	// console.log("LOCKALE", locale);
 
-	return <>HEad</>;
+	return (
+		<>
+			<Hero />
+			<Contacts />
+		</>
+	);
 }

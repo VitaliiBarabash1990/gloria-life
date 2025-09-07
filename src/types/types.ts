@@ -1,4 +1,141 @@
+import { Locale } from "@/i18n/routing";
+import { Dispatch, SetStateAction } from "react";
+
 export type Project = {
 	id: number;
 	name: string;
+};
+
+export interface HeaderProps {
+	locale: Locale;
+}
+
+export interface AuthorizationProps {
+	email: string;
+	password: string;
+}
+
+export interface AuthResponse {
+	name: string;
+	email: string;
+	role?: string;
+	accessToken: string;
+}
+// Для редакса sendOrderEmail
+export interface OrderItem {
+	id: string;
+	article: string;
+	img: string[];
+	brand: string;
+	country: string;
+	description: string;
+	description_title: string;
+	price: number;
+	qty: number;
+	text: string;
+	wage: number;
+}
+
+export interface SendOrderPayload {
+	email?: string;
+	name?: string;
+	phone?: string;
+	city?: string;
+	method?: string;
+	street?: string;
+	house?: string;
+	department?: string;
+	post?: string;
+	address?: string;
+	payment?: string;
+	comment?: string;
+	call?: string;
+	items?: OrderItem[];
+}
+export interface AuthState {
+	user: {
+		name: string | null;
+		email: string | null;
+	};
+	role?: string | null;
+	token: string | null;
+	isLoggedIn: boolean;
+	isLoading: boolean;
+	isError: boolean;
+	isSuccess: boolean;
+}
+// Для редакса sendOrderEmail
+
+export interface LeftSideProps {
+	setIdMenuItem: Dispatch<SetStateAction<number>>;
+	idMenuItem: number;
+}
+
+export interface RightSideProps {
+	idMenuItem: number;
+}
+
+export interface MainMenuFormProps {
+	titleUa: string;
+	titleEn: string;
+	titlePl: string;
+	titleDe: string;
+	subTitleOneUa: string;
+	subTitleOneEn: string;
+	subTitleOnePl: string;
+	subTitleOneDe: string;
+	subTitleTwoUa: string;
+	subTitleTwoPl: string;
+	subTitleTwoEn: string;
+	subTitleTwoDe: string;
+	img: (File | null)[];
+}
+
+export interface MainPayload {
+	ua: { title: string; subTitleOne?: string; subTitleTwo?: string };
+	en: { title: string; subTitleOne?: string; subTitleTwo?: string };
+	pl: { title: string; subTitleOne?: string; subTitleTwo?: string };
+	de: { title: string; subTitleOne?: string; subTitleTwo?: string };
+	img: string[];
+	_id?: undefined | string;
+}
+
+export interface MainLangPayload {
+	ua: { title: string; subTitleOne?: string; subTitleTwo?: string };
+	en: { title: string; subTitleOne?: string; subTitleTwo?: string };
+	pl: { title: string; subTitleOne?: string; subTitleTwo?: string };
+	de: { title: string; subTitleOne?: string; subTitleTwo?: string };
+}
+
+export interface MainState {
+	main: MainPayload | null;
+	mainLang: MainLangPayload | null;
+	isLoading: boolean;
+	isError: boolean;
+}
+
+export interface LocaleContent {
+	title: string;
+	subTitleOne?: string;
+	subTitleTwo?: string;
+}
+
+export interface MainLang {
+	ua: LocaleContent;
+	en: LocaleContent;
+	pl: LocaleContent;
+	de: LocaleContent;
+}
+export type BlocksLang = {
+	main?: MainLang | null;
+	// about?: AboutLang | null;
+	// інші блоки...
+};
+
+export type LocaleKey = "ua" | "en" | "pl" | "de";
+
+export type BlockKey = "main";
+
+export type Messages = {
+	[key: string]: string | Messages | string[];
 };
