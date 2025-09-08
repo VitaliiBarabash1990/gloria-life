@@ -5,7 +5,7 @@ import { isLocale, routing } from "@/i18n/routing";
 
 type Props = {
 	children: React.ReactNode;
-	params: { locale: string };
+	params: Promise<{ locale: string }>;
 };
 
 export function generateStaticParams() {
@@ -13,7 +13,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Omit<Props, "children">) {
-	const { locale } = params;
+	const resolvedParams = (await params) as { locale: string };
+	const { locale } = resolvedParams;
 
 	if (!isLocale(locale)) {
 		notFound();
@@ -34,7 +35,8 @@ export async function generateMetadata({ params }: Omit<Props, "children">) {
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
-	const { locale } = params;
+	const resolvedParams = (await params) as { locale: string };
+	const { locale } = resolvedParams;
 	// Ensure that the incoming `locale` is valid
 	if (!isLocale(locale)) {
 		notFound();
