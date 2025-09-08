@@ -6,7 +6,7 @@ import { isLocale, Locale, routing } from "@/i18n/routing";
 
 type Props = {
 	children: ReactNode;
-	params: { locale: string };
+	params: { locale: Locale };
 };
 
 export function generateStaticParams() {
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Omit<Props, "children">) {
 	}
 
 	const t = await getTranslations({
-		locale: locale as Locale,
+		locale: locale,
 		namespace: "LocaleLayout",
 	});
 
@@ -44,5 +44,5 @@ export default async function LocaleLayout({ children, params }: Props) {
 	// Enable static rendering
 	setRequestLocale(locale);
 
-	return <BaseLayout locale={locale as Locale}>{children}</BaseLayout>;
+	return <BaseLayout locale={locale}>{children}</BaseLayout>;
 }
