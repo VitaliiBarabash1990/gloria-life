@@ -1,12 +1,11 @@
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ReactNode } from "react";
 import BaseLayout from "@/components/BaseLayout/BaseLayout";
-import { isLocale, Locale, routing } from "@/i18n/routing";
+import { isLocale, routing } from "@/i18n/routing";
 
 type Props = {
-	children: ReactNode;
-	params: { locale: Locale };
+	children: React.ReactNode;
+	params: { locale: string };
 };
 
 export function generateStaticParams() {
@@ -44,5 +43,9 @@ export default async function LocaleLayout({ children, params }: Props) {
 	// Enable static rendering
 	setRequestLocale(locale);
 
-	return <BaseLayout locale={locale}>{children}</BaseLayout>;
+	return (
+		<BaseLayout locale={locale as (typeof routing.locales)[number]}>
+			{children}
+		</BaseLayout>
+	);
 }
