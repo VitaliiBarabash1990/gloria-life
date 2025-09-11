@@ -4,6 +4,7 @@ import React from "react";
 import { Field, ErrorMessage, useFormikContext } from "formik";
 import { MainMenuFormProps } from "@/types/types";
 import s from "./ContentItem.module.css";
+import useIsMobile from "@/lib/hooks/IsMobile";
 
 type ContentItemProps = {
 	title: string; // наприклад: "Заголовок сторінки"
@@ -13,6 +14,8 @@ type ContentItemProps = {
 
 const ContentItem = ({ title, subTitleIndex, lang }: ContentItemProps) => {
 	const { setFieldValue } = useFormikContext<MainMenuFormProps>();
+	const isMobile = useIsMobile();
+	console.log("IsMobile", isMobile);
 
 	// визначаємо ім'я поля у Formik
 	let fieldName = "";
@@ -27,10 +30,10 @@ const ContentItem = ({ title, subTitleIndex, lang }: ContentItemProps) => {
 			<label className={s.label}>
 				<div className={s.labelName}>{title}</div>
 				<Field
-					as={subTitleIndex ? "textarea" : "input"}
+					as={subTitleIndex || isMobile ? "textarea" : "input"}
 					name={fieldName}
 					placeholder={`Введіть ${title.toLowerCase()} ${lang.toLowerCase()}...`}
-					className={subTitleIndex ? s.textarea : s.input}
+					className={subTitleIndex || isMobile ? s.textarea : s.input}
 				/>
 				<button
 					type="button"

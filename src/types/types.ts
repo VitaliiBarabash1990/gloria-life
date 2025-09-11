@@ -89,6 +89,7 @@ export interface MainMenuFormProps {
 	subTitleTwoEn: string;
 	subTitleTwoDe: string;
 	img: (File | null)[];
+	existingImg?: string[];
 }
 
 export interface MainPayload {

@@ -8,7 +8,7 @@
 	display: flex;
 	justify-content: flex-end;
 	align-items: flex-start;
-	gap: 24px;
+	gap: 8px;
 	align-self: stretch;
 	position: relative;
 }
@@ -35,17 +35,17 @@
 
 .input {
 	display: flex;
-	padding: 16px 40px;
+	padding: 16px;
 	justify-content: space-between;
 	align-items: center;
 	flex: 1 0 0;
 
-	border-radius: 30px;
+	border-radius: 15px;
 	border: 1px solid var(--Stroke);
 
 	color: var(--Dark);
 	font-family: var(--second-family);
-	font-size: 18px;
+	font-size: 13px;
 	font-style: normal;
 	font-weight: 300;
 	line-height: 134%;
@@ -55,13 +55,13 @@
 	display: inline-block;
 	width: 100%;
 	min-height: 60px;
-	padding: 16px 40px;
+	padding: 16px;
 
-	border-radius: 30px;
+	border-radius: 15px;
 	border: 1px solid var(--Stroke);
 
 	font-family: var(--second-family);
-	font-size: 18px;
+	font-size: 13px;
 	font-weight: 300;
 	line-height: 134%;
 	color: var(--Dark);
@@ -80,15 +80,15 @@
 .btnEdit {
 	display: flex;
 	width: 100%;
-	max-width: 104px;
+	max-width: 44px;
 	height: 40px;
-	padding: 10px 40px;
+	padding: 10px;
 	justify-content: center;
 	align-items: center;
 	gap: 16px;
 
 	border-radius: 40px;
-	border: 2px solid var(--Stroke);
+	border: 1px solid var(--Stroke);
 }
 
 .iconEdit {
@@ -100,4 +100,27 @@
 
 .error {
 	color: red;
+}
+@media screen and (min-width: 768px) {
+	.input,
+	.textarea {
+		padding: 20px 24px;
+		font-size: 14px;
+	}
+}
+@media screen and (min-width: 1280px) {
+	.input,
+	.textarea {
+		padding: 16px 40px;
+		border-radius: 30px;
+		font-size: 18px;
+	}
+	.btnEdit {
+		max-width: 104px;
+		padding: 10px 40px;
+		border: 2px solid var(--Stroke);
+	}
+	.label {
+		gap: 24px;
+	}
 }

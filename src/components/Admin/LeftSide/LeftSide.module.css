@@ -1,28 +1,76 @@
 .leftMenuList {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: flex-start;
 	gap: 4px;
+
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+
+	/* приховування скролбара */
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
 }
+@media screen and (max-width: 1279px) {
+	.leftMenuList {
+		width: 100%;
+	}
+}
+
+.leftMenuItem,
+.active {
+	font-family: var(--font-family);
+	font-size: 14px;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
+}
+
 .leftMenuItem {
 	display: flex;
 	height: 46px;
-	width: 156px;
-	padding: 8px 32px;
+	/* width: 156px; */
+	padding: 8px 24px;
 	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
 	gap: 16px;
 	align-self: stretch;
 	border-radius: 60px;
 	cursor: pointer;
-}
 
+	color: var(--Dark);
+	font-weight: 400;
+	border: 1px solid var(--Stroke);
+}
 .active {
 	background: var(--Dark);
 	color: var(--white);
-	font-family: var(--font-family);
-	font-size: 18px;
-	font-style: normal;
 	font-weight: 600;
-	line-height: normal;
-	white-space: nowrap;
+}
+@media screen and (min-width: 768px) {
+	.leftMenuList {
+		gap: 8px;
+	}
+	.leftMenuItem {
+		width: 112px;
+		font-weight: 600;
+	}
+}
+@media screen and (min-width: 1280px) {
+	.leftMenuList {
+		flex-direction: column;
+		gap: 4px;
+	}
+	.leftMenuItem {
+		width: 156px;
+		padding: 8px 32px;
+		justify-content: flex-start;
+		border: none;
+	}
+	.leftMenuItem:hover,
+	.active {
+		font-size: 18px;
+	}
 }

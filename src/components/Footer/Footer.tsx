@@ -36,12 +36,8 @@ const Footer = () => {
 					</button>
 				)}
 				<li className={s.copyright}>
-					<p className={`${s.copyright} ${s.footerText}`}>
-						2025 · Gloria · Poland
-					</p>
-					<p className={`${s.copyright} ${s.footerText}`}>
-						ALl rights reserved
-					</p>
+					<p className={s.footerText}>2025 · Gloria · Poland</p>
+					<p className={s.footerText}>ALl rights reserved</p>
 				</li>
 			</ul>
 		</WrapperForComponents>

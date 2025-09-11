@@ -2,23 +2,32 @@
 	display: flex;
 	height: 40px;
 	align-items: flex-start;
-	gap: 8px;
+	gap: 4px;
 	align-self: stretch;
+
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+
+	/* приховування скролбара */
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 .languageItem {
 	display: flex;
-	padding: 8px 24px;
+	height: 100%;
+	padding: 8px 20px;
 	justify-content: center;
 	align-items: center;
 	gap: 16px;
 	flex: 1 0 0;
 	border-radius: 60px;
-	border: 2px solid var(--Stroke);
+	border: 1px solid var(--Stroke);
 
 	color: var(--Dark);
 	text-align: center;
 	font-family: var(--font-family);
-	font-size: 16px;
+	font-size: 12px;
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
@@ -30,6 +39,7 @@
 }
 .active {
 	background: var(--Dark);
+	border: 2px solid var(--Dark);
 	color: var(--white);
 	font-weight: 600;
 }
@@ -60,18 +70,19 @@
 }
 .imgList {
 	display: flex;
-	height: 221px;
+	flex-wrap: wrap;
+	height: auto;
 	align-items: center;
 	gap: 4px;
 }
 .imgItem {
 	display: flex;
-	width: calc((100% - 16px) / 5);
+	width: calc((100% - 4px) / 2);
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
-	flex: 1 0 0;
+	/* flex: 1 1 0; */
 	align-self: stretch;
 	position: relative;
 	overflow: hidden;
@@ -80,8 +91,8 @@
 	border: 1px dashed var(--Stroke);
 }
 .upLoad {
-	border: none;
 	border-radius: 0px;
+	border: 1px solid var(--Stroke);
 }
 .imgMain {
 	display: flex;
@@ -124,7 +135,7 @@
 .deleteBlock {
 	display: flex;
 	width: 89px;
-	padding: 10px 72px;
+	padding: 10px;
 	justify-content: center;
 	align-items: center;
 	gap: 16px;
@@ -133,6 +144,10 @@
 	border: 2px solid var(--White);
 	background: rgba(51, 55, 53, 0.4);
 	backdrop-filter: blur(2px);
+}
+.replaceBlock:hover {
+	cursor: pointer;
+	background: var(--Stroke-light);
 }
 .deleteIcon {
 	width: 24px;
@@ -162,4 +177,37 @@
 .sendBtn:hover {
 	background: var(--Dark);
 	color: var(--White);
+}
+
+@media screen and (min-width: 768px) {
+	.languageItem {
+		font-size: 14px;
+		padding: 8px 24px;
+		border: 2px solid var(--Stroke);
+	}
+	.languageSelector {
+		gap: 8px;
+	}
+	.imgList {
+		flex-wrap: nowrap;
+		height: 192px;
+	}
+	.imgItem {
+		flex: 1 0 0;
+	}
+	.upLoad {
+		border: none;
+	}
+}
+@media screen and (min-width: 1280px) {
+	.languageItem {
+		font-size: 16px;
+	}
+	.imgList {
+		height: auto;
+	}
+	.imgItem {
+		width: calc((100% - 16px) / 5);
+		aspect-ratio: 195 / 221;
+	}
 }

@@ -12,30 +12,45 @@ import { selectMain } from "@/redux/main/selectors";
 import { AppDispatch } from "@/redux/store";
 import { getAllMain, updateMain } from "@/redux/main/operations";
 
+const PLACEHOLDER = "/img/hero/Blog_button.png";
+
 const MainMenu = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const [selectItem, setSelectItem] = useState(0);
 
 	const main = useSelector(selectMain);
 
+	// previewImages завжди має 5 слотів; якщо main ще не підвантажено — 4-й слот = плейсхолдер
 	const [previewImages, setPreviewImages] = useState<(string | null)[]>(() => {
-		if (main?.img?.length)
-			return [...main.img, null, null, null, null].slice(0, 5);
-		return [null, null, null, null, null];
+		if (main?.img?.length) {
+			const imgs = [...main.img];
+			const firstThree = [imgs[0] || null, imgs[1] || null, imgs[2] || null];
+			const lastImg = imgs.length > 3 ? imgs[imgs.length - 1] : null;
+			return [...firstThree, PLACEHOLDER, lastImg];
+		}
+		return [null, null, null, PLACEHOLDER, null];
 	});
 
 	useEffect(() => {
 		dispatch(getAllMain());
 	}, [dispatch]);
 
+	// коли main оновився — формуємо previewImages так, щоб 4-й завжди був плейсхолдер
 	useEffect(() => {
-		if (main?.img)
-			setPreviewImages([...main.img, null, null, null, null].slice(0, 5));
+		if (main?.img) {
+			const imgs = [...main.img];
+			const firstThree = [imgs[0] || null, imgs[1] || null, imgs[2] || null];
+			const lastImg = imgs.length > 3 ? imgs[imgs.length - 1] : null;
+			setPreviewImages([...firstThree, PLACEHOLDER, lastImg]);
+		} else {
+			setPreviewImages([null, null, null, PLACEHOLDER, null]);
+		}
 	}, [main]);
 
 	if (!main) return <p>Loading...</p>;
 
-	const initialValues: MainMenuFormProps = {
+	// initialValues: img має 5 слотів, existingImg з бекенду
+	const initialValues: MainMenuFormProps & { existingImg?: string[] } = {
 		titleUa: main?.ua.title || "",
 		titleEn: main?.en.title || "",
 		titlePl: main?.pl.title || "",
@@ -48,61 +63,120 @@ const MainMenu = () => {
 		subTitleTwoPl: main?.pl.subTitleTwo || "",
 		subTitleTwoEn: main?.en.subTitleTwo || "",
 		subTitleTwoDe: main?.de.subTitleTwo || "",
-		img: [null, null, null, null] as (File | null)[],
+		// 5 слотів: вони відповідають previewImages
+		img: [null, null, null, null, null] as (File | null)[],
+		// existingImg — масив URL-ів, що вже є в БД
+		existingImg: main?.img || [],
 	};
 
+	// коли користувач вибирає файл:
 	const handleImageChange = (
 		e: React.ChangeEvent<HTMLInputElement>,
 		index: number,
-		setFieldValue: FormikProps<MainMenuFormProps>["setFieldValue"]
+		setFieldValue: FormikProps<
+			MainMenuFormProps & { existingImg?: string[] }
+		>["setFieldValue"],
+		values: MainMenuFormProps & { existingImg?: string[] }
 	) => {
 		const file = e.target.files?.[0];
 		if (!file) return;
 
-		// Оновлюємо Formik (File | null)
+		// зберігаємо файл у Formik
 		setFieldValue(`img[${index}]`, file);
 
-		// Оновлюємо previewImages (string | null)
 		const objectUrl = URL.createObjectURL(file);
 		setPreviewImages((prev) => {
 			const updated = [...prev];
-			if (prev[index]) URL.revokeObjectURL(prev[index]!);
+			const prevVal = prev[index];
+
+			// якщо попереднє значення було blob -> звільняємо
+			if (
+				prevVal &&
+				typeof prevVal === "string" &&
+				prevVal.startsWith("blob:")
+			) {
+				URL.revokeObjectURL(prevVal);
+			}
+
+			// якщо попереднє значення було server-url (тобто в existingImg) — видаляємо його з existingImg
+			if (
+				prevVal &&
+				typeof prevVal === "string" &&
+				prevVal !== PLACEHOLDER &&
+				!prevVal.startsWith("blob:")
+			) {
+				const newExisting = (values?.existingImg || []).filter(
+					(u: string) => u !== prevVal
+				);
+				setFieldValue("existingImg", newExisting);
+			}
+
 			updated[index] = objectUrl;
 			return updated;
 		});
 	};
 
+	// видалення фото з певного слота
 	const handleImageDelete = (
 		index: number,
-		setFieldValue: FormikProps<MainMenuFormProps>["setFieldValue"]
+		setFieldValue: FormikProps<
+			MainMenuFormProps & { existingImg?: string[] }
+		>["setFieldValue"],
+		values: MainMenuFormProps & { existingImg?: string[] }
 	) => {
 		setPreviewImages((prev) => {
 			const updated = [...prev];
+			const prevVal = prev[index];
+
+			if (prevVal && typeof prevVal === "string") {
+				// якщо це blob — звільняємо
+				if (prevVal.startsWith("blob:")) {
+					URL.revokeObjectURL(prevVal);
+				} else if (prevVal !== PLACEHOLDER) {
+					// якщо це server url — видаляємо з existingImg
+					const newExisting = (values?.existingImg || []).filter(
+						(u: string) => u !== prevVal
+					);
+					setFieldValue("existingImg", newExisting);
+				}
+			}
+
 			updated[index] = null;
 			return updated;
 		});
+
+		// очищуємо файл у Formik
 		setFieldValue(`img[${index}]`, null);
 	};
 
-	const hundlerSubmit = (values: MainMenuFormProps) => {
+	// сабміт: додаємо нові файли + existingImg (JSON), інші поля додаємо по ключах
+	const hundlerSubmit = (
+		values: MainMenuFormProps & { existingImg?: string[] }
+	) => {
 		if (!main?._id) return;
 
 		const formData = new FormData();
 
+		// додаємо нові файли
+		(values.img || []).forEach((file) => {
+			if (file) formData.append("img", file);
+		});
+
+		// відправляємо existingImg як JSON (бекенд повинен розуміти цей формат)
+		formData.append("existingImg", JSON.stringify(values.existingImg || []));
+
+		// додаємо решту полів
 		Object.entries(values).forEach(([key, value]) => {
-			if (key === "img") {
-				(value as (File | null)[]).forEach((file) => {
-					if (file) formData.append("img", file);
-				});
-			} else if (value !== "" && value !== null && value !== undefined) {
+			if (key === "img" || key === "existingImg") return;
+			if (value !== "" && value !== null && value !== undefined) {
 				formData.append(key, value as string | Blob);
 			}
 		});
 
-		console.log("FORMDATA", formData);
+		// для дебагу (між іншим)
+		console.log("FORMDATA entries:", formData);
 
 		dispatch(updateMain({ id: main._id, formData }));
-		// dispatch(createMain(formData));
 	};
 
 	return (
@@ -112,7 +186,7 @@ const MainMenu = () => {
 			onSubmit={hundlerSubmit}
 			enableReinitialize
 		>
-			{({ setFieldValue, errors }) => (
+			{({ setFieldValue, errors, values }) => (
 				<Form className={s.mainForm}>
 					<ul className={s.languageSelector}>
 						{language.map((item) => {
@@ -199,7 +273,8 @@ const MainMenu = () => {
 						<ul className={s.imgList}>
 							{previewImages.map((img, i) => (
 								<li key={i} className={`${s.imgItem} ${img ? s.upLoad : ""}`}>
-									{img ? (
+									{/* показ картинки */}
+									{img && (
 										<Image
 											src={img}
 											width={60}
@@ -207,35 +282,40 @@ const MainMenu = () => {
 											alt={`img_${i + 1}`}
 											className={s.imgMain}
 										/>
-									) : (
-										<label className={s.imgUploadLabel}>
-											<svg className={s.upLoadIcon}>
-												<use href="/sprite.svg#icon-upload"></use>
-											</svg>
-											<input
-												type="file"
-												name={`img[${i}]`}
-												accept="image/*"
-												onChange={(e) => handleImageChange(e, i, setFieldValue)}
-												className={s.imgInputHidden}
-											/>
-										</label>
 									)}
-									{img && (
+
+									{/* схований input завжди */}
+									<input
+										key={img ? "replace" : "new"} // пересоздає інпут після видалення
+										type="file"
+										accept="image/*"
+										id={`img-upload-${i}`}
+										style={{ display: "none" }}
+										onChange={(e) =>
+											handleImageChange(e, i, setFieldValue, values)
+										}
+									/>
+
+									{/* кнопки для картинки */}
+									{img && img !== PLACEHOLDER && (
 										<div className={s.btnBlock}>
-											<button
+											{/* Replace */}
+											<label
+												htmlFor={`img-upload-${i}`}
 												className={s.replaceBlock}
-												type="button"
-												onClick={() => handleImageDelete(i, setFieldValue)}
 											>
 												<svg className={s.deleteIcon}>
 													<use href="/sprite.svg#icon-replace"></use>
 												</svg>
-											</button>
+											</label>
+
+											{/* Delete */}
 											<button
 												className={s.deleteBlock}
 												type="button"
-												onClick={() => handleImageDelete(i, setFieldValue)}
+												onClick={() =>
+													handleImageDelete(i, setFieldValue, values)
+												}
 											>
 												<svg className={s.deleteIcon}>
 													<use href="/sprite.svg#icon-delete"></use>
@@ -243,11 +323,25 @@ const MainMenu = () => {
 											</button>
 										</div>
 									)}
+
+									{/* аплоад для пустого слоту */}
+									{!img && (
+										<label
+											htmlFor={`img-upload-${i}`}
+											className={s.imgUploadLabel}
+										>
+											<svg className={s.upLoadIcon}>
+												<use href="/sprite.svg#icon-upload"></use>
+											</svg>
+										</label>
+									)}
 								</li>
 							))}
 						</ul>
+
 						<ErrorMessage name="img" component="p" className={s.error} />
 					</div>
+
 					<button type="submit" className={s.sendBtn}>
 						Відправити Данні!
 					</button>

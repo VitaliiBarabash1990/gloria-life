@@ -22,7 +22,7 @@
 	color: var(--Stroke);
 	text-align: right;
 	font-family: var(--second-family);
-	font-size: 18px;
+	font-size: 14px;
 	font-style: normal;
 	font-weight: 400;
 	line-height: 150%;
@@ -33,4 +33,14 @@
 	justify-content: space-between;
 	align-items: flex-start;
 	align-self: stretch;
+}
+@media screen and (min-width: 768px) {
+	.footerText {
+		font-size: 16px;
+	}
+}
+@media screen and (min-width: 1280px) {
+	.footerText {
+		font-size: 18px;
+	}
 }

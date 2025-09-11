@@ -1,3 +1,4 @@
+// /lib/utils/validationSchema.ts
 import * as Yup from "yup";
 
 export const ValidationSchema = Yup.object().shape({
@@ -41,8 +42,22 @@ export const ValidationSchema = Yup.object().shape({
 	),
 
 	img: Yup.array()
-		.of(Yup.mixed<File>().nullable())
-		.compact() // прибере null
-		.min(1, "Необхідно завантажити хоча б одне фото")
-		.required("Завантажте хоча б одне фото"),
+		.of(Yup.mixed().nullable())
+		.test(
+			"four-images-required",
+			"Необхідно завантажити всі чотири фото",
+			function (value) {
+				const existingImg = this.parent?.existingImg || [];
+
+				// Перевірка наявності 4 фото (або нові файли, або існуючі урли)
+				const total = [
+					...(Array.isArray(existingImg) ? existingImg : []),
+					...(Array.isArray(value)
+						? value.filter((v) => v instanceof File || v instanceof Blob)
+						: []),
+				];
+
+				return total.length >= 4;
+			}
+		),
 });
