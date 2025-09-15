@@ -18,7 +18,7 @@ const Page = () => {
 	const [idMenuItem, setIdMenuItem] = useState(0);
 	const isLoggedIn = useSelector(selectIsLoggedIn);
 	const isSuccess = useSelector(selectIsSuccess);
-	console.log("isSuccess", isSuccess);
+	// console.log("isSuccess", isSuccess);
 	const user = useSelector(selectUserRole);
 
 	useEffect(() => {

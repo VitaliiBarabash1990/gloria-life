@@ -174,7 +174,7 @@ const MainMenu = () => {
 		});
 
 		// для дебагу (між іншим)
-		console.log("FORMDATA entries:", formData);
+		// console.log("FORMDATA entries:", formData);
 
 		dispatch(updateMain({ id: main._id, formData }));
 	};

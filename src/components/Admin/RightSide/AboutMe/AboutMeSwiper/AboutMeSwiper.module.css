@@ -1,0 +1,147 @@
+.sliderContainer {
+	margin: auto;
+	align-items: center;
+	gap: 40px;
+	padding: 40px 0;
+}
+.swiper {
+	height: auto;
+	max-width: 1440px;
+}
+.slide {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+.slideArticle {
+	padding: 0 16px;
+}
+.slideArticleDescription {
+	height: 660px;
+	overflow-y: auto;
+}
+.articleTitle,
+.articleText {
+	color: var(--Dark);
+	font-feature-settings: "liga" off, "clig" off;
+	line-height: 200%;
+}
+.articleTitle {
+	font-family: var(--second-family);
+	font-size: 16px;
+	font-style: italic;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+.articleText {
+	font-family: var(--font-family);
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 300;
+}
+.slideImage {
+	width: 100%;
+	min-width: 320px;
+	aspect-ratio: 320 / 408;
+}
+.paginationBlock {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	align-self: stretch;
+	position: relative;
+}
+
+.navButton_icon {
+	stroke: var(--background);
+	min-width: 24px;
+	height: 24px;
+}
+/* Навигационные кнопки */
+.navButton {
+	background: white;
+	padding: 10px;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	z-index: 9;
+	border: none;
+}
+
+@media screen and (min-width: 375px) {
+	.navButton_icon {
+		min-width: 32px;
+		height: 32px;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.slideArticle {
+		padding: 0 32px;
+	}
+	.slideArticleDescription {
+		max-height: 400px;
+	}
+	.articleTitle {
+		font-size: 20px;
+	}
+	.articleText {
+		font-size: 16px;
+	}
+	.paginationBlock {
+		height: 64px;
+	}
+	.slideImage {
+		min-width: 768px;
+		aspect-ratio: 768 / 900;
+	}
+}
+
+@media screen and (min-width: 1280px) {
+	.sliderContainer {
+		padding: 40px 0 40px 64px;
+	}
+	.swiper {
+		aspect-ratio: 1374 / 854;
+	}
+	.slide {
+		flex-direction: row;
+	}
+	.slideImage {
+		min-width: 0;
+	}
+	.slideImage,
+	.slideArticle {
+		width: calc(50% - 20px);
+	}
+	.slideArticle {
+		display: flex;
+		flex-direction: column;
+		padding: 20px 0;
+		justify-content: space-between;
+		align-items: flex-start;
+		flex: 1 0 0;
+		align-self: stretch;
+	}
+	.slideArticleDescription {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 24px;
+		align-self: stretch;
+		min-height: 668px;
+	}
+	.articleTitle {
+		font-size: 24px;
+	}
+	.articleText {
+		font-size: 20px;
+	}
+	.paginationBlock {
+		padding: 0;
+	}
+}

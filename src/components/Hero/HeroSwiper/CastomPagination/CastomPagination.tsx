@@ -1,16 +1,12 @@
 import React from "react";
 import s from "./CastomPagination.module.css";
 
-type ImgProp = {
-	img: string;
-};
-
 type PaginationProps = {
-	imgs: ImgProp[];
+	imgs: string[] | undefined;
 	activeSlide: number | null;
 };
 
-const CastomPagination = ({ imgs, activeSlide }: PaginationProps) => {
+const CastomPagination = ({ imgs = [], activeSlide }: PaginationProps) => {
 	return (
 		<div className={s.paginationWraper}>
 			{imgs.map((step, index) => (

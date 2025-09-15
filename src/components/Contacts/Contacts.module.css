@@ -1,15 +1,18 @@
 .contactsWrapper {
 	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-end;
 	align-self: stretch;
+	gap: 64px;
 }
+
 .contactsContentList {
 	display: flex;
 	width: 364px;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: 40px;
+	gap: 32px;
 	align-self: stretch;
 }
 .contentItemPhone {
@@ -22,7 +25,7 @@
 .contentTitle {
 	color: var(--Dark);
 	font-family: var(--second-family);
-	font-size: 40px;
+	font-size: 24px;
 	font-style: normal;
 	font-weight: 500;
 	line-height: 136%;
@@ -30,7 +33,7 @@
 .contentText {
 	color: var(--Dark);
 	font-family: var(--second-family);
-	font-size: 20px;
+	font-size: 14px;
 	font-style: italic;
 	font-weight: 400;
 	line-height: 136%;
@@ -58,7 +61,7 @@
 	color: var(--Dark);
 	text-align: right;
 	font-family: var(--font-family);
-	font-size: 20px;
+	font-size: 18px;
 	font-style: normal;
 	font-weight: 400;
 	line-height: 136%;
@@ -74,4 +77,34 @@
 	fill: var(--Dark);
 	width: 18px;
 	height: 18px;
+}
+
+@media screen and (min-width: 768px) {
+	.contentTitle {
+		font-size: 28px;
+	}
+	.contentText {
+		font-size: 16px;
+	}
+	.socialText {
+		font-size: 18px;
+	}
+}
+@media screen and (min-width: 1280px) {
+	.contactsWrapper {
+		flex-direction: row;
+		gap: 0;
+	}
+	.contactsContentList {
+		gap: 40px;
+	}
+	.contentTitle {
+		font-size: 40px;
+	}
+	.contentText {
+		font-size: 20px;
+	}
+	.socialText {
+		font-size: 20px;
+	}
 }

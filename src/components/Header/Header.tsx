@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Link, usePathname } from "@/i18n/routing";
+import { Link } from "@/i18n/routing";
 import s from "./Header.module.css";
 import WrapperForComponents from "../UI/WrapperForComponents/WrapperForComponents";
 import BurgerButton from "./BurgerButton/BurgerButton";
@@ -8,10 +8,10 @@ import useWindowWidth from "@/lib/hooks/useWindowWidth";
 
 const Header = () => {
 	const [openBurger, setOpenBurger] = useState(true);
-	const path = usePathname().split("/");
+	// const path = usePathname().split("/");
 	const width = useWindowWidth();
 
-	console.log("Path", path[1]);
+	// console.log("Path", path[1]);
 
 	let paddingTop = 40;
 	let paddingBottom = 40;

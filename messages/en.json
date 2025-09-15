@@ -4,6 +4,11 @@
 		"button_2": "Barber"
 	},
 
+	"Contact": {
+		"title": "Contacts /",
+		"subTitle": "I am Gloria and Life is my best project."
+	},
+
 	"LocaleLayout": {
 		"title": "gloria-life.beauty",
 		"description": "Life blog of a psychologist about spiritual development"

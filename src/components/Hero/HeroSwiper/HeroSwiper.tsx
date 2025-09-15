@@ -8,13 +8,17 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import s from "./HeroSwiper.module.css";
-import imgs from "./imgs.json";
+// import imgs from "./imgs.json";
 import Image from "next/image";
 import CastomPagination from "./CastomPagination/CastomPagination";
+import { selectImgs } from "@/redux/main/selectors";
+import { useSelector } from "react-redux";
 
 const HeroSwiper = () => {
 	const [activeSlide, setActiveSlide] = useState<number | null>(null);
-	console.log("ActiveSlide", activeSlide);
+	const imgs = useSelector(selectImgs);
+	// console.log("IMG", imgs);
+	// console.log("ActiveSlide", activeSlide);
 
 	return (
 		<div id="HeroSwiper" className={s.heroSwiper}>
@@ -38,11 +42,11 @@ const HeroSwiper = () => {
 						768: { slidesPerView: 2, spaceBetween: 4 },
 					}}
 				>
-					{imgs.map((img, index) => (
+					{imgs?.map((img, index) => (
 						<SwiperSlide key={index} className={s.slide}>
 							<div key={index} className={s.heroItem}>
 								<Image
-									src={img.img}
+									src={img}
 									width={382}
 									height={480}
 									alt={`photo ${index}`}

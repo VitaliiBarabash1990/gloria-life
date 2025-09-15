@@ -1,3 +1,4 @@
+import AboutMe from "@/components/Admin/RightSide/AboutMe/AboutMe";
 import Contacts from "@/components/Contacts/Contacts";
 import Hero from "@/components/Hero/Hero";
 import { Locale } from "@/i18n/routing";
@@ -15,8 +16,9 @@ export default async function IndexPage({ params }: Props) {
 
 	return (
 		<>
-			<Hero />
-			<Contacts />
+			{/* <Hero /> */}
+			<AboutMe />
+			{/* <Contacts /> */}
 		</>
 	);
 }

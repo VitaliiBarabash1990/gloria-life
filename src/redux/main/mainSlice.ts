@@ -61,7 +61,7 @@ export const mainSlice = createSlice({
 				if (main) {
 					const { ua, en, pl, de } = main; // деструктуруємо тільки мовні поля
 					state.mainLang = { ua, en, pl, de };
-					console.log("Main languages:", state.mainLang);
+					// console.log("Main languages:", state.mainLang);
 				} else {
 					state.mainLang = null;
 				}

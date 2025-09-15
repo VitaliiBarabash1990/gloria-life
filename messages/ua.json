@@ -4,6 +4,11 @@
 		"button_2": "Барбер"
 	},
 
+	"Contact": {
+		"title": "Контакти /",
+		"subTitle": "Я Глорія і Життя — мій найкращий проєкт."
+	},
+
 	"LocaleLayout": {
 		"title": "gloria-life.beauty",
 		"description": "Життєвий блог психолога про духовний розвиток"

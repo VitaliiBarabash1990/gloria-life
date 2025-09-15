@@ -75,6 +75,7 @@ export interface RightSideProps {
 	idMenuItem: number;
 }
 
+//forMain
 export interface MainMenuFormProps {
 	titleUa: string;
 	titleEn: string;
@@ -92,6 +93,15 @@ export interface MainMenuFormProps {
 	existingImg?: string[];
 }
 
+//forContacts
+export interface ContactsMenuFormProps {
+	number: string;
+	telegram: string;
+	instagram: string;
+	facebook: string;
+	_id?: string;
+}
+
 export interface MainPayload {
 	ua: { title: string; subTitleOne?: string; subTitleTwo?: string };
 	en: { title: string; subTitleOne?: string; subTitleTwo?: string };
@@ -107,10 +117,24 @@ export interface MainLangPayload {
 	pl: { title: string; subTitleOne?: string; subTitleTwo?: string };
 	de: { title: string; subTitleOne?: string; subTitleTwo?: string };
 }
+export const emptyMain: MainLang = {
+	ua: { title: "", subTitleOne: "", subTitleTwo: "" },
+	en: { title: "", subTitleOne: "", subTitleTwo: "" },
+	pl: { title: "", subTitleOne: "", subTitleTwo: "" },
+	de: { title: "", subTitleOne: "", subTitleTwo: "" },
+};
 
+//state Main
 export interface MainState {
 	main: MainPayload | null;
 	mainLang: MainLangPayload | null;
+	isLoading: boolean;
+	isError: boolean;
+}
+
+//state Contact
+export interface ContactsState {
+	contacts: ContactsMenuFormProps | null;
 	isLoading: boolean;
 	isError: boolean;
 }

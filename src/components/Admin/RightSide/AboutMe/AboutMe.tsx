@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
+import AboutMeSwiper from "./AboutMeSwiper/AboutMeSwiper";
 
 const AboutMe = () => {
-	return <div>AboutMe</div>;
+	return <AboutMeSwiper />;
 };
 
 export default AboutMe;

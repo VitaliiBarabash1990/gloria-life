@@ -11,7 +11,7 @@ const Footer = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const router = useRouter();
 	const path = usePathname().split("/");
-	console.log("Path", path[1]);
+	// console.log("Path", path[1]);
 
 	const hundlerRedirect = () => {
 		dispatch(logOut());

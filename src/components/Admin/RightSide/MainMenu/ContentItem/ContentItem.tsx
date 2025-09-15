@@ -15,7 +15,7 @@ type ContentItemProps = {
 const ContentItem = ({ title, subTitleIndex, lang }: ContentItemProps) => {
 	const { setFieldValue } = useFormikContext<MainMenuFormProps>();
 	const isMobile = useIsMobile();
-	console.log("IsMobile", isMobile);
+	// console.log("IsMobile", isMobile);
 
 	// визначаємо ім'я поля у Formik
 	let fieldName = "";

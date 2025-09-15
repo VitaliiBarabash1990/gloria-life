@@ -26,18 +26,18 @@ const Hero = () => {
 					<ul className={s.heroHeadList}>
 						<li className={s.heroHeadItem}>
 							<h1 className={s.heroHeadTitle}>
-								{t("title")}
+								{t?.("title")}
 								{/* Вітаю, я Глорія моє життя - це пошук та розкриття себе */}
 							</h1>
 							<div className={s.fadingLine}></div>
 						</li>
 						<li className={s.heroSubHeading}>
 							<h3 className={s.heroSubHeadingText}>
-								{t("subTitleOne")}
+								{t?.("subTitleOne")}
 								{/* Духовний наставник, психолог, мама сина, барберка */}
 							</h3>
 							<h3 className={`${s.heroSubHeadingText} ${s.textRight}`}>
-								{t("subTitleTwo")}
+								{t?.("subTitleTwo")}
 								{/* Енергія любові і світла змінила моє життя */}
 							</h3>
 						</li>

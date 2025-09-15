@@ -1,0 +1,51 @@
+.paginationWraper {
+	height: 40px;
+	width: 120px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.countPagination {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	min-width: 80px;
+	height: 64px;
+	gap: 19px;
+
+	color: var(--Dark);
+	font-feature-settings: "liga" off, "clig" off;
+	font-family: var(--second-family);
+	font-size: 32px;
+	font-style: italic;
+	font-weight: 400;
+	line-height: 200%;
+	letter-spacing: 1.28px;
+	text-transform: uppercase;
+}
+.paginationItem {
+	min-width: 24px;
+	height: 24px;
+	display: flex;
+	padding: 10px;
+	align-items: center;
+	gap: 10px;
+}
+.boolitIcon,
+.boolitActiveIcon {
+	width: 6px;
+	height: 6px;
+}
+.boolitActiveIcon {
+	fill: var(--Dark);
+}
+.boolitIcon {
+	fill: var(--Stroke);
+}
+@media screen and (max-width: 375px) {
+	.countPagination {
+		font-size: 24px;
+		min-width: 60px;
+		height: 40px;
+	}
+}

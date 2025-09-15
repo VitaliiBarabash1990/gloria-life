@@ -4,6 +4,11 @@
 		"button_2": "Fryzjer"
 	},
 
+	"Contact": {
+		"title": "Kontakty /",
+		"subTitle": "Jestem Gloria, a Życie to mój najlepszy projekt."
+	},
+
 	"LocaleLayout": {
 		"title": "gloria-life.beauty",
 		"description": "Життєвий блог психолога про духовний розвиток"

@@ -16,7 +16,12 @@ const fileMessages: Record<LocaleKey, Messages> = {
 export function getMessages(locale: LocaleKey, blocks: BlocksLang) {
 	const messagesFromFiles = fileMessages[locale] || {};
 	const messagesFromDb = mapBlocksToMessages(blocks, locale);
+	// console.log("messagesFromFiles", messagesFromFiles);
+	// console.log("messagesFromDb", messagesFromDb);
 
 	// зливаємо: БД переклади мають пріоритет над файлом
-	return deepmerge(messagesFromFiles, messagesFromDb);
+	// return deepmerge(messagesFromFiles, messagesFromDb);
+	return JSON.parse(
+		JSON.stringify(deepmerge(messagesFromFiles, messagesFromDb))
+	);
 }
