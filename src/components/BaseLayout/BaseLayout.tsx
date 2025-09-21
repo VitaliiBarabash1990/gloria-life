@@ -5,10 +5,11 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import ReduxProvider from "@/ReduxProvider/ReduxProvider";
 import { useSelector } from "react-redux";
-import { emptyMain, LocaleKey } from "@/types/types";
+import { emptyAboutMe, emptyMain, LocaleKey } from "@/types/types";
 import { selectMainLang } from "@/redux/main/selectors";
 // import { mapBlocksToMessages } from "@/lib/utils/mapBlocksToMessages";
 import { getMessages } from "@/lib/utils/getMessages";
+import { selectAboutMeLang } from "@/redux/aboutMe/selectors";
 
 type Props = {
 	children: ReactNode;
@@ -17,12 +18,16 @@ type Props = {
 
 function Content({ children, locale }: Props) {
 	const mainLang = useSelector(selectMainLang);
-	// console.log("LOcale", locale);
-	// const aboutLang = useSelector(selectAboutLang);
+	const aboutMeLangList = useSelector(selectAboutMeLang);
+	const aboutMeLang = aboutMeLangList?.[0] || null;
+	console.log("AboutMe", aboutMeLang);
 
 	// const messages = mapBlocksToMessages({ main: mainLang }, locale);
 
-	const messages = getMessages(locale, { main: mainLang || emptyMain });
+	const messages = getMessages(locale, {
+		main: mainLang || emptyMain,
+		about: aboutMeLang || emptyAboutMe,
+	});
 	return (
 		<NextIntlClientProvider locale={locale} messages={messages}>
 			<Header />

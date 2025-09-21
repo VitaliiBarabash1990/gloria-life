@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import WrapperForComponents from "../UI/WrapperForComponents/WrapperForComponents";
+import WrapperForComponents from "../../UI/WrapperForComponents/WrapperForComponents";
 import s from "./Hero.module.css";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";

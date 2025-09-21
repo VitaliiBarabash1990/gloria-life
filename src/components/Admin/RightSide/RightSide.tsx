@@ -1,11 +1,11 @@
 import React from "react";
 import MainMenu from "./MainMenu/MainMenu";
-import AboutMe from "./AboutMe/AboutMe";
 import Services from "./Services/Services";
 import Blog from "./Blog/Blog";
 import { Galery } from "./Galery/Galery";
 import Contacts from "./Contacts/Contacts";
 import { RightSideProps } from "@/types/types";
+import AboutMe from "./AboutMe/AboutMe";
 
 const RightSide = ({ idMenuItem }: RightSideProps) => {
 	return (

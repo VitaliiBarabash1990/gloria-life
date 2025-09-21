@@ -93,6 +93,20 @@ export interface MainMenuFormProps {
 	existingImg?: string[];
 }
 
+//forAboutMe
+export interface AboutMeFormProps {
+	titleUa: string;
+	titleEn: string;
+	titlePl: string;
+	titleDe: string;
+	subTitleUa: string;
+	subTitleEn: string;
+	subTitlePl: string;
+	subTitleDe: string;
+	img: File | null;
+	existingImg?: string | null;
+}
+
 //forContacts
 export interface ContactsMenuFormProps {
 	number: string;
@@ -111,11 +125,26 @@ export interface MainPayload {
 	_id?: undefined | string;
 }
 
+export interface AboutMePayload {
+	ua: { title: string; subTitle?: string };
+	en: { title: string; subTitle?: string };
+	pl: { title: string; subTitle?: string };
+	de: { title: string; subTitle?: string };
+	img: string;
+	_id?: undefined | string;
+}
+
 export interface MainLangPayload {
 	ua: { title: string; subTitleOne?: string; subTitleTwo?: string };
 	en: { title: string; subTitleOne?: string; subTitleTwo?: string };
 	pl: { title: string; subTitleOne?: string; subTitleTwo?: string };
 	de: { title: string; subTitleOne?: string; subTitleTwo?: string };
+}
+export interface AboutMeLangPayload {
+	ua: { title: string; subTitle?: string };
+	en: { title: string; subTitle?: string };
+	pl: { title: string; subTitle?: string };
+	de: { title: string; subTitle?: string };
 }
 export const emptyMain: MainLang = {
 	ua: { title: "", subTitleOne: "", subTitleTwo: "" },
@@ -123,11 +152,25 @@ export const emptyMain: MainLang = {
 	pl: { title: "", subTitleOne: "", subTitleTwo: "" },
 	de: { title: "", subTitleOne: "", subTitleTwo: "" },
 };
+export const emptyAboutMe: AboutMeLang = {
+	ua: { title: "", subTitle: "" },
+	en: { title: "", subTitle: "" },
+	pl: { title: "", subTitle: "" },
+	de: { title: "", subTitle: "" },
+};
 
 //state Main
 export interface MainState {
 	main: MainPayload | null;
 	mainLang: MainLangPayload | null;
+	isLoading: boolean;
+	isError: boolean;
+}
+
+//state AboutMe
+export interface AboutMeState {
+	aboutMeList: AboutMePayload[];
+	aboutMeLangList: AboutMeLangPayload[];
 	isLoading: boolean;
 	isError: boolean;
 }
@@ -144,6 +187,10 @@ export interface LocaleContent {
 	subTitleOne?: string;
 	subTitleTwo?: string;
 }
+export interface LocaleContentAbout {
+	title: string;
+	subTitle?: string;
+}
 
 export interface MainLang {
 	ua: LocaleContent;
@@ -151,9 +198,15 @@ export interface MainLang {
 	pl: LocaleContent;
 	de: LocaleContent;
 }
+export interface AboutMeLang {
+	ua: LocaleContentAbout;
+	en: LocaleContentAbout;
+	pl: LocaleContentAbout;
+	de: LocaleContentAbout;
+}
 export type BlocksLang = {
 	main?: MainLang | null;
-	// about?: AboutLang | null;
+	about?: AboutMeLang | null;
 	// інші блоки...
 };
 

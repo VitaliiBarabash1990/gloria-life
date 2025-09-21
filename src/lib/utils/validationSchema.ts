@@ -61,3 +61,52 @@ export const ValidationSchema = Yup.object().shape({
 			}
 		),
 });
+
+export const ValidationSchemaAboutMe = Yup.object().shape({
+	titleUa: Yup.string().required(
+		"Введіть заголовок на Українській. Це обовязково!"
+	),
+	titleEn: Yup.string().required(
+		"Введіть заголовок на Англійській. Це обовязково!"
+	),
+	titlePl: Yup.string().required(
+		"Введіть заголовок на Польській. Це обовязково!"
+	),
+	titleDe: Yup.string().required(
+		"Введіть заголовок на Німецькій. Це обовязково!"
+	),
+
+	subTitleUa: Yup.string().required(
+		"Введіть текст на Українській. Це обовязково!"
+	),
+	subTitleEn: Yup.string().required(
+		"Введіть текст на Англійській. Це обовязково!"
+	),
+	subTitlePl: Yup.string().required(
+		"Введіть текст на Польській. Це обовязково!"
+	),
+	subTitleDe: Yup.string().required(
+		"Введіть текст на Німецькій. Це обовязково!"
+	),
+	img: Yup.mixed()
+		.nullable()
+		.test("img-required", "Необхідно завантажити картинку", function (value) {
+			const { existingImg } = this.parent;
+
+			// ✅ якщо є завантажене зображення з сервера — валідація проходить
+			if (existingImg) return true;
+
+			// ✅ якщо користувач вибрав файл
+			if (value instanceof File) return true;
+
+			return false;
+		})
+		.test(
+			"fileType",
+			"Файл повинен бути зображенням (jpg, png, jpeg, webp)",
+			(value) => {
+				if (!value || !(value instanceof File)) return true; // пропускаємо, якщо не новий файл
+				return ["image/jpeg", "image/png", "image/webp"].includes(value.type);
+			}
+		),
+});

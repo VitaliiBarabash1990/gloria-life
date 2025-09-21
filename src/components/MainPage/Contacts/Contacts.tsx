@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import WrapperForComponents from "../UI/WrapperForComponents/WrapperForComponents";
+import WrapperForComponents from "@/components/UI/WrapperForComponents/WrapperForComponents";
 import s from "./Contacts.module.css";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";

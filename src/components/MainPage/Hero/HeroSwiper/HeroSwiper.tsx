@@ -29,8 +29,8 @@ const HeroSwiper = () => {
 					// slidesPerView={1}
 					// pagination={{ clickable: true }}
 					navigation={{
-						nextEl: ".custom-next",
-						prevEl: ".custom-prev",
+						nextEl: ".hero-next",
+						prevEl: ".hero-prev",
 					}}
 					modules={[Pagination, Navigation]}
 					loop={true}
@@ -57,7 +57,7 @@ const HeroSwiper = () => {
 				</Swiper>
 				<div className={s.paginationBlock}>
 					<CastomPagination imgs={imgs} activeSlide={activeSlide} />
-					<button className={`custom-next ${s.navButton}`}>
+					<button className={`hero-next ${s.navButton}`}>
 						<svg className={s.navButton_icon}>
 							<use href="/sprite.svg#icon-arrow-swiper-right"></use>
 						</svg>
