@@ -1,13 +1,16 @@
 import React from "react";
 import s from "./CastomPagination.module.css";
-import { AboutMePayload } from "@/types/types";
+import { BlogPayload } from "@/types/types";
 
 type PaginationProps = {
-	about: AboutMePayload[];
+	article: BlogPayload[];
 	activeSlide: number | null;
 };
 
-const CastomPagination = ({ about = [], activeSlide = 0 }: PaginationProps) => {
+const CastomPagination = ({
+	article = [],
+	activeSlide = 0,
+}: PaginationProps) => {
 	const safeActiveSlide =
 		typeof activeSlide === "number" && !isNaN(activeSlide) ? activeSlide : 0;
 
@@ -16,10 +19,10 @@ const CastomPagination = ({ about = [], activeSlide = 0 }: PaginationProps) => {
 	return (
 		<>
 			<div className={s.countPagination}>
-				{safeActiveSlide + 1} / {about.length}
+				{safeActiveSlide + 1} / {article.length}
 			</div>
 			<div className={s.paginationWraper}>
-				{about.map((step, index) => (
+				{article.map((step, index) => (
 					<div key={index} className={s.paginationItem}>
 						{index === activeSlide ? (
 							<svg className={s.boolitActiveIcon}>

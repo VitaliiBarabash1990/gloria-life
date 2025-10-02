@@ -88,6 +88,20 @@ export const ValidationSchemaAboutMe = Yup.object().shape({
 	subTitleDe: Yup.string().required(
 		"Введіть текст на Німецькій. Це обовязково!"
 	),
+
+	articleUa: Yup.string().required(
+		"Введіть текст на Українській. Це обовязково!"
+	),
+	articleEn: Yup.string().required(
+		"Введіть текст на Англійській. Це обовязково!"
+	),
+	articlePl: Yup.string().required(
+		"Введіть текст на Польській. Це обовязково!"
+	),
+	articleDe: Yup.string().required(
+		"Введіть текст на Німецькій. Це обовязково!"
+	),
+
 	img: Yup.mixed()
 		.nullable()
 		.test("img-required", "Необхідно завантажити картинку", function (value) {

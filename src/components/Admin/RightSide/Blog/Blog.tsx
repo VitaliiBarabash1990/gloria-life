@@ -61,6 +61,10 @@ const Blog = () => {
 		subTitlePl: addArticle ? "" : currentItem?.pl?.subTitle || "",
 		subTitleEn: addArticle ? "" : currentItem?.en?.subTitle || "",
 		subTitleDe: addArticle ? "" : currentItem?.de?.subTitle || "",
+		articleUa: addArticle ? "" : currentItem?.ua?.article || "",
+		articlePl: addArticle ? "" : currentItem?.pl?.article || "",
+		articleEn: addArticle ? "" : currentItem?.en?.article || "",
+		articleDe: addArticle ? "" : currentItem?.de?.article || "",
 		type: isType === 0 ? "barber" : "psychology",
 		img: null,
 		existingImg: addArticle ? "" : currentItem?.img || null,
@@ -186,10 +190,20 @@ const Blog = () => {
 						<ul className={s.languageSelector}>
 							{language.map((item) => {
 								const hasError =
-									(item.id === 0 && (errors.titleUa || errors.subTitleUa)) ||
-									(item.id === 1 && (errors.titleEn || errors.subTitleEn)) ||
-									(item.id === 2 && (errors.titlePl || errors.subTitlePl)) ||
-									(item.id === 3 && (errors.titleDe || errors.subTitleDe));
+									(item.id === 0 &&
+										(errors.titleUa ||
+											errors.subTitleUa ||
+											errors.articleUa)) ||
+									(item.id === 1 &&
+										(errors.titleEn ||
+											errors.subTitleEn ||
+											errors.articleEn)) ||
+									(item.id === 2 &&
+										(errors.titlePl ||
+											errors.subTitlePl ||
+											errors.articlePl)) ||
+									(item.id === 3 &&
+										(errors.titleDe || errors.subTitleDe || errors.articleDe));
 
 								return (
 									<li
@@ -224,6 +238,12 @@ const Blog = () => {
 													__html: currentItem[currentLang]?.subTitle || "",
 												}}
 											/>
+											<p
+												className={s.articleContentText}
+												dangerouslySetInnerHTML={{
+													__html: currentItem[currentLang]?.article || "",
+												}}
+											/>
 										</div>
 										<div className={s.btnEditGroup}>
 											<button
@@ -250,38 +270,58 @@ const Blog = () => {
 											<>
 												<BlogField title="Заголовок статті *" lang="Ua" />
 												<BlogField
-													title="Текст *"
+													title="Підзаголовок / цитата"
 													subTitleIndex="Title"
+													lang="Ua"
+												/>
+												<BlogField
+													title="Стаття *"
+													subTitleIndex="Article"
 													lang="Ua"
 												/>
 											</>
 										)}
 										{selectItem === 1 && (
 											<>
-												<BlogField title="Page title" lang="En" />
+												<BlogField title="Title of the article *" lang="En" />
 												<BlogField
-													title="Subtitle 1"
+													title="Subtitle / quote"
 													subTitleIndex="Title"
+													lang="En"
+												/>
+												<BlogField
+													title="Article *"
+													subTitleIndex="Article"
 													lang="En"
 												/>
 											</>
 										)}
 										{selectItem === 2 && (
 											<>
-												<BlogField title="Tytuł strony" lang="Pl" />
+												<BlogField title="Tytuł artykułu *" lang="Pl" />
 												<BlogField
-													title="Podtytuł 1"
+													title="Podtytuł / cytat"
 													subTitleIndex="Title"
+													lang="Pl"
+												/>
+												<BlogField
+													title="Artykuł *"
+													subTitleIndex="Article"
 													lang="Pl"
 												/>
 											</>
 										)}
 										{selectItem === 3 && (
 											<>
-												<BlogField title="Seitentitel" lang="De" />
+												<BlogField title="Titel des Artikels *" lang="De" />
 												<BlogField
-													title="Unterüberschrift 1"
+													title="Untertitel/Zitat"
 													subTitleIndex="Title"
+													lang="De"
+												/>
+												<BlogField
+													title="Artikel *"
+													subTitleIndex="Article"
 													lang="De"
 												/>
 											</>

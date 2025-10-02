@@ -8,7 +8,7 @@ import AutoResizeTextarea from "./AutoResizeTextarea/AutoResizeTextarea";
 
 type ContentItemProps = {
 	title: string; // наприклад: "Заголовок сторінки"
-	subTitleIndex?: "Title"; // якщо це підзаголовок
+	subTitleIndex?: "Title" | "Article"; // якщо це підзаголовок
 	lang: "Ua" | "En" | "Pl" | "De"; // мова
 };
 
@@ -19,9 +19,14 @@ const AboutMeField = ({ title, subTitleIndex, lang }: ContentItemProps) => {
 	// визначаємо ім'я поля у Formik
 	let fieldName = "";
 	if (!subTitleIndex) {
-		fieldName = `title${lang}`; // titleUa / titleEn / ...
-	} else {
-		fieldName = `sub${subTitleIndex}${lang}`; // subTitleUa / ...
+		// головний заголовок сторінки
+		fieldName = `title${lang}`;
+	} else if (subTitleIndex === "Title") {
+		// підзаголовок
+		fieldName = `subTitle${lang}`;
+	} else if (subTitleIndex === "Article") {
+		// текст статті
+		fieldName = `article${lang}`;
 	}
 
 	// чи це textarea?

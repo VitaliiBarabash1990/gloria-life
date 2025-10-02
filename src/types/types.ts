@@ -117,6 +117,10 @@ export interface ArticleFormProps {
 	subTitleEn: string;
 	subTitlePl: string;
 	subTitleDe: string;
+	articleUa: string;
+	articleEn: string;
+	articlePl: string;
+	articleDe: string;
 	type: string;
 	img: File | null;
 	existingImg?: string | null;
@@ -174,10 +178,10 @@ export interface AboutMePayload {
 }
 
 export interface BlogPayload {
-	ua: { title: string; subTitle?: string };
-	en: { title: string; subTitle?: string };
-	pl: { title: string; subTitle?: string };
-	de: { title: string; subTitle?: string };
+	ua: { title: string; subTitle?: string; article: string };
+	en: { title: string; subTitle?: string; article: string };
+	pl: { title: string; subTitle?: string; article: string };
+	de: { title: string; subTitle?: string; article: string };
 	type: string;
 	img: string;
 	_id?: undefined | string;
@@ -228,10 +232,10 @@ export interface AboutMeLangPayload {
 	de: { title: string; subTitle?: string };
 }
 export interface BlogLangPayload {
-	ua: { title: string; subTitle?: string };
-	en: { title: string; subTitle?: string };
-	pl: { title: string; subTitle?: string };
-	de: { title: string; subTitle?: string };
+	ua: { title: string; subTitle?: string; article: string };
+	en: { title: string; subTitle?: string; article: string };
+	pl: { title: string; subTitle?: string; article: string };
+	de: { title: string; subTitle?: string; article: string };
 }
 export interface ServicesLangPayload {
 	ua: {

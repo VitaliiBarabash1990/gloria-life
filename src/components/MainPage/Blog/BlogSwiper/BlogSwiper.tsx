@@ -11,17 +11,21 @@ import s from "./BlogSwiper.module.css";
 import Image from "next/image";
 import CastomPagination from "./CastomPagination/CastomPagination";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAboutMe } from "@/redux/aboutMe/selectors";
 import { AppDispatch } from "@/redux/store";
-import { getAllAboutMe } from "@/redux/aboutMe/operations";
 import { useLocale, useTranslations } from "next-intl";
 import { Locale } from "@/i18n/routing";
+import {
+	selectBarberArticles,
+	selectBlog,
+	selectPsychologyArticles,
+} from "@/redux/blog/selectors";
+import { getAllArticle } from "@/redux/blog/operations";
 
 const BlogSwiper = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const [activeBtn, setActiveBtn] = useState(0);
 	const [activeSlide, setActiveSlide] = useState(0);
-	const about = useSelector(selectAboutMe);
+
 	const locale = useLocale() as Locale;
 
 	const t = useTranslations("Blog");
@@ -30,8 +34,38 @@ const BlogSwiper = () => {
 	const nextRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
 	useEffect(() => {
-		dispatch(getAllAboutMe());
+		dispatch(getAllArticle());
 	}, [dispatch]);
+
+	// let carrentArticle;
+
+	// switch (activeBtn) {
+	// 	case 0:
+	// 		carrentArticle = selectBlog;
+	// 		break;
+	// 	case 1:
+	// 		carrentArticle = selectPsychologyArticles;
+	// 		break;
+	// 	case 2:
+	// 		carrentArticle = selectBarberArticles;
+	// 		break;
+	// 	default:
+	// 		carrentArticle = selectBlog;
+	// 		break;
+	// }
+
+	//Верх те саме що й нижче
+
+	const selectors: Record<number, typeof selectBlog> = {
+		0: selectBlog,
+		1: selectPsychologyArticles,
+		2: selectBarberArticles,
+	};
+
+	const carrentArticle = selectors[activeBtn] ?? selectBlog;
+
+	const article = useSelector(carrentArticle);
+	console.log("article", article);
 
 	return (
 		<div id="BlogSwiper" className={s.heroSwiper}>
@@ -69,7 +103,7 @@ const BlogSwiper = () => {
 						}
 					}}
 				>
-					{about?.map((item, index) => (
+					{article?.map((item, index) => (
 						<SwiperSlide key={index} className={s.slide}>
 							<div className={s.slideArticle}>
 								<ul className={s.selectList}>
@@ -115,6 +149,14 @@ const BlogSwiper = () => {
 									>
 										{/* {item[locale].subTitle} */}
 									</p>
+									<p
+										className={s.articleText}
+										dangerouslySetInnerHTML={{
+											__html: item[locale].article || "",
+										}}
+									>
+										{/* {item[locale].subTitle} */}
+									</p>
 								</div>
 
 								{/* paginationBlock фізично між article і image */}
@@ -125,7 +167,10 @@ const BlogSwiper = () => {
 											el?.querySelector("button") || null;
 									}}
 								>
-									<CastomPagination about={about} activeSlide={activeSlide} />
+									<CastomPagination
+										article={article}
+										activeSlide={activeSlide}
+									/>
 									<button className={s.navButton}>
 										<svg className={s.navButton_icon}>
 											<use href="/sprite.svg#icon-arrow-swiper-right"></use>
