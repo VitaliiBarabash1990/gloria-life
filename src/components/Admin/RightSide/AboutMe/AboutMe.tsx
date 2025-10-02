@@ -26,12 +26,8 @@ const AboutMe = () => {
 	const aboutMe = useSelector(selectAboutMe);
 
 	const currentItem = aboutMe[indexItem];
-	console.log("aboutMe", aboutMe);
-	console.log("currentItem", currentItem);
-
 	const langKeys = ["ua", "en", "pl", "de"] as const;
 	type LangKey = (typeof langKeys)[number];
-
 	const currentLang: LangKey = langKeys[selectItem];
 
 	const [previewImage, setPreviewImage] = useState<string | null>(null);
@@ -48,22 +44,20 @@ const AboutMe = () => {
 		}
 	}, [currentItem]);
 
-	if (!currentItem) return <p>Loading...</p>;
-
 	const initialValues: AboutMeFormProps = {
-		titleUa: addArticle ? "" : currentItem?.ua.title || "",
-		titlePl: addArticle ? "" : currentItem?.pl.title || "",
-		titleEn: addArticle ? "" : currentItem?.en.title || "",
-		titleDe: addArticle ? "" : currentItem?.de.title || "",
-		subTitleUa: addArticle ? "" : currentItem?.ua.subTitle || "",
-		subTitlePl: addArticle ? "" : currentItem?.pl.subTitle || "",
-		subTitleEn: addArticle ? "" : currentItem?.en.subTitle || "",
-		subTitleDe: addArticle ? "" : currentItem?.de.subTitle || "",
-		img: addArticle ? null : null,
+		titleUa: addArticle ? "" : currentItem?.ua?.title || "",
+		titlePl: addArticle ? "" : currentItem?.pl?.title || "",
+		titleEn: addArticle ? "" : currentItem?.en?.title || "",
+		titleDe: addArticle ? "" : currentItem?.de?.title || "",
+		subTitleUa: addArticle ? "" : currentItem?.ua?.subTitle || "",
+		subTitlePl: addArticle ? "" : currentItem?.pl?.subTitle || "",
+		subTitleEn: addArticle ? "" : currentItem?.en?.subTitle || "",
+		subTitleDe: addArticle ? "" : currentItem?.de?.subTitle || "",
+		img: null,
 		existingImg: addArticle ? "" : currentItem?.img || null,
 	};
 
-	// коли користувач вибирає файл:
+	// === Image handlers ===
 	const handleImageChange = (
 		e: React.ChangeEvent<HTMLInputElement>,
 		setFieldValue: FormikProps<AboutMeFormProps>["setFieldValue"]
@@ -74,14 +68,11 @@ const AboutMe = () => {
 		setFieldValue("img", file);
 
 		const objectUrl = URL.createObjectURL(file);
-		// звільняємо старий blob
 		if (previewImage && previewImage.startsWith("blob:")) {
 			URL.revokeObjectURL(previewImage);
 		}
 
 		setPreviewImage(objectUrl);
-
-		// якщо було серверне зображення — видаляємо його з existingImg
 		setFieldValue("existingImg", null);
 	};
 
@@ -103,14 +94,13 @@ const AboutMe = () => {
 	};
 
 	const hundlerSubmit = (values: AboutMeFormProps) => {
-		if (!currentItem?._id) return;
+		if (!currentItem?._id && !addArticle) return;
 
 		const formData = new FormData();
 
 		if (values.img) {
 			formData.append("img", values.img);
 		}
-
 		if (values.existingImg) {
 			formData.append("existingImg", values.existingImg);
 		}
@@ -122,10 +112,11 @@ const AboutMe = () => {
 			}
 		});
 
-		console.log("DATAFORM", formData);
 		if (addArticle) {
 			dispatch(createAboutMe(formData));
-		} else dispatch(updateAboutMe({ id: currentItem._id, formData }));
+		} else if (currentItem?._id) {
+			dispatch(updateAboutMe({ id: currentItem._id, formData }));
+		}
 	};
 
 	return (
@@ -137,25 +128,33 @@ const AboutMe = () => {
 		>
 			{({ errors, setFieldValue, resetForm }) => (
 				<Form className={s.mainForm}>
+					{/* BlockSwitchers показується завжди */}
 					<div className={s.blockSwitchers}>
 						<ul className={s.articleList}>
-							{aboutMe.map((_, index) => (
-								<li
-									key={index}
-									className={`${s.articleItem} ${
-										indexItem === index ? s.active : ""
-									}`}
-									onClick={() => {
-										setIndexItem(index);
-									}}
-								>
-									Стаття {index + 1}
-								</li>
-							))}
+							{aboutMe.length > 0 ? (
+								aboutMe.map((_, index) => (
+									<li
+										key={index}
+										className={`${s.articleItem} ${
+											indexItem === index ? s.active : ""
+										}`}
+										onClick={() => {
+											setIndexItem(index);
+											setAddArticle(false);
+											setEditArticle(false);
+										}}
+									>
+										Стаття {index + 1}
+									</li>
+								))
+							) : (
+								<li className={s.noArticles}>Немає статей</li>
+							)}
 							<li
 								className={s.articleItem}
 								onClick={() => {
 									setAddArticle(true);
+									setEditArticle(true);
 									setPreviewImage(null);
 								}}
 							>
@@ -188,163 +187,167 @@ const AboutMe = () => {
 						</ul>
 					</div>
 
-					{!editArticle && (
+					{/* Контент відображається тільки якщо є currentItem або ми додаємо статтю */}
+					{(currentItem || addArticle) && (
 						<>
-							<div className={s.articleContent}>
-								<h3
-									className={s.articleContentTitle}
-									dangerouslySetInnerHTML={{
-										__html: currentItem[currentLang].title || "",
-									}}
-								></h3>
-								<p
-									className={s.articleContentText}
-									dangerouslySetInnerHTML={{
-										__html: currentItem[currentLang].subTitle || "",
-									}}
-								></p>
-							</div>
-							<div className={s.btnEditGroup}>
-								<button
-									type="button"
-									className={s.btnEdit}
-									onClick={() => {
-										setEditArticle(true);
-									}}
-								>
-									Редагувати статтю
-								</button>
-								<button
-									type="button"
-									className={s.btnDelete}
-									onClick={() => {
-										hundlerDelete(currentItem?._id);
-									}}
-								>
-									Видалити
-								</button>
-							</div>
-						</>
-					)}
-
-					{editArticle && (
-						<>
-							<ul className={s.mainContentList}>
-								{selectItem === 0 && (
+							{!editArticle ? (
+								currentItem && (
 									<>
-										<AboutMeField title="Заголовок статті *" lang="Ua" />
-										<AboutMeField
-											title="Текст *"
-											subTitleIndex="Title"
-											lang="Ua"
-										/>
-									</>
-								)}
-								{selectItem === 1 && (
-									<>
-										<AboutMeField title="Page title" lang="En" />
-										<AboutMeField
-											title="Subtitle 1"
-											subTitleIndex="Title"
-											lang="En"
-										/>
-									</>
-								)}
-								{selectItem === 2 && (
-									<>
-										<AboutMeField title="Tytuł strony" lang="Pl" />
-										<AboutMeField
-											title="Podtytuł 1"
-											subTitleIndex="Title"
-											lang="Pl"
-										/>
-									</>
-								)}
-								{selectItem === 3 && (
-									<>
-										<AboutMeField title="Seitentitel" lang="De" />
-										<AboutMeField
-											title="Unterüberschrift 1"
-											subTitleIndex="Title"
-											lang="De"
-										/>
-									</>
-								)}
-							</ul>
-
-							<div className={s.photoLabel}>
-								<div className={`${s.imgItem} ${previewImage ? s.upLoad : ""}`}>
-									{/* показ картинки */}
-									{previewImage && (
-										<Image
-											src={previewImage}
-											width={120}
-											height={150}
-											alt="about-me-img"
-											className={s.imgMain}
-										/>
-									)}
-
-									{/* input */}
-									<input
-										type="file"
-										accept="image/*"
-										id="img-upload"
-										style={{ display: "none" }}
-										onChange={(e) => handleImageChange(e, setFieldValue)}
-									/>
-
-									{/* кнопки */}
-									{previewImage && (
-										<div className={s.btnBlock}>
-											{/* Replace */}
-											<label htmlFor="img-upload" className={s.replaceBlock}>
-												<svg className={s.deleteIcon}>
-													<use href="/sprite.svg#icon-replace"></use>
-												</svg>
-											</label>
-
-											{/* Delete */}
+										<div className={s.articleContent}>
+											<h3
+												className={s.articleContentTitle}
+												dangerouslySetInnerHTML={{
+													__html: currentItem[currentLang]?.title || "",
+												}}
+											/>
+											<p
+												className={s.articleContentText}
+												dangerouslySetInnerHTML={{
+													__html: currentItem[currentLang]?.subTitle || "",
+												}}
+											/>
+										</div>
+										<div className={s.btnEditGroup}>
 											<button
-												className={s.deleteBlock}
 												type="button"
-												onClick={() => handleImageDelete(setFieldValue)}
+												className={s.btnEdit}
+												onClick={() => setEditArticle(true)}
 											>
-												<svg className={s.deleteIcon}>
-													<use href="/sprite.svg#icon-delete"></use>
-												</svg>
+												Редагувати статтю
+											</button>
+											<button
+												type="button"
+												className={s.btnDelete}
+												onClick={() => hundlerDelete(currentItem?._id)}
+											>
+												Видалити
 											</button>
 										</div>
-									)}
+									</>
+								)
+							) : (
+								<>
+									<ul className={s.mainContentList}>
+										{selectItem === 0 && (
+											<>
+												<AboutMeField title="Заголовок статті *" lang="Ua" />
+												<AboutMeField
+													title="Текст *"
+													subTitleIndex="Title"
+													lang="Ua"
+												/>
+											</>
+										)}
+										{selectItem === 1 && (
+											<>
+												<AboutMeField title="Page title" lang="En" />
+												<AboutMeField
+													title="Subtitle 1"
+													subTitleIndex="Title"
+													lang="En"
+												/>
+											</>
+										)}
+										{selectItem === 2 && (
+											<>
+												<AboutMeField title="Tytuł strony" lang="Pl" />
+												<AboutMeField
+													title="Podtytuł 1"
+													subTitleIndex="Title"
+													lang="Pl"
+												/>
+											</>
+										)}
+										{selectItem === 3 && (
+											<>
+												<AboutMeField title="Seitentitel" lang="De" />
+												<AboutMeField
+													title="Unterüberschrift 1"
+													subTitleIndex="Title"
+													lang="De"
+												/>
+											</>
+										)}
+									</ul>
 
-									{/* аплоад */}
-									{!previewImage && (
-										<label htmlFor="img-upload" className={s.imgUploadLabel}>
-											<svg className={s.upLoadIcon}>
-												<use href="/sprite.svg#icon-upload"></use>
-											</svg>
-										</label>
-									)}
-								</div>
+									<div className={s.photoLabel}>
+										<div
+											className={`${s.imgItem} ${previewImage ? s.upLoad : ""}`}
+										>
+											{previewImage && (
+												<Image
+													src={previewImage}
+													width={120}
+													height={150}
+													alt="about-me-img"
+													className={s.imgMain}
+												/>
+											)}
 
-								<ErrorMessage name="img" component="p" className={s.error} />
-							</div>
+											<input
+												type="file"
+												accept="image/*"
+												id="img-upload"
+												style={{ display: "none" }}
+												onChange={(e) => handleImageChange(e, setFieldValue)}
+											/>
 
-							<div className={s.btnAbout}>
-								<button type="submit" className={s.sendBtn}>
-									Зберегти зміни
-								</button>
-								<button
-									type="button"
-									className={s.resetBtn}
-									onClick={() => {
-										resetForm();
-										setPreviewImage(currentItem?.img || null);
-									}}
-								>
-									відхилити зміни
-								</button>
-							</div>
+											{previewImage ? (
+												<div className={s.btnBlock}>
+													<label
+														htmlFor="img-upload"
+														className={s.replaceBlock}
+													>
+														<svg className={s.deleteIcon}>
+															<use href="/sprite.svg#icon-replace"></use>
+														</svg>
+													</label>
+													<button
+														className={s.deleteBlock}
+														type="button"
+														onClick={() => handleImageDelete(setFieldValue)}
+													>
+														<svg className={s.deleteIcon}>
+															<use href="/sprite.svg#icon-delete"></use>
+														</svg>
+													</button>
+												</div>
+											) : (
+												<label
+													htmlFor="img-upload"
+													className={s.imgUploadLabel}
+												>
+													<svg className={s.upLoadIcon}>
+														<use href="/sprite.svg#icon-upload"></use>
+													</svg>
+												</label>
+											)}
+										</div>
+
+										<ErrorMessage
+											name="img"
+											component="p"
+											className={s.error}
+										/>
+									</div>
+
+									<div className={s.btnAbout}>
+										<button type="submit" className={s.sendBtn}>
+											Зберегти зміни
+										</button>
+										<button
+											type="button"
+											className={s.resetBtn}
+											onClick={() => {
+												resetForm();
+												setPreviewImage(currentItem?.img || null);
+											}}
+										>
+											відхилити зміни
+										</button>
+									</div>
+								</>
+							)}
 						</>
 					)}
 				</Form>

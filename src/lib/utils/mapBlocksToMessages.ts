@@ -17,13 +17,6 @@ export function mapBlocksToMessages(blocks: BlocksLang, locale: LocaleKey) {
 		};
 	}
 
-	if (blocks.about) {
-		messages.about = {
-			title: blocks.about[locale]?.title || "",
-			subTitle: blocks.about[locale]?.subTitle || "",
-		};
-	}
-
 	// if (blocks.about) {
 	//   messages.about = { ... };
 	// }

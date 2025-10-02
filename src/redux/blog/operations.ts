@@ -4,14 +4,14 @@ import { toast } from "react-toastify";
 import { gloriaAPI } from "../auth/operations";
 
 // CREATE
-export const createMain = createAsyncThunk(
-	"main/create",
+export const createArticle = createAsyncThunk(
+	"blog/createArticle",
 	async (formData: FormData, thunkAPI) => {
 		try {
-			const res = await gloriaAPI.post("/main", formData, {
+			const res = await gloriaAPI.post("/article", formData, {
 				headers: { "Content-Type": "multipart/form-data" },
 			});
-			toast.success("Main created successfully ✅");
+			toast.success("Article created successfully ✅");
 			return res.data.data;
 		} catch (error) {
 			// @ts-expect-error TS is not sure about error structure
@@ -24,14 +24,14 @@ export const createMain = createAsyncThunk(
 
 // UPDATE
 
-export const updateMain = createAsyncThunk(
-	"main/update",
+export const updateArticle = createAsyncThunk(
+	"blog/updateArticle",
 	async ({ id, formData }: { id: string; formData: FormData }, thunkAPI) => {
 		try {
-			const res = await gloriaAPI.patch(`/main/${id}`, formData, {
+			const res = await gloriaAPI.patch(`/article/${id}`, formData, {
 				headers: { "Content-Type": "multipart/form-data" },
 			});
-			toast.success("Main updated successfully ✅");
+			toast.success("Article updated successfully ✅");
 			return res.data.data;
 		} catch (error) {
 			// @ts-expect-error TS is not sure про структуру error
@@ -43,12 +43,12 @@ export const updateMain = createAsyncThunk(
 );
 
 // GET ALL
-export const getAllMain = createAsyncThunk(
-	"main/getAll",
+export const getAllArticle = createAsyncThunk(
+	"blog/getAllArticle",
 	async (_, thunkAPI) => {
 		try {
-			const res = await gloriaAPI.get("/main");
-			// console.log("MainData", res);
+			const res = await gloriaAPI.get("/article");
+			console.log("BlogData", res.data.data);
 			return res.data.data;
 		} catch (err) {
 			// @ts-expect-error TS is not sure about error structure
@@ -60,11 +60,11 @@ export const getAllMain = createAsyncThunk(
 );
 
 // GET BY ID
-export const getMainById = createAsyncThunk(
-	"main/getById",
+export const getArticleById = createAsyncThunk(
+	"blog/getArticleById",
 	async (id: string, thunkAPI) => {
 		try {
-			const res = await gloriaAPI.get(`/main/${id}`);
+			const res = await gloriaAPI.get(`/article/${id}`);
 			return res.data.data;
 		} catch (err) {
 			// @ts-expect-error TS is not sure about error structure
@@ -76,12 +76,12 @@ export const getMainById = createAsyncThunk(
 );
 
 // DELETE
-export const deleteMain = createAsyncThunk(
-	"main/delete",
+export const deleteArticle = createAsyncThunk(
+	"blog/deleteArticle",
 	async (id: string, thunkAPI) => {
 		try {
-			await gloriaAPI.delete(`/main/${id}`);
-			toast.success("Main deleted successfully ✅");
+			await gloriaAPI.delete(`/article/${id}`);
+			toast.success("Article deleted successfully ✅");
 			return id; // повертаємо id щоб можна було прибрати зі стору
 		} catch (err) {
 			// @ts-expect-error TS is not sure about error structure

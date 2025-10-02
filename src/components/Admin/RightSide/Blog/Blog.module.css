@@ -1,0 +1,368 @@
+.aboutMeWrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 40px;
+	flex: 1 0 0;
+}
+
+/* shablon */
+.leftMenuList {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	gap: 4px;
+
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+
+	/* приховування скролбара */
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.mainForm {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	gap: 40px;
+	flex: 1 0 0;
+}
+.blockSwitchers {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 16px;
+	align-self: stretch;
+}
+
+.articleList,
+.typeList {
+	display: flex;
+	width: 100%;
+	align-items: flex-start;
+	gap: 8px;
+	align-self: stretch;
+
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+
+	/* приховування скролбара */
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+.articleAddIcon {
+	width: 20px;
+	height: 20px;
+	fill: var(--Dark);
+	stroke: none;
+}
+
+.languageSelector {
+	display: flex;
+	width: 100%;
+	height: 40px;
+	align-items: flex-start;
+	gap: 8px;
+	align-self: stretch;
+
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+
+	/* приховування скролбара */
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+.typeItem,
+.articleItem,
+.languageItem {
+	display: flex;
+	height: 100%;
+	padding: 8px 20px;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	flex: 1 0 0;
+
+	border-radius: 60px;
+	border: 2px solid var(--Stroke-1);
+	cursor: pointer;
+
+	color: var(--Dark);
+	text-align: center;
+	font-family: var(--font-family);
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	white-space: nowrap;
+}
+.languageItem.errorLang {
+	border: 1px solid red;
+	color: red;
+}
+.active {
+	background: var(--Dark);
+	border: 2px solid var(--Dark);
+	color: var(--white);
+	font-weight: 600;
+}
+.error {
+	color: red;
+}
+
+.articleContent {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 24px;
+	align-self: stretch;
+}
+.articleContentTitle,
+.articleContentText {
+	font-feature-settings: "liga" off, "clig" off;
+	line-height: 200%;
+	white-space: pre-line;
+}
+.articleContentTitle {
+	color: var(--Dark);
+	font-family: var(--second-family);
+	font-size: 16px;
+	font-style: italic;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+.articleContentText {
+	color: var(--Dark-2);
+	font-family: var(--font-family);
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+}
+.btnEditGroup {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+	gap: 16px;
+	align-self: stretch;
+}
+.btnEdit,
+.btnDelete {
+	display: flex;
+	width: 100%;
+	padding: 12px 20px;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	flex: 1 0 0;
+
+	border-radius: 60px;
+	border: 2px solid var(--Dark);
+
+	text-align: center;
+	font-feature-settings: "liga" off, "clig" off;
+	font-family: var(--font-family);
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 150%;
+	text-transform: uppercase;
+}
+.btnEdit {
+	background: var(--Dark);
+	color: var(--White);
+}
+.btnEdit:hover {
+	color: var(--Dark);
+}
+.btnDelete {
+	color: var(--Dark);
+}
+
+.mainContentList {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 24px;
+	align-self: stretch;
+}
+
+.photoLabel {
+	width: 100%;
+	height: 221px; /* важливо задати висоту, інакше блок може бути "невидимий" */
+	background-image: url("/img/aboutMe/fone.png"); /* шлях до картинки */
+	/* background-size: cover; */
+	/* background-position: center; */
+	background-repeat: repeat;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	gap: 32px;
+	/* overflow: hidden; */
+}
+
+.imgItem {
+	display: flex;
+	width: 195px;
+	height: 100%;
+	background: var(--white);
+	opacity: 0.6;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	/* flex: 1 1 0; */
+	align-self: stretch;
+	position: relative;
+	overflow: hidden;
+
+	border-radius: 30px;
+	border: 1px dashed var(--Stroke);
+}
+.upLoad {
+	opacity: 1;
+	border-radius: 0px;
+	border: 1px solid var(--Stroke);
+}
+.imgMain {
+	display: flex;
+	width: 100%;
+	object-fit: contain;
+}
+.upLoadIcon {
+	width: 20px;
+	height: 20px;
+	stroke: var(--Dark);
+	fill: none;
+}
+
+.btnBlock {
+	display: flex;
+	padding: 10px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex: 1 0 0;
+	align-self: stretch;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.replaceBlock,
+.deleteBlock {
+	display: flex;
+	width: 89px;
+	padding: 10px;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+
+	border-radius: 40px;
+	border: 2px solid var(--White);
+	background: rgba(51, 55, 53, 0.4);
+	backdrop-filter: blur(2px);
+}
+.replaceBlock:hover {
+	cursor: pointer;
+	background: var(--Stroke-light);
+}
+.imgUploadLabel {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+.imgUploadLabel:hover {
+	background: rgba(0, 0, 0, 0.05);
+}
+.deleteIcon {
+	width: 24px;
+	height: 24px;
+	flex-shrink: 0;
+	fill: var(--white);
+}
+.btnAbout {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+	align-self: stretch;
+}
+.sendBtn,
+.resetBtn {
+	display: flex;
+	padding: 12px 44px;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	flex: 1 0 0;
+	border-radius: 60px;
+	text-align: center;
+	font-feature-settings: "liga" off, "clig" off;
+	font-family: var(--font-family);
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 150%; /* 24px */
+	text-transform: uppercase;
+}
+
+.sendBtn {
+	border: 2px solid var(--Green);
+	background: var(--Green);
+	color: var(--White);
+}
+.sendBtn:hover {
+	color: var(--Dark);
+}
+.resetBtn {
+	border: 2px solid var(--Dark);
+	color: var(--Dark);
+}
+@media screen and (min-width: 768px) {
+	.typeItem,
+	.articleItem,
+	.languageItem {
+		font-size: 14px;
+	}
+	.articleContentTitle {
+		font-size: 20px;
+	}
+	.articleContentText {
+		font-size: 16px;
+	}
+	.btnAbout,
+	.btnEditGroup {
+		flex-direction: row;
+	}
+	.btnEdit,
+	.btnDelete,
+	.sendBtn,
+	.resetBtn {
+		width: calc(50% - 4px);
+		font-size: 16px;
+	}
+}
+
+@media screen and (min-width: 1280px) {
+	.typeItem,
+	.articleItem,
+	.languageItem {
+		font-size: 18px;
+	}
+	.articleContentTitle {
+		font-size: 24px;
+	}
+	.articleContentText {
+		font-size: 20px;
+	}
+}

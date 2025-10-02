@@ -2,16 +2,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { gloriaAPI } from "../auth/operations";
+import { RootState } from "../store";
+import { ServicesFormProps } from "@/types/types";
 
 // CREATE
-export const createMain = createAsyncThunk(
-	"main/create",
-	async (formData: FormData, thunkAPI) => {
+export const createServices = createAsyncThunk(
+	"services/createServices",
+	async (formData: ServicesFormProps, thunkAPI) => {
 		try {
-			const res = await gloriaAPI.post("/main", formData, {
-				headers: { "Content-Type": "multipart/form-data" },
+			const state = thunkAPI.getState() as RootState;
+			const token = state.auth.token;
+			const res = await gloriaAPI.post("/services", formData, {
+				headers: { Authorization: `Bearer ${token}` },
 			});
-			toast.success("Main created successfully ✅");
+			toast.success("Services created successfully ✅");
 			return res.data.data;
 		} catch (error) {
 			// @ts-expect-error TS is not sure about error structure
@@ -24,14 +28,19 @@ export const createMain = createAsyncThunk(
 
 // UPDATE
 
-export const updateMain = createAsyncThunk(
-	"main/update",
-	async ({ id, formData }: { id: string; formData: FormData }, thunkAPI) => {
+export const updateServices = createAsyncThunk(
+	"services/updateServices",
+	async (
+		{ id, formData }: { id: string; formData: ServicesFormProps },
+		thunkAPI
+	) => {
 		try {
-			const res = await gloriaAPI.patch(`/main/${id}`, formData, {
-				headers: { "Content-Type": "multipart/form-data" },
+			const state = thunkAPI.getState() as RootState;
+			const token = state.auth.token;
+			const res = await gloriaAPI.patch(`/services/${id}`, formData, {
+				headers: { Authorization: `Bearer ${token}` },
 			});
-			toast.success("Main updated successfully ✅");
+			toast.success("Services updated successfully ✅");
 			return res.data.data;
 		} catch (error) {
 			// @ts-expect-error TS is not sure про структуру error
@@ -43,12 +52,12 @@ export const updateMain = createAsyncThunk(
 );
 
 // GET ALL
-export const getAllMain = createAsyncThunk(
-	"main/getAll",
+export const getAllServices = createAsyncThunk(
+	"services/getAllServices",
 	async (_, thunkAPI) => {
 		try {
-			const res = await gloriaAPI.get("/main");
-			// console.log("MainData", res);
+			const res = await gloriaAPI.get("/services");
+			// console.log("MainData", res.data.data);
 			return res.data.data;
 		} catch (err) {
 			// @ts-expect-error TS is not sure about error structure
@@ -60,11 +69,11 @@ export const getAllMain = createAsyncThunk(
 );
 
 // GET BY ID
-export const getMainById = createAsyncThunk(
-	"main/getById",
+export const getServicesById = createAsyncThunk(
+	"services/getServicesById",
 	async (id: string, thunkAPI) => {
 		try {
-			const res = await gloriaAPI.get(`/main/${id}`);
+			const res = await gloriaAPI.get(`/services/${id}`);
 			return res.data.data;
 		} catch (err) {
 			// @ts-expect-error TS is not sure about error structure
@@ -76,12 +85,12 @@ export const getMainById = createAsyncThunk(
 );
 
 // DELETE
-export const deleteMain = createAsyncThunk(
-	"main/delete",
+export const deleteServices = createAsyncThunk(
+	"services/deleteServices",
 	async (id: string, thunkAPI) => {
 		try {
-			await gloriaAPI.delete(`/main/${id}`);
-			toast.success("Main deleted successfully ✅");
+			await gloriaAPI.delete(`/services/${id}`);
+			toast.success("Services deleted successfully ✅");
 			return id; // повертаємо id щоб можна було прибрати зі стору
 		} catch (err) {
 			// @ts-expect-error TS is not sure about error structure

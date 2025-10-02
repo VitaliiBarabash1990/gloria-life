@@ -40,12 +40,18 @@
 
 .articleList {
 	display: flex;
+	width: 100%;
 	align-items: flex-start;
 	gap: 8px;
 	align-self: stretch;
-}
-.articleItem {
-	font-size: 18px;
+
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+
+	/* приховування скролбара */
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 .articleAddIcon {
 	width: 20px;
@@ -61,6 +67,14 @@
 	align-items: flex-start;
 	gap: 8px;
 	align-self: stretch;
+
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+
+	/* приховування скролбара */
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
 .articleItem,
@@ -80,10 +94,11 @@
 	color: var(--Dark);
 	text-align: center;
 	font-family: var(--font-family);
-	font-size: 16px;
+	font-size: 12px;
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+	white-space: nowrap;
 }
 .languageItem.errorLang {
 	border: 1px solid red;
@@ -115,7 +130,7 @@
 .articleContentTitle {
 	color: var(--Dark);
 	font-family: var(--second-family);
-	font-size: 24px;
+	font-size: 16px;
 	font-style: italic;
 	font-weight: 400;
 	text-transform: uppercase;
@@ -123,12 +138,13 @@
 .articleContentText {
 	color: var(--Dark-2);
 	font-family: var(--font-family);
-	font-size: 20px;
+	font-size: 14px;
 	font-style: normal;
 	font-weight: 500;
 }
 .btnEditGroup {
 	display: flex;
+	flex-direction: column;
 	width: 100%;
 	align-items: center;
 	gap: 16px;
@@ -136,9 +152,9 @@
 }
 .btnEdit,
 .btnDelete {
-	width: calc(50% - 8px);
 	display: flex;
-	padding: 12px 44px;
+	width: 100%;
+	padding: 12px 20px;
 	justify-content: center;
 	align-items: center;
 	gap: 16px;
@@ -150,7 +166,7 @@
 	text-align: center;
 	font-feature-settings: "liga" off, "clig" off;
 	font-family: var(--font-family);
-	font-size: 16px;
+	font-size: 14px;
 	font-style: normal;
 	font-weight: 500;
 	line-height: 150%;
@@ -274,6 +290,7 @@
 }
 .btnAbout {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	gap: 16px;
 	align-self: stretch;
@@ -282,7 +299,7 @@
 .resetBtn {
 	display: flex;
 	padding: 12px 44px;
-	width: 50%;
+	width: 100%;
 	justify-content: center;
 	align-items: center;
 	gap: 16px;
@@ -291,7 +308,7 @@
 	text-align: center;
 	font-feature-settings: "liga" off, "clig" off;
 	font-family: var(--font-family);
-	font-size: 16px;
+	font-size: 14px;
 	font-style: normal;
 	font-weight: 500;
 	line-height: 150%; /* 24px */
@@ -309,4 +326,40 @@
 .resetBtn {
 	border: 2px solid var(--Dark);
 	color: var(--Dark);
+}
+@media screen and (min-width: 768px) {
+	.articleItem,
+	.languageItem {
+		font-size: 14px;
+	}
+	.articleContentTitle {
+		font-size: 20px;
+	}
+	.articleContentText {
+		font-size: 16px;
+	}
+	.btnAbout,
+	.btnEditGroup {
+		flex-direction: row;
+	}
+	.btnEdit,
+	.btnDelete,
+	.sendBtn,
+	.resetBtn {
+		width: calc(50% - 4px);
+		font-size: 16px;
+	}
+}
+
+@media screen and (min-width: 1280px) {
+	.articleItem,
+	.languageItem {
+		font-size: 18px;
+	}
+	.articleContentTitle {
+		font-size: 24px;
+	}
+	.articleContentText {
+		font-size: 20px;
+	}
 }

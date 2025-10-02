@@ -107,6 +107,45 @@ export interface AboutMeFormProps {
 	existingImg?: string | null;
 }
 
+//forArticle
+export interface ArticleFormProps {
+	titleUa: string;
+	titleEn: string;
+	titlePl: string;
+	titleDe: string;
+	subTitleUa: string;
+	subTitleEn: string;
+	subTitlePl: string;
+	subTitleDe: string;
+	type: string;
+	img: File | null;
+	existingImg?: string | null;
+}
+
+//forServices
+export interface ServicesFormProps {
+	nameUa: string;
+	nameEn: string;
+	namePl: string;
+	nameDe: string;
+	descriptionUa: string;
+	descriptionEn: string;
+	descriptionPl: string;
+	descriptionDe: string;
+	howclasesUa?: string;
+	howclasesEn?: string;
+	howclasesPl?: string;
+	howclasesDe?: string;
+	forwhomUa?: string;
+	forwhomEn?: string;
+	forwhomPl?: string;
+	forwhomDe?: string;
+	price?: string;
+	type: string;
+	location?: string;
+	link?: string;
+}
+
 //forContacts
 export interface ContactsMenuFormProps {
 	number: string;
@@ -134,6 +173,48 @@ export interface AboutMePayload {
 	_id?: undefined | string;
 }
 
+export interface BlogPayload {
+	ua: { title: string; subTitle?: string };
+	en: { title: string; subTitle?: string };
+	pl: { title: string; subTitle?: string };
+	de: { title: string; subTitle?: string };
+	type: string;
+	img: string;
+	_id?: undefined | string;
+}
+
+export interface ServicesPayload {
+	ua: {
+		name: string;
+		description?: string;
+		howclases?: string;
+		forwhom?: string;
+	};
+	en: {
+		name: string;
+		description?: string;
+		howclases?: string;
+		forwhom?: string;
+	};
+	pl: {
+		name: string;
+		description?: string;
+		howclases?: string;
+		forwhom?: string;
+	};
+	de: {
+		name: string;
+		description?: string;
+		howclases?: string;
+		forwhom?: string;
+	};
+	price: string;
+	type: string;
+	location: string;
+	link: string;
+	_id?: undefined | string;
+}
+
 export interface MainLangPayload {
 	ua: { title: string; subTitleOne?: string; subTitleTwo?: string };
 	en: { title: string; subTitleOne?: string; subTitleTwo?: string };
@@ -145,6 +226,38 @@ export interface AboutMeLangPayload {
 	en: { title: string; subTitle?: string };
 	pl: { title: string; subTitle?: string };
 	de: { title: string; subTitle?: string };
+}
+export interface BlogLangPayload {
+	ua: { title: string; subTitle?: string };
+	en: { title: string; subTitle?: string };
+	pl: { title: string; subTitle?: string };
+	de: { title: string; subTitle?: string };
+}
+export interface ServicesLangPayload {
+	ua: {
+		name: string;
+		description?: string;
+		howclases?: string;
+		forwhom?: string;
+	};
+	en: {
+		name: string;
+		description?: string;
+		howclases?: string;
+		forwhom?: string;
+	};
+	pl: {
+		name: string;
+		description?: string;
+		howclases?: string;
+		forwhom?: string;
+	};
+	de: {
+		name: string;
+		description?: string;
+		howclases?: string;
+		forwhom?: string;
+	};
 }
 export const emptyMain: MainLang = {
 	ua: { title: "", subTitleOne: "", subTitleTwo: "" },
@@ -171,6 +284,22 @@ export interface MainState {
 export interface AboutMeState {
 	aboutMeList: AboutMePayload[];
 	aboutMeLangList: AboutMeLangPayload[];
+	isLoading: boolean;
+	isError: boolean;
+}
+
+//state Services
+export interface ServicesState {
+	servicesList: ServicesPayload[];
+	servicesLangList: ServicesLangPayload[];
+	isLoading: boolean;
+	isError: boolean;
+}
+
+//state Blog
+export interface BlogState {
+	blogList: BlogPayload[];
+	blogLangList: BlogLangPayload[];
 	isLoading: boolean;
 	isError: boolean;
 }
@@ -216,4 +345,9 @@ export type BlockKey = "main";
 
 export type Messages = {
 	[key: string]: string | Messages | string[];
+};
+
+export type CallBackFormProps = {
+	name: string;
+	phone: string;
 };

@@ -1,0 +1,181 @@
+.form {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	gap: 40px;
+	flex: 1 0 0;
+}
+.switcher {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 16px;
+	align-self: stretch;
+}
+.typeList,
+.langList {
+	display: flex;
+	align-items: flex-start;
+	align-self: stretch;
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+.typeList {
+	gap: 16px;
+}
+.langList {
+	height: 40px;
+	gap: 8px;
+}
+
+.typeItem,
+.langItem {
+	display: flex;
+	padding: 8px 24px;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	flex: 1 0 0;
+
+	border-radius: 60px;
+	border: 2px solid var(--Stroke-1);
+
+	color: var(--Dark);
+	font-family: var(--font-family);
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+
+	cursor: pointer;
+}
+.langItem.errorLang {
+	border: 1px solid red;
+	color: red;
+}
+.active {
+	color: var(--White);
+	font-weight: 600;
+	background: var(--Dark);
+}
+.aboutServicesEditList {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 32px;
+	align-self: stretch;
+}
+.aboutServicesEditItem {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 24px;
+	align-self: stretch;
+}
+.displayNone {
+	display: none;
+}
+.editItemBtnGroup {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+	align-self: stretch;
+}
+.editBtn,
+.deleteBtn {
+	display: flex;
+	width: 100%;
+	padding: 8px 44px;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	flex: 1 0 0;
+	border-radius: 60px;
+
+	text-align: center;
+	font-feature-settings: "liga" off, "clig" off;
+	font-family: var(--font-family);
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 150%;
+	text-transform: uppercase;
+}
+.editBtn {
+	border: 2px solid var(--Dark);
+	/* background: var(--Dark); */
+	color: var(--White);
+}
+.green {
+	background: var(--Green);
+}
+.grey {
+	background: var(--Dark);
+}
+.editBtn:hover {
+	color: var(--Dark);
+}
+.deleteBtn {
+	border: 2px solid var(--Dark);
+	color: var(--Dark);
+}
+
+.aboutContentAddList {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 24px;
+	align-self: stretch;
+}
+.aboutAddServices {
+	display: flex;
+	padding: 12px 44px;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	align-self: stretch;
+	border-radius: 60px;
+	border: 2px solid var(--Green);
+	background: var(--Green);
+
+	color: var(--White);
+	text-align: center;
+	font-feature-settings: "liga" off, "clig" off;
+	font-family: var(--font-family);
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 150%;
+	text-transform: uppercase;
+}
+.aboutAddServices:hover {
+	color: var(--Dark);
+}
+
+@media screen and (min-width: 768px) {
+	.typeItem,
+	.langItem {
+		font-size: 14px;
+	}
+	.editItemBtnGroup {
+		flex-direction: row;
+	}
+	.editBtn,
+	.deleteBtn {
+		padding: 12px 44px;
+	}
+}
+@media screen and (min-width: 1280px) {
+	.typeItem {
+		font-size: 18px;
+	}
+	.langItem {
+		font-size: 16px;
+	}
+}

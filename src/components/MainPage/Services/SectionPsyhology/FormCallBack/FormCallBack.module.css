@@ -1,0 +1,159 @@
+.callBackForm {
+	display: flex;
+	padding-bottom: 64px;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 40px;
+	align-self: stretch;
+}
+.titleGroup {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 24px;
+	align-self: stretch;
+}
+.titleForm,
+.textForm {
+	color: var(--Dark);
+	font-style: normal;
+	font-weight: 400;
+}
+.titleForm {
+	font-family: var(--second-family);
+	font-size: 24px;
+	line-height: 150%;
+}
+.textForm {
+	font-feature-settings: "liga" off, "clig" off;
+	font-family: var(--font-family);
+	font-size: 16px;
+	line-height: 170%;
+}
+.form {
+	display: flex;
+	align-items: flex-end;
+	align-content: flex-end;
+	gap: 45px 88px;
+	align-self: stretch;
+	flex-wrap: wrap;
+}
+.formItem {
+	width: 100%;
+}
+.labelInput {
+	display: flex;
+	padding-bottom: 8px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex: 1 0 0;
+	border-bottom: 1px dashed var(--Dark);
+}
+.input {
+	display: flex;
+	height: 40px;
+	flex-direction: column;
+	justify-content: center;
+	flex: 1 0 0;
+
+	color: var(--Dark);
+	font-family: var(--second-family);
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 150%;
+	border: none;
+}
+
+.error {
+	color: red;
+}
+.formBtn {
+	display: flex;
+	width: 100%;
+	padding: 10px 10px;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	border-radius: 40px;
+	border: 2px solid var(--Dark);
+	background: var(--Dark);
+
+	color: var(--White);
+	text-align: center;
+	font-feature-settings: "liga" off, "clig" off;
+	font-family: var(--font-family);
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 150%;
+	text-transform: uppercase;
+}
+.formBtn:hover {
+	color: var(--Dark);
+}
+
+.btnWrap {
+	width: 28px;
+	height: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.btnIcon {
+	width: 18px;
+	height: 17px;
+	fill: var(--White);
+}
+@media screen and (min-width: 768px) {
+	.titleGroup {
+		gap: 24px;
+	}
+	.titleForm {
+		font-size: 28px;
+	}
+	.textForm {
+		font-size: 18px;
+	}
+	.form {
+		gap: 45px 40px;
+	}
+	.formItem {
+		width: calc((100% - 40px) / 2);
+	}
+	.input,
+	.formBtn {
+		font-size: 16px;
+	}
+}
+@media screen and (max-width: 1279px) {
+	.formItem:last-child {
+		width: 100%;
+	}
+}
+
+@media screen and (min-width: 1280px) {
+	.callBackForm {
+		gap: 80px;
+	}
+	.titleGroup {
+		gap: 40px;
+	}
+	.titleForm {
+		font-size: 40px;
+	}
+	.textForm {
+		font-size: 24px;
+	}
+	.form {
+		gap: 45px 88px;
+	}
+	.formItem {
+		width: calc((100% - 176px) / 3);
+	}
+	.input,
+	.formBtn {
+		font-size: 18px;
+	}
+}

@@ -1,0 +1,36 @@
+.textarea {
+	display: inline-block;
+	width: 100%;
+	min-height: 60px;
+	padding: 16px;
+
+	border-radius: 15px;
+	border: 1px solid var(--Stroke);
+
+	font-family: var(--second-family);
+	font-size: 13px;
+	font-weight: 300;
+	line-height: 134%;
+	color: var(--Dark);
+
+	resize: none;
+	overflow-wrap: break-word;
+	white-space: pre-wrap;
+}
+.textarea:focus {
+	outline: none;
+	box-shadow: 0 0 0 2px var(--Stroke);
+}
+@media screen and (min-width: 768px) {
+	.textarea {
+		padding: 20px 24px;
+		font-size: 14px;
+	}
+}
+@media screen and (min-width: 1280px) {
+	.textarea {
+		padding: 16px 40px;
+		border-radius: 30px;
+		font-size: 18px;
+	}
+}

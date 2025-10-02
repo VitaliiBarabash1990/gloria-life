@@ -9,6 +9,29 @@
 		"subTitle": "Jestem Gloria, a Życie to mój najlepszy projekt."
 	},
 
+	"Services": {
+		"text": "Atmosphere of care",
+		"description": "Tea, conversation or silence - as you wish. Here you can be yourself.",
+		"description_psyh": "Życie stawia przed nami trudne pytania. Czasami odpowiedzią nie jest rada, ale obecność – uważna, szczera, nieoceniona. Pomagam Ci znaleźć połączenie ze sobą, przejść przez ból, niepewność, strach czy zmęczenie - i wyjść silniejszym. Wybierz metodę, która odpowiada. Lub po prostu napisz - a wspólnie znajdziemy drogę.",
+		"title_block": "Barbering / What I offer:",
+		"title_block_psyh": "Konsultacje psychologiczne:",
+		"link": "blog / barbershop",
+		"link_psyh": "blog / psychologia",
+		"button": "Make an appointment for a haircut",
+		"button_psyh": "SKONTAKTUJ SIĘ ZE MNĄ",
+		"app_info": "I work by appointment",
+		"info_left": "Jak przebiegają zajęcia:",
+		"info_right": "Dla kogo jest odpowiedni:",
+		"title_form": "Chcesz zrozumieć siebie głębiej?",
+		"text_form": "Zostaw prośbę — a skontaktuję się z Tobą osobiście:",
+		"input_name": "IMIĘ",
+		"input_phone": "NUMER TELEFONU",
+		"btn": "SKONTAKTUJ SIĘ ZE MNĄ"
+	},
+	"Blog": {
+		"select_list": ["Wszystkie artykuły", "Psychologia", "Fryzjer"]
+	},
+
 	"LocaleLayout": {
 		"title": "gloria-life.beauty",
 		"description": "Життєвий блог психолога про духовний розвиток"

@@ -1,0 +1,140 @@
+.paddingPsyhology {
+	padding-top: 40px;
+}
+.psyhologyDescription {
+	color: var(--Dark);
+	font-feature-settings: "liga" off, "clig" off;
+	font-family: var(--font-family);
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 300;
+	line-height: 200%;
+}
+.servicesAcordionList {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.servicesItem {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 32px;
+	align-self: stretch;
+	border-bottom: 1px solid var(--Stroke-1);
+}
+.serviceAcordionBtn {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	align-self: stretch;
+	cursor: pointer;
+}
+.btnAcordionTitle {
+	width: 586px;
+	align-self: stretch;
+	color: var(--Dark);
+	font-feature-settings: "liga" off, "clig" off;
+	font-family: var(--font-family);
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 170%;
+	text-transform: uppercase;
+}
+.arrowIconBlock {
+	width: 60px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.arrowIcon {
+	width: 26px;
+	height: 26px;
+	stroke: var(--Dark);
+	transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transform: rotate(0deg);
+}
+.backArrow {
+	transform: rotate(45deg);
+}
+.descrWrap {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 32px;
+	align-self: stretch;
+}
+.descrInfo {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 32px;
+	align-self: stretch;
+}
+.descrLeft,
+.descrRight {
+	width: 100%;
+}
+.descrLeft {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 16px;
+}
+.infoTitle,
+.infoList {
+	color: var(--Dark);
+	font-feature-settings: "liga" off, "clig" off;
+	font-family: var(--font-family);
+	font-size: 14px;
+	font-style: normal;
+	line-height: 170%;
+}
+.infoTitle {
+	font-weight: 600;
+}
+.infoList {
+	font-weight: 400;
+	white-space: pre-wrap;
+}
+@media screen and (min-width: 768px) {
+	.psyhologyDescription {
+		font-size: 16px;
+	}
+	.btnAcordionTitle {
+		font-size: 20px;
+	}
+	.infoTitle,
+	.infoList {
+		font-size: 16px;
+	}
+	.descrInfo {
+		flex-direction: row;
+	}
+	.descrLeft,
+	.descrRight {
+		width: calc(50% - 32px);
+	}
+}
+@media screen and (min-width: 1280px) {
+	.psyhologyDescription {
+		font-size: 20px;
+	}
+	.btnAcordionTitle {
+		font-size: 24px;
+	}
+	.infoTitle,
+	.infoList {
+		font-size: 18px;
+	}
+	.descrWrap,
+	.descrInfo {
+		gap: 64px;
+	}
+	.serviceAcordionBtn {
+		padding-bottom: 32px;
+	}
+}

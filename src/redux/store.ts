@@ -14,6 +14,8 @@ import storage from "redux-persist/lib/storage";
 import { MainReducer } from "./main/mainSlice";
 import { ContactsReducer } from "./contacts/contactSlice";
 import { AboutMeReducer } from "./aboutMe/aboutMeSlice";
+import { ServicesReducer } from "./services/servicesSlice";
+import { BlogReducer } from "./blog/blogSlice";
 
 const authPersistConfig = {
 	key: "auth",
@@ -29,6 +31,8 @@ const store = configureStore({
 		main: MainReducer,
 		contacts: ContactsReducer,
 		aboutMe: AboutMeReducer,
+		services: ServicesReducer,
+		blogs: BlogReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({
