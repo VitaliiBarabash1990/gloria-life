@@ -178,14 +178,28 @@ const BlogSwiper = () => {
 									</button>
 								</div>
 							</div>
-
-							<Image
-								src={item.img}
+							<ul className={s.slideImage}>
+								{item.imgs.map((item, index) => (
+									<li key={index} className={s.slideImageItem}>
+										<div className={s.imgWrapper}>
+											<Image
+												src={item}
+												alt={`photo ${index}`}
+												fill // замість width/height
+												style={{ objectFit: "cover", objectPosition: "center" }} // замощення
+												sizes="100vw" // опційно для адаптивності
+											/>
+										</div>
+									</li>
+								))}
+							</ul>
+							{/* <Image
+								src={item.imgs[0]}
 								width={382}
 								height={480}
 								alt={`photo ${index}`}
 								className={s.slideImage}
-							/>
+							/> */}
 						</SwiperSlide>
 					))}
 				</Swiper>
