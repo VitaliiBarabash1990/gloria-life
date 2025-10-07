@@ -5,7 +5,7 @@ import language from "../MainMenu/LanguageSelector.json";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import BlogField from "./BlogField/BlogField";
-import { ValidationSchemaAboutMe } from "@/lib/utils/validationSchema";
+import { ValidationSchemaBlogs } from "@/lib/utils/validationSchema";
 import Image from "next/image";
 import { ArticleFormProps } from "@/types/types";
 import {
@@ -42,17 +42,21 @@ const Blog = () => {
 	type LangKey = (typeof langKeys)[number];
 	const currentLang: LangKey = langKeys[selectItem];
 
-	const [previewImage, setPreviewImage] = useState<string | null>(null);
+	// ---- Зміни для кількох фото ----
+	const [previewImages, setPreviewImages] = useState<(string | null)[]>([]);
 
 	useEffect(() => {
-		if (currentItem?.img && !addArticle) {
-			setPreviewImage(currentItem.img);
+		if (currentItem?.imgs && !addArticle) {
+			setPreviewImages(currentItem.imgs); // очікується масив зображень
 		} else {
-			setPreviewImage(null);
+			setPreviewImages([]);
 		}
 	}, [currentItem, addArticle]);
 
-	const initialValues: ArticleFormProps = {
+	const initialValues: ArticleFormProps & {
+		imgs: (File | null)[];
+		existingImgs: (string | null)[];
+	} = {
 		titleUa: addArticle ? "" : currentItem?.ua?.title || "",
 		titlePl: addArticle ? "" : currentItem?.pl?.title || "",
 		titleEn: addArticle ? "" : currentItem?.en?.title || "",
@@ -66,38 +70,53 @@ const Blog = () => {
 		articleEn: addArticle ? "" : currentItem?.en?.article || "",
 		articleDe: addArticle ? "" : currentItem?.de?.article || "",
 		type: isType === 0 ? "barber" : "psychology",
-		img: null,
-		existingImg: addArticle ? "" : currentItem?.img || null,
+		imgs: [null, null, null, null], // максимум 4 картинки
+		existingImgs: addArticle ? [] : currentItem?.imgs || [],
 	};
 
+	// Обробник зміни зображення
 	const handleImageChange = (
 		e: React.ChangeEvent<HTMLInputElement>,
-		setFieldValue: FormikProps<ArticleFormProps>["setFieldValue"]
+		setFieldValue: FormikProps<ArticleFormProps>["setFieldValue"],
+		index: number
 	) => {
 		const file = e.target.files?.[0];
 		if (!file) return;
 
-		setFieldValue("img", file);
+		setFieldValue(`imgs[${index}]`, file);
 
 		const objectUrl = URL.createObjectURL(file);
-		if (previewImage && previewImage.startsWith("blob:")) {
-			URL.revokeObjectURL(previewImage);
+		if (previewImages[index]?.startsWith("blob:")) {
+			URL.revokeObjectURL(previewImages[index]!);
 		}
 
-		setPreviewImage(objectUrl);
-		setFieldValue("existingImg", null);
+		const newPreviews = [...previewImages];
+		newPreviews[index] = objectUrl;
+		setPreviewImages(newPreviews);
+
+		const newExisting = [...initialValues.existingImgs];
+		newExisting[index] = null;
+		setFieldValue("existingImgs", newExisting);
 	};
 
+	// Видалення окремого зображення
 	const handleImageDelete = (
-		setFieldValue: FormikProps<ArticleFormProps>["setFieldValue"]
+		setFieldValue: FormikProps<ArticleFormProps>["setFieldValue"],
+		index: number
 	) => {
-		if (previewImage && previewImage.startsWith("blob:")) {
-			URL.revokeObjectURL(previewImage);
+		if (previewImages[index] && previewImages[index]?.startsWith("blob:")) {
+			URL.revokeObjectURL(previewImages[index]!);
 		}
-		setPreviewImage(null);
 
-		setFieldValue("img", null);
-		setFieldValue("existingImg", null);
+		const newPreviews = [...previewImages];
+		newPreviews[index] = null;
+		setPreviewImages(newPreviews);
+
+		setFieldValue(`imgs[${index}]`, null);
+
+		const newExisting = [...initialValues.existingImgs];
+		newExisting[index] = null;
+		setFieldValue("existingImgs", newExisting);
 	};
 
 	const hundlerDelete = (id?: string) => {
@@ -105,26 +124,31 @@ const Blog = () => {
 		dispatch(deleteArticle(id));
 	};
 
-	const hundlerSubmit = (values: ArticleFormProps) => {
+	const hundlerSubmit = (values: typeof initialValues) => {
 		const formData = new FormData();
 
-		if (values.img) {
-			formData.append("img", values.img);
-		}
-		if (values.existingImg) {
-			formData.append("existingImg", values.existingImg);
-		}
+		// додаємо картинки
+		values.imgs.forEach((img) => {
+			if (img) {
+				formData.append("imgs", img);
+			}
+		});
+
+		// відправляємо existingImgs як JSON, залишаємо null для замінених позицій
+		formData.append("existingImgs", JSON.stringify(values.existingImgs));
 
 		Object.entries(values).forEach(([key, value]) => {
-			if (key === "img" || key === "existingImg") return;
+			if (key === "imgs" || key === "existingImgs") return;
 			if (value !== "" && value !== null && value !== undefined) {
 				formData.append(key, value as string | Blob);
 			}
 		});
 
 		if (addArticle) {
+			console.log("FormData", formData);
 			dispatch(createArticle(formData));
 		} else if (currentItem?._id) {
+			console.log("FormDataPatch", formData);
 			dispatch(updateArticle({ id: currentItem._id, formData }));
 		}
 	};
@@ -132,7 +156,7 @@ const Blog = () => {
 	return (
 		<Formik
 			initialValues={initialValues}
-			validationSchema={ValidationSchemaAboutMe}
+			validationSchema={ValidationSchemaBlogs}
 			onSubmit={hundlerSubmit}
 			enableReinitialize
 		>
@@ -178,7 +202,7 @@ const Blog = () => {
 								onClick={() => {
 									setAddArticle(true);
 									setEditArticle(true);
-									setPreviewImage(null);
+									setPreviewImages([]);
 								}}
 							>
 								<svg className={s.articleAddIcon}>
@@ -328,62 +352,73 @@ const Blog = () => {
 										)}
 									</ul>
 
+									{/* Блок завантаження кількох фото */}
 									<div className={s.photoLabel}>
-										<div
-											className={`${s.imgItem} ${previewImage ? s.upLoad : ""}`}
-										>
-											{previewImage && (
-												<Image
-													src={previewImage}
-													width={120}
-													height={150}
-													alt="blog-img"
-													className={s.imgMain}
-												/>
-											)}
-
-											<input
-												type="file"
-												accept="image/*"
-												id="img-upload"
-												style={{ display: "none" }}
-												onChange={(e) => handleImageChange(e, setFieldValue)}
-											/>
-
-											{previewImage ? (
-												<div className={s.btnBlock}>
-													<label
-														htmlFor="img-upload"
-														className={s.replaceBlock}
-													>
-														<svg className={s.deleteIcon}>
-															<use href="/sprite.svg#icon-replace"></use>
-														</svg>
-													</label>
-													<button
-														className={s.deleteBlock}
-														type="button"
-														onClick={() => handleImageDelete(setFieldValue)}
-													>
-														<svg className={s.deleteIcon}>
-															<use href="/sprite.svg#icon-delete"></use>
-														</svg>
-													</button>
-												</div>
-											) : (
-												<label
-													htmlFor="img-upload"
-													className={s.imgUploadLabel}
+										<div className={s.imgGrid}>
+											{[0, 1, 2, 3].map((i) => (
+												<div
+													key={i}
+													className={`${s.imgItem} ${
+														previewImages[i] ? s.upLoad : ""
+													}`}
 												>
-													<svg className={s.upLoadIcon}>
-														<use href="/sprite.svg#icon-upload"></use>
-													</svg>
-												</label>
-											)}
-										</div>
+													{previewImages[i] && (
+														<Image
+															src={previewImages[i]!}
+															width={120}
+															height={150}
+															alt={`blog-img-${i}`}
+															className={s.imgMain}
+														/>
+													)}
 
+													<input
+														type="file"
+														accept="image/*"
+														id={`img-upload-${i}`}
+														style={{ display: "none" }}
+														onChange={(e) =>
+															handleImageChange(e, setFieldValue, i)
+														}
+													/>
+
+													{previewImages[i] ? (
+														<div className={s.btnBlock}>
+															<label
+																htmlFor={`img-upload-${i}`}
+																className={s.replaceBlock}
+															>
+																<svg className={s.deleteIcon}>
+																	<use href="/sprite.svg#icon-replace"></use>
+																</svg>
+															</label>
+															<button
+																className={s.deleteBlock}
+																type="button"
+																onClick={() =>
+																	handleImageDelete(setFieldValue, i)
+																}
+															>
+																<svg className={s.deleteIcon}>
+																	<use href="/sprite.svg#icon-delete"></use>
+																</svg>
+															</button>
+														</div>
+													) : (
+														<label
+															htmlFor={`img-upload-${i}`}
+															className={s.imgUploadLabel}
+														>
+															<svg className={s.upLoadIcon}>
+																<use href="/sprite.svg#icon-upload"></use>
+															</svg>
+														</label>
+													)}
+												</div>
+											))}
+										</div>
 										<ErrorMessage
-											name="img"
+											name="imgs"
 											component="p"
 											className={s.error}
 										/>
@@ -398,10 +433,10 @@ const Blog = () => {
 											className={s.resetBtn}
 											onClick={() => {
 												resetForm();
-												setPreviewImage(currentItem?.img || null);
+												setPreviewImages(currentItem?.imgs || []);
 											}}
 										>
-											відхилити зміни
+											Відхилити зміни
 										</button>
 									</div>
 								</>

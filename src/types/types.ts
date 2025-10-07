@@ -122,8 +122,8 @@ export interface ArticleFormProps {
 	articlePl: string;
 	articleDe: string;
 	type: string;
-	img: File | null;
-	existingImg?: string | null;
+	imgs: (File | null)[];
+	existingImgs?: (string | null)[];
 }
 
 //forServices
@@ -183,7 +183,7 @@ export interface BlogPayload {
 	pl: { title: string; subTitle?: string; article: string };
 	de: { title: string; subTitle?: string; article: string };
 	type: string;
-	img: string;
+	imgs: string[];
 	_id?: undefined | string;
 }
 
