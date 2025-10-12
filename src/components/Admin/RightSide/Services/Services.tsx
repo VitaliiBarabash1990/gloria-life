@@ -65,14 +65,14 @@ const Services = () => {
 	};
 
 	const hundlerEdit = ({ index, id }: EditProps) => {
-		console.log("ID", index);
+		// console.log("ID", index);
 		setIsEdit(true);
 		setItemHiden(index);
 		setIdItem(id);
-		console.log("Index", index);
+		// console.log("Index", index);
 	};
 	const hundlerDelete = () => {
-		console.log("Delete");
+		// console.log("Delete");
 	};
 
 	const hundlerSumbit = (values: ServicesFormProps) => {
@@ -99,8 +99,8 @@ const Services = () => {
 			link: values.link,
 		};
 		const clearvalues = CleanValues(formData);
-		console.log("clearvalues", clearvalues);
-		console.log("formData", formData);
+		// console.log("clearvalues", clearvalues);
+		// console.log("formData", formData);
 		if (edit && idItem) {
 			dispatch(updateServices({ id: idItem, formData: clearvalues }));
 		} else {

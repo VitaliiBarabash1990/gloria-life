@@ -1,7 +1,8 @@
 {
 	"Hero": {
 		"button_1": "Psychologist",
-		"button_2": "Barber"
+		"button_2": "Barber",
+		"to_blog": "До блогу"
 	},
 
 	"Contact": {

@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect } from "react";
 import s from "./SectionBarber.module.css";
-import { Link, Locale } from "@/i18n/routing";
+import { Locale } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { getAllServices } from "@/redux/services/operations";
 import { selectBarberServices } from "@/redux/services/selectors";
+import { LocalizedScrollLink } from "../../Hero/LocalizedScrollLink/LocalizedScrollLink";
 
 const SectionBarber = () => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -20,14 +21,26 @@ const SectionBarber = () => {
 		<div className={`${s.sericesWrapper} ${s.paddingBarber}`}>
 			<div className={s.servicesBarbers}>
 				<h3 className={s.servicesTitle}>{t("title_block")}</h3>
-				<Link href="/barber" className={s.servicesLink}>
+				{/* <Link href="/barber" className={s.servicesLink}>
 					{t("link")}
 					<div className={s.sericesWrapperIcon}>
 						<svg className={s.servicesIcon}>
 							<use href="/sprite.svg#icon-arrow-swiper-right"></use>
 						</svg>
 					</div>
-				</Link>
+				</Link> */}
+				<LocalizedScrollLink
+					href="/"
+					scrollId="BlogSwiper"
+					className={s.servicesLink}
+				>
+					{t("link")}
+					<div className={s.sericesWrapperIcon}>
+						<svg className={s.servicesIcon}>
+							<use href="/sprite.svg#icon-arrow-swiper-right"></use>
+						</svg>
+					</div>
+				</LocalizedScrollLink>
 			</div>
 
 			<ul className={s.sericesList}>

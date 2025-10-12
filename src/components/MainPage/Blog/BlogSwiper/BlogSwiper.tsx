@@ -65,7 +65,7 @@ const BlogSwiper = () => {
 	const carrentArticle = selectors[activeBtn] ?? selectBlog;
 
 	const article = useSelector(carrentArticle);
-	console.log("article", article);
+	// console.log("article", article);
 
 	return (
 		<div id="BlogSwiper" className={s.heroSwiper}>

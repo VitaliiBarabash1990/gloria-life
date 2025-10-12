@@ -2,20 +2,22 @@
 import React, { useEffect } from "react";
 import WrapperForComponents from "../../UI/WrapperForComponents/WrapperForComponents";
 import s from "./Hero.module.css";
-import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import HeroSwiper from "./HeroSwiper/HeroSwiper";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { getAllMain } from "@/redux/main/operations";
 import { useTranslations } from "next-intl";
 import { LocalizedScrollLink } from "./LocalizedScrollLink/LocalizedScrollLink";
+import { selectImgs } from "@/redux/main/selectors";
 
 const Hero = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	useEffect(() => {
 		dispatch(getAllMain());
 	}, [dispatch]);
+	const imgs = useSelector(selectImgs);
+	// console.log("Img", imgs);
 
 	const t = useTranslations("main");
 	const p = useTranslations("Hero");
@@ -47,20 +49,20 @@ const Hero = () => {
 								<LocalizedScrollLink
 									href="/"
 									scrollId="BlogSwiper"
-									className={`${s.socialBtn} ${s.active}`}
+									className={s.socialBtn}
 								>
 									{p("button_1")}
-									<svg className={`${s.socialIcon} ${s.active}`}>
+									<svg className={s.socialIcon}>
 										<use href="/sprite.svg#icon-arrow-right"></use>
 									</svg>
 								</LocalizedScrollLink>
 								<LocalizedScrollLink
 									href="/"
 									scrollId="BlogSwiper"
-									className={`${s.socialBtn} ${s.active}`}
+									className={s.socialBtn}
 								>
 									{p("button_2")}
-									<svg className={`${s.socialIcon} ${s.active}`}>
+									<svg className={s.socialIcon}>
 										<use href="/sprite.svg#icon-arrow-right"></use>
 									</svg>
 								</LocalizedScrollLink>
@@ -102,12 +104,20 @@ const Hero = () => {
 							</ul>
 						</li>
 						<li className={s.heroSmallBtnBlock}>
-							<Link href="/psyhology" className={`${s.socialBtn} ${s.active}`}>
-								Пcихолог
-							</Link>
-							<Link href="/barber" className={s.socialBtn}>
-								Барбер
-							</Link>
+							<LocalizedScrollLink
+								href="/"
+								scrollId="BlogSwiper"
+								className={s.socialBtn}
+							>
+								{p("button_1")}
+							</LocalizedScrollLink>
+							<LocalizedScrollLink
+								href="/"
+								scrollId="BlogSwiper"
+								className={s.socialBtn}
+							>
+								{p("button_2")}
+							</LocalizedScrollLink>
 						</li>
 					</ul>
 				</div>
@@ -115,7 +125,7 @@ const Hero = () => {
 			<ul className={s.heroPhotoList}>
 				<li className={s.heroPhotoItem}>
 					<Image
-						src="/img/hero/PHOTO 1.png"
+						src={imgs ? imgs[0] : "/img/hero/PHOTO 1.png"}
 						width={300}
 						height={320}
 						alt="photo_1"
@@ -123,7 +133,7 @@ const Hero = () => {
 				</li>
 				<li className={s.heroPhotoItem}>
 					<Image
-						src="/img/hero/PHOTO 2.png"
+						src={imgs ? imgs[1] : "/img/hero/PHOTO 2.png"}
 						width={300}
 						height={320}
 						alt="photo_1"
@@ -131,7 +141,7 @@ const Hero = () => {
 				</li>
 				<li className={s.heroPhotoItem}>
 					<Image
-						src="/img/hero/PHOTO 3.png"
+						src={imgs ? imgs[2] : "/img/hero/PHOTO 3.png"}
 						width={300}
 						height={320}
 						alt="photo_1"
@@ -139,17 +149,27 @@ const Hero = () => {
 				</li>
 				<li className={`${s.heroPhotoItem} ${s.heroInBlog}`}>
 					<div className={s.inBlog}>
-						<Link href="/blog" className={s.inBlogLink}>
+						<LocalizedScrollLink
+							href="/"
+							scrollId="BlogSwiper"
+							className={s.inBlogLink}
+						>
+							<svg className={s.iconInBlog}>
+								<use href="/sprite.svg#icon-arrow-right"></use>
+							</svg>
+							{p("to_blog")}
+						</LocalizedScrollLink>
+						{/* <Link href="/blog" className={s.inBlogLink}>
 							<svg className={s.iconInBlog}>
 								<use href="/sprite.svg#icon-arrow-right"></use>
 							</svg>
 							До блогу
-						</Link>
+						</Link> */}
 					</div>
 				</li>
 				<li className={s.heroPhotoItem}>
 					<Image
-						src="/img/hero/PHOTO 5.png"
+						src={imgs ? imgs[3] : "/img/hero/PHOTO 5.png"}
 						width={300}
 						height={320}
 						alt="photo_1"

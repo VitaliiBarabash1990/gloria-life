@@ -20,8 +20,8 @@ const Page = () => {
 
 	const isError = useSelector(selectIsError);
 	const isSuccess = useSelector(selectIsSuccess);
-	console.log("isSuccess", isSuccess);
-	console.log("Error", isError);
+	// console.log("isSuccess", isSuccess);
+	// console.log("Error", isError);
 
 	const passwordRules = /^[a-zA-Z0-9]+$/;
 	const validationSchema = () => {
@@ -46,7 +46,7 @@ const Page = () => {
 			email: values.email,
 			password: values.password,
 		};
-		console.log("FORM_DATA", formValue);
+		// console.log("FORM_DATA", formValue);
 
 		try {
 			// Якщо логін успішний — unwrap поверне дані

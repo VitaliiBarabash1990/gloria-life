@@ -44,7 +44,7 @@ const Gallery = () => {
 	};
 
 	const hundlerOpenPopup = (index: number) => {
-		console.log("Index", index);
+		// console.log("Index", index);
 		setSelectedIndex(index);
 		setOpenPopup(true);
 	};
@@ -82,7 +82,7 @@ const Gallery = () => {
 								<use href="sprite.svg#icon-arrow-bottom-left"></use>
 							</svg>
 							<svg
-								className={`${s.galleryPopupIcon} ${
+								className={`${s.galleryClosePopupIcon} ${
 									!openPopup && s.displayNone
 								}`}
 							>

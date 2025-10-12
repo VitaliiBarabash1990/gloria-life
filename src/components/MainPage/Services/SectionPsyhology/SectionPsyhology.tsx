@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import s from "./SectionPsyhology.module.css";
 import a from "../SectionBarber/SectionBarber.module.css";
 import { useLocale, useTranslations } from "next-intl";
-import { Link, Locale } from "@/i18n/routing";
+import { Locale } from "@/i18n/routing";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { selectPsychologyServices } from "@/redux/services/selectors";
 import { getAllServices } from "@/redux/services/operations";
 import FormCallBack from "./FormCallBack/FormCallBack";
+import { LocalizedScrollLink } from "../../Hero/LocalizedScrollLink/LocalizedScrollLink";
 
 const SectionPsyhology = () => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -32,14 +33,26 @@ const SectionPsyhology = () => {
 		<div className={`${a.sericesWrapper} ${s.paddingPsyhology}`}>
 			<div className={a.servicesBarbers}>
 				<h3 className={a.servicesTitle}>{t("title_block_psyh")}</h3>
-				<Link href="/barber" className={a.servicesLink}>
+				{/* <Link href="/barber" className={a.servicesLink}>
 					{t("link_psyh")}
 					<div className={a.sericesWrapperIcon}>
 						<svg className={a.servicesIcon}>
 							<use href="/sprite.svg#icon-arrow-swiper-right"></use>
 						</svg>
 					</div>
-				</Link>
+				</Link> */}
+				<LocalizedScrollLink
+					href="/"
+					scrollId="BlogSwiper"
+					className={a.servicesLink}
+				>
+					{t("link_psyh")}
+					<div className={a.sericesWrapperIcon}>
+						<svg className={a.servicesIcon}>
+							<use href="/sprite.svg#icon-arrow-swiper-right"></use>
+						</svg>
+					</div>
+				</LocalizedScrollLink>
 			</div>
 
 			<div className={s.psyhologyDescription}>{t("description_psyh")}</div>

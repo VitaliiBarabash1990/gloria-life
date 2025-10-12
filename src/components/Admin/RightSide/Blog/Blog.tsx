@@ -145,10 +145,10 @@ const Blog = () => {
 		});
 
 		if (addArticle) {
-			console.log("FormData", formData);
+			// console.log("FormData", formData);
 			dispatch(createArticle(formData));
 		} else if (currentItem?._id) {
-			console.log("FormDataPatch", formData);
+			// console.log("FormDataPatch", formData);
 			dispatch(updateArticle({ id: currentItem._id, formData }));
 		}
 	};

@@ -44,7 +44,7 @@ export const updateContacts = createAsyncThunk(
 		try {
 			const state = thunkAPI.getState() as RootState;
 			const token = state.auth.token;
-			console.log("ID", id);
+			// console.log("ID", id);
 			const res = await gloriaAPI.patch(`/contacts/${id}`, formData, {
 				headers: {
 					Authorization: `Bearer ${token}`,

@@ -1,7 +1,8 @@
 {
 	"Hero": {
 		"button_1": "Psycholog",
-		"button_2": "Fryzjer"
+		"button_2": "Fryzjer",
+		"to_blog": "Do bloga"
 	},
 
 	"Contact": {

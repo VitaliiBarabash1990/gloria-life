@@ -33,8 +33,8 @@ const Contacts = () => {
 			facebook: values.facebook,
 		};
 
-		console.log("formData", formData);
-		console.log("UploadContacts", uploadContacts?._id);
+		// console.log("formData", formData);
+		// console.log("UploadContacts", uploadContacts?._id);
 		dispatch(updateContacts({ id: uploadContacts?._id, formData }));
 	};
 

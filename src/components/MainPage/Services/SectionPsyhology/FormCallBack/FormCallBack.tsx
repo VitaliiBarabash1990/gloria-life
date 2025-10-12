@@ -25,7 +25,7 @@ const FormCallBack = () => {
 			name: values.name,
 			phone: values.phone,
 		};
-		console.log("FormData", newContact);
+		// console.log("FormData", newContact);
 		dispatch(sendOrderEmail(newContact));
 		succsessContact();
 		options.resetForm();

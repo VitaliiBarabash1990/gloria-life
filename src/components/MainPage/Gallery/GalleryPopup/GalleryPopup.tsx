@@ -20,7 +20,7 @@ const GalleryPopup: React.FC<GalleryPopupProps> = ({
 	photoList,
 	initialIndex,
 }) => {
-	console.log("PhotoList", photoList);
+	// console.log("PhotoList", photoList);
 	return (
 		<div className={s.sliderContainer}>
 			<Swiper

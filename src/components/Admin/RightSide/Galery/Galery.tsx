@@ -28,7 +28,7 @@ export const Galery: React.FC = () => {
 		return <p>Завантаження...</p>; // або loader
 	}
 
-	console.log("Gallery", gallery);
+	// console.log("Gallery", gallery);
 
 	const initialValues: GalleryFormProps = {
 		categories: [

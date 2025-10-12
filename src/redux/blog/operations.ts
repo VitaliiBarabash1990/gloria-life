@@ -48,7 +48,7 @@ export const getAllArticle = createAsyncThunk(
 	async (_, thunkAPI) => {
 		try {
 			const res = await gloriaAPI.get("/article");
-			console.log("BlogData", res.data.data);
+			// console.log("BlogData", res.data.data);
 			return res.data.data;
 		} catch (err) {
 			// @ts-expect-error TS is not sure about error structure

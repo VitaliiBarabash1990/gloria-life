@@ -24,9 +24,7 @@
 	align-items: center;
 	gap: 40px;
 }
-.displayNone {
-	display: none;
-}
+
 .galleryTitle {
 	color: var(--Dark);
 	font-family: var(--second-family);
@@ -39,6 +37,9 @@
 	border: none;
 }
 .galleryPopupIcon {
+	display: none;
+}
+.galleryClosePopupIcon {
 	width: 32px;
 	height: 32px;
 	stroke: var(--Dark);
@@ -174,4 +175,13 @@
 		height: 60px;
 		aspect-ratio: 1/1;
 	}
+	.galleryPopupIcon {
+		display: inline-flex;
+		width: 32px;
+		height: 32px;
+		stroke: var(--Dark);
+	}
+}
+.displayNone {
+	display: none;
 }
