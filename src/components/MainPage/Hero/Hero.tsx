@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { getAllMain } from "@/redux/main/operations";
 import { useTranslations } from "next-intl";
+import { LocalizedScrollLink } from "./LocalizedScrollLink/LocalizedScrollLink";
 
 const Hero = () => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -43,23 +44,26 @@ const Hero = () => {
 						</li>
 						<li className={s.heroBtnSocial}>
 							<div className={s.heroBtnBlock}>
-								<Link
-									href="/psyhology"
+								<LocalizedScrollLink
+									href="/"
+									scrollId="BlogSwiper"
 									className={`${s.socialBtn} ${s.active}`}
 								>
 									{p("button_1")}
-									{/* Пcихолог{" "} */}
 									<svg className={`${s.socialIcon} ${s.active}`}>
 										<use href="/sprite.svg#icon-arrow-right"></use>
 									</svg>
-								</Link>
-								<Link href="/barber" className={s.socialBtn}>
+								</LocalizedScrollLink>
+								<LocalizedScrollLink
+									href="/"
+									scrollId="BlogSwiper"
+									className={`${s.socialBtn} ${s.active}`}
+								>
 									{p("button_2")}
-									{/* Барбер{" "} */}
-									<svg className={s.socialIcon}>
+									<svg className={`${s.socialIcon} ${s.active}`}>
 										<use href="/sprite.svg#icon-arrow-right"></use>
 									</svg>
-								</Link>
+								</LocalizedScrollLink>
 							</div>
 							<ul className={s.heroSocialList}>
 								<li className={s.heroSocialItem}>
