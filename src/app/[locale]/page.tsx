@@ -1,6 +1,7 @@
 import AboutMe from "@/components/MainPage/AboutMe/AboutMe";
 import Blog from "@/components/MainPage/Blog/Blog";
 import Contacts from "@/components/MainPage/Contacts/Contacts";
+import Gallery from "@/components/MainPage/Gallery/Gallery";
 import Hero from "@/components/MainPage/Hero/Hero";
 import Services from "@/components/MainPage/Services/Services";
 import { Locale } from "@/i18n/routing";
@@ -18,11 +19,12 @@ export default async function IndexPage({ params }: Props) {
 
 	return (
 		<>
-			{/* <Hero />
+			<Hero />
 			<AboutMe />
-			<Services /> */}
+			<Services />
 			<Blog />
-			{/* <Contacts /> */}
+			<Gallery />
+			<Contacts />
 		</>
 	);
 }

@@ -16,6 +16,7 @@ import { ContactsReducer } from "./contacts/contactSlice";
 import { AboutMeReducer } from "./aboutMe/aboutMeSlice";
 import { ServicesReducer } from "./services/servicesSlice";
 import { BlogReducer } from "./blog/blogSlice";
+import { GalleryReducer } from "./gallery/gallerySlice";
 
 const authPersistConfig = {
 	key: "auth",
@@ -33,6 +34,7 @@ const store = configureStore({
 		aboutMe: AboutMeReducer,
 		services: ServicesReducer,
 		blogs: BlogReducer,
+		gallery: GalleryReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({

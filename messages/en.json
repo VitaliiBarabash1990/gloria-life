@@ -31,7 +31,11 @@
 	"Blog": {
 		"select_list": ["All articles", "Psychology", "Barbershop"]
 	},
-
+	"Gallery": {
+		"title": "Life in frames",
+		"btn": ["All photos", "Psychology", "Barbershop"],
+		"btn_more": "See more"
+	},
 	"LocaleLayout": {
 		"title": "gloria-life.beauty",
 		"description": "Life blog of a psychologist about spiritual development"

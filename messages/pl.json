@@ -31,7 +31,11 @@
 	"Blog": {
 		"select_list": ["Wszystkie artykuły", "Psychologia", "Fryzjer"]
 	},
-
+	"Gallery": {
+		"title": "Życie w kadrach",
+		"btn": ["Wszystkie zdjęcias", "Psychologia", "Fryzjer"],
+		"btn_more": "Zobacz więcej"
+	},
 	"LocaleLayout": {
 		"title": "gloria-life.beauty",
 		"description": "Життєвий блог психолога про духовний розвиток"

@@ -194,8 +194,8 @@
 
 .photoLabel {
 	width: 100%;
-	height: 221px; /* важливо задати висоту, інакше блок може бути "невидимий" */
-	background-image: url("/img/aboutMe/fone.png"); /* шлях до картинки */
+	height: auto;
+	background-image: url("/img/aboutMe/fone.png");
 	/* background-size: cover; */
 	/* background-position: center; */
 	background-repeat: repeat;
@@ -207,14 +207,17 @@
 }
 .imgGrid {
 	display: flex;
+	width: 100%;
 	flex-direction: row;
+	flex-wrap: wrap;
 	gap: 4px;
 }
 
 .imgItem {
 	display: flex;
-	width: 195px;
-	height: 221px;
+	width: calc((100% - 4px) / 2);
+	aspect-ratio: 191 / 221;
+	/* height: 221px; */
 	background: var(--white);
 	opacity: 0.6;
 	flex-direction: column;
@@ -229,11 +232,7 @@
 	border-radius: 30px;
 	border: 1px dashed var(--Stroke);
 }
-.upLoad {
-	opacity: 1;
-	border-radius: 0px;
-	border: 1px solid var(--Stroke);
-}
+
 .imgMain {
 	display: flex;
 	width: 100%;
@@ -356,6 +355,18 @@
 		width: calc(50% - 4px);
 		font-size: 16px;
 	}
+	.photoLabel {
+		width: 100%;
+		height: 221px;
+	}
+	.imgGrid {
+		flex-direction: row;
+		flex-wrap: nowrap;
+	}
+	.imgItem {
+		width: 195px;
+		height: 221px;
+	}
 }
 
 @media screen and (min-width: 1280px) {
@@ -370,4 +381,10 @@
 	.articleContentText {
 		font-size: 20px;
 	}
+}
+
+.upLoad {
+	opacity: 1;
+	border-radius: 0px;
+	border: 1px solid var(--Stroke);
 }

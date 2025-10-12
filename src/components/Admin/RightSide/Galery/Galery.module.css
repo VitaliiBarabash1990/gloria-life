@@ -1,0 +1,208 @@
+.mainForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	gap: 40px;
+	flex: 1 0 0;
+	flex-basis: 0;
+}
+.galleryList {
+	display: flex;
+	align-items: flex-start;
+	min-height: 40px;
+	gap: 16px;
+	align-self: stretch;
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+
+	/* приховування скролбара */
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+.galleryItem,
+.active {
+	display: flex;
+	padding: 8px 24px;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	flex: 1 0 0;
+	border-radius: 60px;
+
+	font-family: var(--font-family);
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
+}
+.galleryItem {
+	color: var(--Dark);
+	font-weight: 400;
+	border: 2px solid var(--Stroke-1);
+}
+.active {
+	background: var(--Dark);
+	color: var(--White);
+	font-weight: 600;
+}
+
+.imgGalleryList {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+	gap: 8px;
+}
+
+.uploadBox {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	/* flex: 1 0 0; */
+	align-self: stretch;
+	border-radius: 20px;
+	border: 1px dashed var(--Stroke-1);
+	position: relative;
+}
+.labelTitle {
+	position: absolute;
+	left: 7px;
+	top: -11px;
+
+	color: var(--background);
+	font-family: var(--font-family);
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 136%;
+
+	background: var(--white);
+}
+
+.uploadBox:hover {
+	background: var(--White);
+}
+.uploadBox:hover .labelTitle {
+	background: var(--White);
+	border-radius: 10px;
+}
+
+.uploadIcon {
+	width: 32px;
+	height: 32px;
+	fill: none;
+	stroke: var(--Dark);
+	margin-bottom: 8px;
+}
+
+.imgItem {
+	display: flex;
+	width: calc((100% - 8px) / 2);
+	aspect-ratio: 170 / 230;
+	position: relative;
+}
+
+.imgPreview {
+	width: 100%;
+	object-fit: cover;
+}
+
+.deleteBtn {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: flex;
+	width: 89px;
+	height: 44px;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	transform: translate(-50%, -50%);
+
+	border-radius: 40px;
+	border: 2px solid var(--White);
+	background: rgba(51, 55, 53, 0.4);
+	backdrop-filter: blur(2px);
+	cursor: pointer;
+}
+
+.deleteIcon {
+	width: 24px;
+	height: 26px;
+	display: flex;
+	flex-shrink: 0;
+	fill: var(--white);
+}
+
+.btnGroup {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	gap: 16px;
+	min-height: 40px;
+}
+
+.saveBtn,
+.cancelBtn {
+	padding: 10px 20px;
+	border-radius: 20px;
+	width: 100%;
+	border: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+
+	color: var(--Dark);
+	font-family: var(--font-family);
+	font-size: 14px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: 500;
+}
+
+.saveBtn {
+	background: #333;
+	color: white;
+}
+
+.saveBtn:hover {
+	background: #222;
+}
+
+.cancelBtn {
+	background: #ddd;
+	color: #333;
+}
+
+.cancelBtn:hover {
+	background: #ccc;
+}
+
+.error {
+	color: #d33;
+	text-align: center;
+	font-size: 14px;
+}
+@media screen and (min-width: 768px) {
+	.galleryItem,
+	.active {
+		font-size: 18px;
+	}
+	.uploadBox {
+		border-radius: 30px;
+	}
+	.imgItem {
+		display: flex;
+		width: calc((100% - 16px) / 3);
+		aspect-ratio: 313 / 356;
+	}
+	.saveBtn,
+	.cancelBtn {
+		border-radius: 30px;
+		font-size: 18px;
+	}
+}

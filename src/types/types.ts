@@ -150,6 +150,33 @@ export interface ServicesFormProps {
 	link?: string;
 }
 
+//forGallery
+
+// export interface GalleryFormProps {
+// 	categories: GalleryCategory[];
+// }
+// export interface GalleryCategory {
+// 	type: string;
+// 	imgs: GalleryImage[];
+// }
+// export interface GalleryImage {
+// 	_id: string;
+// 	url: string;
+// 	type: string;
+// }
+
+export interface GalleryFormProps {
+	categories: CategoryData[];
+}
+export interface CategoryData {
+	type: "psyhology" | "barber";
+	imgs: (string | File | GalleryImage)[];
+}
+export interface GalleryImage {
+	url: string;
+	_id: string;
+}
+
 //forContacts
 export interface ContactsMenuFormProps {
 	number: string;
@@ -355,3 +382,22 @@ export type CallBackFormProps = {
 	name: string;
 	phone: string;
 };
+
+// 🔹 Типи для одного фото і категорії
+export interface GalleryImage {
+	_id: string;
+	url: string;
+}
+
+export interface GalleryCategory {
+	_id?: string;
+	type: string;
+	imgs: GalleryImage[];
+}
+
+// 🔹 Тип для стану
+export interface GalleryState {
+	gallery: GalleryCategory[];
+	isLoading: boolean;
+	isError: boolean;
+}

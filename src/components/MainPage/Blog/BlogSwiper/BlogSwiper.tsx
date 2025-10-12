@@ -193,13 +193,6 @@ const BlogSwiper = () => {
 									</li>
 								))}
 							</ul>
-							{/* <Image
-								src={item.imgs[0]}
-								width={382}
-								height={480}
-								alt={`photo ${index}`}
-								className={s.slideImage}
-							/> */}
 						</SwiperSlide>
 					))}
 				</Swiper>

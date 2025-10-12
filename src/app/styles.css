@@ -61,7 +61,7 @@ html {
 }
 
 body {
-	background: var(--white);
+	background: var(--White);
 	color: var(--black);
 	margin: 0;
 }

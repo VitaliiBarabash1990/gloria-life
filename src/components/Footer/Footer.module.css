@@ -19,7 +19,7 @@
 	background: none;
 }
 .footerText {
-	color: var(--Stroke);
+	color: var(--Stroke-1);
 	text-align: right;
 	font-family: var(--second-family);
 	font-size: 14px;
