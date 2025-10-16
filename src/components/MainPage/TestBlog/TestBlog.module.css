@@ -1,0 +1,26 @@
+.wrapperSwiperBlog {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 40px;
+	padding: 40px 0px 0px;
+	max-width: 1440px;
+	margin: 0 auto;
+}
+.leftSwiper,
+.rightSwiper {
+	width: 100%;
+}
+@media screen and (min-width: 1280px) {
+	.wrapperSwiperBlog {
+		flex-direction: row;
+		width: 100%;
+		/* height: 933px; */
+		padding: 40px 0px 40px 64px;
+	}
+	.leftSwiper,
+	.rightSwiper {
+		width: calc(50% - 20px);
+	}
+}

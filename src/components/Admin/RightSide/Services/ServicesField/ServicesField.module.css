@@ -30,7 +30,7 @@
 	font-weight: 500;
 	line-height: 136%;
 
-	background: var(--white);
+	background: var(--White);
 }
 
 .input {
@@ -42,6 +42,7 @@
 
 	border-radius: 30px;
 	border: 1px solid var(--Stroke);
+	background: var(--White);
 
 	color: var(--Dark);
 	font-family: var(--second-family);

@@ -4,6 +4,8 @@ import Contacts from "@/components/MainPage/Contacts/Contacts";
 import Gallery from "@/components/MainPage/Gallery/Gallery";
 import Hero from "@/components/MainPage/Hero/Hero";
 import Services from "@/components/MainPage/Services/Services";
+import TestAboutMe from "@/components/MainPage/TestAboutMe/TestAboutMe";
+import TestBlog from "@/components/MainPage/TestBlog/TestBlog";
 import { Locale } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 
@@ -20,9 +22,11 @@ export default async function IndexPage({ params }: Props) {
 	return (
 		<>
 			<Hero />
-			<AboutMe />
+			{/* <AboutMe /> */}
+			<TestAboutMe />
 			<Services />
-			<Blog />
+			{/* <Blog /> */}
+			<TestBlog />
 			<Gallery />
 			<Contacts />
 		</>

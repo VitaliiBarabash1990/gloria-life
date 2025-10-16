@@ -1,0 +1,20 @@
+.slideImage {
+	width: 100%;
+	aspect-ratio: 320 / 408;
+	display: flex;
+}
+.image {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+@media screen and (min-width: 768px) {
+	.slideImage {
+		aspect-ratio: 768 / 900;
+	}
+}
+@media screen and (min-width: 1280px) {
+	.slideImage {
+		aspect-ratio: 668 / 850;
+	}
+}

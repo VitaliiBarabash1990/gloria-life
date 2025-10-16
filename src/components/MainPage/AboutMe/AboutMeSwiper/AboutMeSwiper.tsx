@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
 import "swiper/css";
@@ -22,6 +22,7 @@ const AboutMeSwiper = () => {
 	const [activeSlide, setActiveSlide] = useState(0);
 	const about = useSelector(selectAboutMe);
 	const locale = useLocale() as Locale;
+	const swiperRef = useRef<SwiperRef | null>(null);
 
 	// масив ref для кнопок кожного слайда
 	const nextRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -29,6 +30,26 @@ const AboutMeSwiper = () => {
 	useEffect(() => {
 		dispatch(getAllAboutMe());
 	}, [dispatch]);
+
+	useEffect(() => {
+		const swiperInstance = swiperRef.current?.swiper;
+		if (swiperInstance && about.length) {
+			// перевірка, що navigation об’єкт
+			if (
+				swiperInstance.params.navigation &&
+				typeof swiperInstance.params.navigation !== "boolean"
+			) {
+				swiperInstance.params.navigation.nextEl = nextRefs.current[0];
+				swiperInstance.navigation.destroy();
+				swiperInstance.navigation.init();
+				swiperInstance.navigation.update();
+
+				// трюк для активації кнопки
+				swiperInstance.slideNext(0);
+				swiperInstance.slidePrev(0);
+			}
+		}
+	}, [about]);
 
 	return (
 		<div id="AboutMeSwiper" className={s.heroSwiper}>

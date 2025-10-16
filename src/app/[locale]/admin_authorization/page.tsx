@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { adminLogIn } from "@/redux/auth/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/redux/store";
-import { selectIsError, selectIsSuccess } from "@/redux/auth/selectors";
+import { selectIsError } from "@/redux/auth/selectors";
 import ErrorAuthPopup from "@/components/UI/ErrorPopups/ErrorAuthPopup/ErrorAuthPopup";
 
 const Page = () => {
@@ -19,7 +19,7 @@ const Page = () => {
 	const router = useRouter();
 
 	const isError = useSelector(selectIsError);
-	const isSuccess = useSelector(selectIsSuccess);
+	// const isSuccess = useSelector(selectIsSuccess);
 	// console.log("isSuccess", isSuccess);
 	// console.log("Error", isError);
 

@@ -1,26 +1,72 @@
 .sliderContainer {
-	margin: auto;
-	width: 100%;
-	max-width: 1440px;
-	align-items: center;
-	gap: 40px;
-	padding: 40px 0;
-}
-.swiper {
-	height: auto;
-	max-width: 1440px;
-}
-.slide {
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
-}
-.slideArticle {
 	padding: 0 16px;
 }
+.swiper {
+	display: flex;
+	width: 100%;
+}
+
+.slide {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	gap: 40px;
+}
+.selectList {
+	display: flex;
+	height: 40px;
+	width: 100%;
+	align-items: flex-start;
+	gap: 4px;
+	align-self: stretch;
+	padding-bottom: 32px;
+
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+
+	/* приховування скролбара */
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+.selectItem,
+.active {
+	display: flex;
+	padding: 8px 20px;
+	height: auto;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	flex: 1 0 0;
+	border-radius: 60px;
+
+	text-align: center;
+	font-family: var(--font-family);
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
+}
+.selectItem {
+	border: 2px solid var(--Stroke-1);
+	height: auto;
+	color: var(--Dark);
+	font-weight: 400;
+	cursor: pointer;
+}
+.selectItem:hover,
+.active {
+	background: var(--Dark);
+	color: var(--White);
+	font-weight: 600;
+}
 .slideArticleDescription {
-	max-height: 660px;
+	max-height: 600px;
 	overflow-y: auto;
+	padding: 16px 0;
 }
 .articleTitle,
 .articleText {
@@ -42,11 +88,7 @@
 	font-style: normal;
 	font-weight: 300;
 }
-.slideImage {
-	width: 100%;
-	min-width: 320px;
-	aspect-ratio: 320 / 408;
-}
+
 .paginationBlock {
 	display: flex;
 	width: 100%;
@@ -74,20 +116,22 @@
 	z-index: 9;
 	border: none;
 }
-
-@media screen and (min-width: 375px) {
-	.navButton_icon {
-		min-width: 32px;
-		height: 32px;
-	}
+.left {
+	transform: rotate(180deg);
 }
-
 @media screen and (min-width: 768px) {
-	.slideArticle {
+	.sliderContainer {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
 		padding: 0 32px;
 	}
-	.slideArticleDescription {
+	.slide {
 		max-height: 400px;
+	}
+	.slideArticleDescription {
+		max-height: 300px;
+		overflow-y: auto;
 	}
 	.articleTitle {
 		font-size: 20px;
@@ -95,40 +139,16 @@
 	.articleText {
 		font-size: 16px;
 	}
-	.paginationBlock {
-		height: 64px;
-	}
-	.slideImage {
-		min-width: 768px;
-		aspect-ratio: 768 / 900;
-	}
 }
-
 @media screen and (min-width: 1280px) {
 	.sliderContainer {
-		padding: 40px 0 40px 64px;
-	}
-	.swiper {
-		aspect-ratio: 1374 / 854;
+		aspect-ratio: 668 / 850;
+		justify-content: space-between;
+		gap: 0;
+		padding: 0;
 	}
 	.slide {
-		flex-direction: row;
-	}
-	.slideImage {
-		min-width: 0;
-	}
-	.slideImage,
-	.slideArticle {
-		width: calc(50% - 20px);
-	}
-	.slideArticle {
-		display: flex;
-		flex-direction: column;
-		padding: 20px 0;
-		justify-content: space-between;
-		align-items: flex-start;
-		flex: 1 0 0;
-		align-self: stretch;
+		max-height: 660px;
 	}
 	.slideArticleDescription {
 		display: flex;
@@ -136,15 +156,12 @@
 		align-items: flex-start;
 		gap: 24px;
 		align-self: stretch;
-		min-height: 668px;
+		min-height: 512px;
 	}
 	.articleTitle {
 		font-size: 24px;
 	}
 	.articleText {
 		font-size: 20px;
-	}
-	.paginationBlock {
-		padding: 0;
 	}
 }

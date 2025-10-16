@@ -15,7 +15,7 @@ const SectionPsyhology = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const [itemClick, setItemClick] = useState<number | null>(null);
 
-	console.log("itemClick", itemClick);
+	// console.log("itemClick", itemClick);
 	const local = useLocale() as Locale;
 	useEffect(() => {
 		dispatch(getAllServices());

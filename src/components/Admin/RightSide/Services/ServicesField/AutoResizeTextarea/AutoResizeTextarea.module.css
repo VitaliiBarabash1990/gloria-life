@@ -6,6 +6,7 @@
 
 	border-radius: 30px;
 	border: 1px solid var(--Stroke);
+	background: var(--White);
 
 	font-family: var(--second-family);
 	font-size: 13px;
