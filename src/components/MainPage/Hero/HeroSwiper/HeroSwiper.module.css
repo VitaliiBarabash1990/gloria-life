@@ -1,17 +1,25 @@
 .sliderContainer {
-	width: calc(100% - 32px - 48px);
+	width: 100%;
 	margin: auto;
 }
 
 .swiper {
-	height: 448px;
+	/* height: 448px; */
+	aspect-ratio: 375 / 440;
 }
 
 .slide {
 	display: flex;
 	justify-content: center;
 }
-
+.heroItem {
+	display: flex;
+	width: 100%;
+}
+.image {
+	display: flex;
+	width: 100%;
+}
 .paginationBlock {
 	display: flex;
 	height: 40px;
@@ -23,7 +31,16 @@
 }
 
 .navButton {
-	display: none;
+	background: var(--White);
+	padding: 10px;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	z-index: 9;
+	border: none;
 }
 
 .navButton_icon {
@@ -32,33 +49,13 @@
 	height: 24px;
 }
 
-@media screen and (min-width: 375px) {
-	.sliderContainer {
-		width: 100%;
-		max-width: 767px;
-	}
-
-	/* Навигационные кнопки */
-	.navButton {
-		background: var(--White);
-		padding: 10px;
-		width: 40px;
-		height: 40px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
-		z-index: 9;
-		border: none;
-	}
-}
-
 @media screen and (min-width: 768px) {
 	.sliderContainer {
 		max-width: 100%;
 	}
 	.swiper {
 		padding-bottom: 12px;
+		aspect-ratio: 768 / 480;
 	}
 	.paginationBlock {
 		padding: 0 32px;

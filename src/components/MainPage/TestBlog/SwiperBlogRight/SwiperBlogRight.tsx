@@ -39,7 +39,7 @@ const SwiperBlogRight: React.FC<SwiperBlogRightProps> = ({
 									<div className={s.imgWrapper}>
 										<Image
 											src={item}
-											alt={`photo ${index}`}
+											alt={`photo_` + index}
 											fill // замість width/height
 											style={{ objectFit: "cover", objectPosition: "center" }} // замощення
 											sizes="100vw" // опційно для адаптивності

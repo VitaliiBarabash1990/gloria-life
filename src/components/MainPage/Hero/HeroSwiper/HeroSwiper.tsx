@@ -49,7 +49,8 @@ const HeroSwiper = () => {
 									src={img}
 									width={382}
 									height={480}
-									alt={`photo ${index}`}
+									alt={`photo_` + index}
+									className={s.image}
 								></Image>
 							</div>
 						</SwiperSlide>
