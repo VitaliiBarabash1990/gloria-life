@@ -1,0 +1,134 @@
+.navMenuWrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	height: calc(100dvh - 72px - 40px - 40px);
+	gap: 40px;
+}
+
+.navMenuList {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	width: 100%;
+	gap: 40px;
+	margin: 0 auto;
+}
+.navMenuItem {
+	display: flex;
+	align-items: center;
+	gap: 44px;
+	width: 100%;
+}
+.navMenuLink {
+	display: flex;
+	align-items: center;
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 200%;
+	text-transform: uppercase;
+	color: var(--Dark);
+	white-space: nowrap;
+}
+.fadingLine {
+	width: 100%;
+	height: 1px;
+	background: var(--Stroke-1);
+}
+
+.menuFooter {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: column;
+	gap: 24px;
+	flex-shrink: 0;
+	width: 100%;
+	height: 104px;
+	/* border: 1px solid red; */
+}
+.menuLanguageList {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: row;
+	gap: 4px;
+	width: 184px;
+	height: 40px;
+	/* border: 1px solid green; */
+}
+.menuLanguageItem {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: calc(100% / 4);
+	height: 100%;
+	font-family: var(--second-family);
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 0.81;
+	text-align: center;
+	color: var(--Dark);
+	text-transform: uppercase;
+	border-right: 1px solid var(--Stroke-1);
+	cursor: pointer;
+}
+.activeLang {
+	font-weight: 700;
+	text-decoration: underline;
+}
+.menuLanguageItem:last-child {
+	border-right: none;
+}
+
+.menuSocialList {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: row;
+	gap: 8px;
+	width: 136px;
+	height: 40px;
+	/* border: 1px solid blue; */
+}
+.menuSocialItem {
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+.socIcon {
+	width: 24px;
+	height: 24px;
+	fill: var(--Dark);
+}
+
+@media screen and (min-width: 768px) {
+	.navMenuWrapper,
+	.navMenuList {
+		gap: 32px;
+	}
+	.menuLanguageItem {
+		font-size: 18px;
+		font-weight: 300;
+	}
+}
+
+@media screen and (min-width: 1280px) {
+	.navMenuWrapper,
+	.navMenuList {
+		gap: 8px;
+	}
+	.navMenuLink {
+		font-size: 20px;
+	}
+	.menuFooter {
+		flex-direction: row;
+		height: 40px;
+	}
+}

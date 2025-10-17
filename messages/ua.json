@@ -1,4 +1,12 @@
 {
+	"Navigation": {
+		"about_me": "Мій шлях",
+		"blog": "Блог",
+		"barber": "Барбер - запис",
+		"psychology": "Психолог - запис",
+		"gallery": "Галерея",
+		"contacts": "Контакти"
+	},
 	"Hero": {
 		"button_1": "Психолог",
 		"button_2": "Барбер",

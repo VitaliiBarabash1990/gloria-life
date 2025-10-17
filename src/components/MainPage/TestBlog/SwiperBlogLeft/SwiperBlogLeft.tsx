@@ -24,8 +24,8 @@ const SwiperBlogtLeft: React.FC<SwiperBlogLeftProps> = ({
 }) => {
 	const [activeSlide, setActiveSlide] = useState<number | null>(null);
 	const locale = useLocale() as Locale;
-	console.log("ActiveSlide", activeSlide);
-	console.log("Article", article);
+	// console.log("ActiveSlide", activeSlide);
+	// console.log("Article", article);
 
 	const t = useTranslations("Blog");
 

@@ -1,4 +1,12 @@
 {
+	"Navigation": {
+		"about_me": "Mein Weg",
+		"blog": "Blog",
+		"barber": "Barber - Reservierung",
+		"psychology": "Psychologe - Reservierung",
+		"gallery": "Galerie",
+		"contacts": "Kontakte"
+	},
 	"Hero": {
 		"button_1": "Psychologe",
 		"button_2": "Friseur",

@@ -14,7 +14,7 @@ const CastomPagination = ({
 	const safeActiveSlide =
 		typeof activeSlide === "number" && !isNaN(activeSlide) ? activeSlide : 0;
 
-	console.log("activeSlidePagination", activeSlide);
+	// console.log("activeSlidePagination", activeSlide);
 	// console.log("SafeActiveSlide", safeActiveSlide);
 	return (
 		<>

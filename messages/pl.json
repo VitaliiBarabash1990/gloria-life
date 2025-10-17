@@ -1,4 +1,12 @@
 {
+	"Navigation": {
+		"about_me": "Moja ścieżka",
+		"blog": "Blog",
+		"barber": "Fryzjer-rezerwacja",
+		"psychology": "Psycholog-rezerwacja",
+		"gallery": "Galeria",
+		"contacts": "Kontakty"
+	},
 	"Hero": {
 		"button_1": "Psycholog",
 		"button_2": "Fryzjer",
