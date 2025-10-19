@@ -39,9 +39,9 @@ export const NavigationMenu = ({ setOpenMenu }: MyComponentProps) => {
 
 	const linkDatas: LinkData[] = [
 		{ id: 0, link: "AboutMe", text: t("about_me") },
-		{ id: 1, link: "Blog", text: t("blog") },
+		{ id: 1, link: "BlogSwiper", text: t("blog") },
 		{ id: 2, link: "Barber", text: t("barber") },
-		{ id: 3, link: "Psychology", text: t("psychology") },
+		{ id: 3, link: "Psychologist", text: t("psychology") },
 		{ id: 4, link: "Gallery", text: t("gallery") },
 		{ id: 5, link: "Contacts", text: t("contacts") },
 	];

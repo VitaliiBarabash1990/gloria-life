@@ -18,7 +18,7 @@ const SectionBarber = () => {
 	const barbers = useSelector(selectBarberServices);
 	const t = useTranslations("Services");
 	return (
-		<div className={`${s.sericesWrapper} ${s.paddingBarber}`}>
+		<div id="Barber" className={`${s.sericesWrapper} ${s.paddingBarber}`}>
 			<div className={s.servicesBarbers}>
 				<h3 className={s.servicesTitle}>{t("title_block")}</h3>
 				{/* <Link href="/barber" className={s.servicesLink}>

@@ -20,7 +20,7 @@ const Contacts = () => {
 	const t = useTranslations("Contact");
 	return (
 		<WrapperForComponents paddingTop={64} paddingBottom={40}>
-			<div className={s.contactsWrapper}>
+			<div id="Contacts" className={s.contactsWrapper}>
 				<ul className={s.contactsContentList}>
 					<li className={s.contentItem}>
 						<h2 className={s.contentTitle}>{t("title")}</h2>

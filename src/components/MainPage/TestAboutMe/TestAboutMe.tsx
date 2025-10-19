@@ -29,7 +29,7 @@ const TestAboutMe = () => {
 	}, [aboutMe]);
 
 	return (
-		<div className={s.wrapperSwiperAbout}>
+		<div id="AboutMe" className={s.wrapperSwiperAbout}>
 			<div className={s.leftSwiper}>
 				<SwiperAboutLeft aboutMe={aboutMe} swiperRef={leftSwiperRef} />
 			</div>

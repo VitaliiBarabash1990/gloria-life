@@ -25,7 +25,7 @@ const Hero = () => {
 	return (
 		<>
 			<WrapperForComponents>
-				<div className={s.heroHeading}>
+				<div id="Hero" className={s.heroHeading}>
 					<ul className={s.heroHeadList}>
 						<li className={s.heroHeadItem}>
 							<h1 className={s.heroHeadTitle}>

@@ -54,7 +54,7 @@ const Gallery = () => {
 
 	return (
 		<WrapperForComponents paddingTop={40} paddingBottom={40}>
-			<div className={s.galleryWrapper}>
+			<div id="Gallery" className={s.galleryWrapper}>
 				<div className={s.galleryHead}>
 					<div className={s.galleryHeadBtn}>
 						<div className={s.galleryHeadTitle}>

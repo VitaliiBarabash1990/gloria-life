@@ -30,7 +30,10 @@ const SectionPsyhology = () => {
 	};
 
 	return (
-		<div className={`${a.sericesWrapper} ${s.paddingPsyhology}`}>
+		<div
+			id="Psychologist"
+			className={`${a.sericesWrapper} ${s.paddingPsyhology}`}
+		>
 			<div className={a.servicesBarbers}>
 				<h3 className={a.servicesTitle}>{t("title_block_psyh")}</h3>
 				{/* <Link href="/barber" className={a.servicesLink}>
