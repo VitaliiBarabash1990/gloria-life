@@ -8,7 +8,7 @@ import useWindowWidth from "@/lib/hooks/useWindowWidth";
 import { NavigationMenu } from "./NavigationMenu/NavigationMenu";
 
 const Header = () => {
-	const [openMenu, setOpenMenu] = useState(true);
+	const [openMenu, setOpenMenu] = useState(false);
 
 	// const path = usePathname().split("/");
 

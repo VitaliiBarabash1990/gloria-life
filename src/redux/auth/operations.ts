@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import { AuthResponse, SendOrderPayload } from "@/types/types";
 
 export const gloriaAPI = axios.create({
-	baseURL: "http://localhost:4000/",
-	// baseURL: "https://pan-sirko-back.onrender.com",
+	// baseURL: "http://localhost:4000/",
+	baseURL: "https://gloria-life-back.onrender.com",
 	withCredentials: true,
 });
 
