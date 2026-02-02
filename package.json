@@ -16,6 +16,7 @@
 		"formik": "^2.4.6",
 		"next": "^16.0.7",
 		"next-intl": "^4.5.8",
+		"nodemailer": "^7.0.13",
 		"react": "19.1.0",
 		"react-dom": "19.1.0",
 		"react-hot-toast": "^2.6.0",
