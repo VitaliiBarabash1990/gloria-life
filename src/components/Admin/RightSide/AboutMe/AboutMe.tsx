@@ -22,6 +22,7 @@ const AboutMe = () => {
 	const [addArticle, setAddArticle] = useState(false);
 	const [indexItem, setIndexItem] = useState(0);
 	const [editArticle, setEditArticle] = useState(false);
+	const [successMessage, setSuccessMessage] = useState(""); // <-- повідомлення про успіх
 
 	const aboutMe = useSelector(selectAboutMe);
 
@@ -113,9 +114,15 @@ const AboutMe = () => {
 		});
 
 		if (addArticle) {
-			dispatch(createAboutMe(formData));
+			dispatch(createAboutMe(formData)).then(() => {
+				setSuccessMessage("Статтю створенно!");
+				setTimeout(() => setSuccessMessage(""), 3000);
+			});
 		} else if (currentItem?._id) {
-			dispatch(updateAboutMe({ id: currentItem._id, formData }));
+			dispatch(updateAboutMe({ id: currentItem._id, formData })).then(() => {
+				setSuccessMessage("Статтю оновленно!");
+				setTimeout(() => setSuccessMessage(""), 3000);
+			});
 		}
 	};
 
@@ -330,6 +337,9 @@ const AboutMe = () => {
 											className={s.error}
 										/>
 									</div>
+									{successMessage && (
+										<p className={s.successMessage}>{successMessage}</p>
+									)}
 
 									<div className={s.btnAbout}>
 										<button type="submit" className={s.sendBtn}>

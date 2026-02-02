@@ -8,6 +8,7 @@ import { ServicesFormProps } from "@/types/types";
 import ServicesField from "./ServicesField/ServicesField";
 import {
 	createServices,
+	deleteServices,
 	getAllServices,
 	updateServices,
 } from "@/redux/services/operations";
@@ -30,6 +31,7 @@ const Services = () => {
 	const [edit, setIsEdit] = useState(false);
 	const [itemHiden, setItemHiden] = useState<number | null>(null);
 	const [idItem, setIdItem] = useState<string | undefined>("");
+	const [successMessage, setSuccessMessage] = useState(""); // <-- повідомлення про успіх
 
 	useEffect(() => {
 		dispatch(getAllServices());
@@ -65,17 +67,28 @@ const Services = () => {
 	};
 
 	const hundlerEdit = ({ index, id }: EditProps) => {
-		// console.log("ID", index);
 		setIsEdit(true);
 		setItemHiden(index);
 		setIdItem(id);
-		// console.log("Index", index);
-	};
-	const hundlerDelete = () => {
-		// console.log("Delete");
 	};
 
-	const hundlerSumbit = (values: ServicesFormProps) => {
+	const hundlerDelete = (id?: string) => {
+		if (!id) return;
+		const confirmed = window.confirm(
+			"Ви впевнені, що хочете видалити послугу?"
+		);
+		if (!confirmed) return;
+
+		dispatch(deleteServices(id));
+
+		if (id === idItem) {
+			setIsEdit(false);
+			setItemHiden(null);
+			setIdItem("");
+		}
+	};
+
+	const hundlerSumbit = async (values: ServicesFormProps) => {
 		const formData = {
 			nameUa: values.nameUa,
 			nameEn: values.nameEn,
@@ -99,12 +112,28 @@ const Services = () => {
 			link: values.link,
 		};
 		const clearvalues = CleanValues(formData);
-		// console.log("clearvalues", clearvalues);
-		// console.log("formData", formData);
-		if (edit && idItem) {
-			dispatch(updateServices({ id: idItem, formData: clearvalues }));
-		} else {
-			dispatch(createServices(clearvalues));
+		try {
+			if (edit && idItem) {
+				await dispatch(updateServices({ id: idItem, formData: clearvalues }))
+					.unwrap()
+					.then(() => {
+						setSuccessMessage("Статтю успішно оновлено!");
+						setTimeout(() => setSuccessMessage(""), 3000);
+					});
+			} else {
+				await dispatch(createServices(clearvalues))
+					.unwrap()
+					.then(() => {
+						setSuccessMessage("Статтю успішно додано!");
+						setTimeout(() => setSuccessMessage(""), 3000);
+					});
+			}
+
+			setIsEdit(false);
+			setItemHiden(null);
+			setIdItem("");
+		} catch (e) {
+			console.error(e);
 		}
 	};
 
@@ -220,6 +249,9 @@ const Services = () => {
 												)}
 											</>
 										)}
+										{successMessage && (
+											<p className={s.successMessage}>{successMessage}</p>
+										)}
 
 										<div className={s.editItemBtnGroup}>
 											{index !== itemHiden ? (
@@ -243,11 +275,10 @@ const Services = () => {
 													Зберегти
 												</button>
 											)}
-
 											<button
 												type="button"
 												className={s.deleteBtn}
-												onClick={hundlerDelete}
+												onClick={() => hundlerDelete(item._id)}
 											>
 												Видалити
 											</button>
@@ -255,6 +286,7 @@ const Services = () => {
 									</>
 								)}
 
+								{/* Повторити аналогічно для selectLang 1, 2, 3 (En, Pl, De) */}
 								{selectLang === 1 && (
 									<>
 										{index !== itemHiden ? (
@@ -271,7 +303,7 @@ const Services = () => {
 												{isType !== 1 && (
 													<VisualField
 														field={item.price}
-														nameField="Вартість"
+														nameField="Price"
 														type="input"
 													/>
 												)}
@@ -319,7 +351,9 @@ const Services = () => {
 												)}
 											</>
 										)}
-
+										{successMessage && (
+											<p className={s.successMessage}>{successMessage}</p>
+										)}
 										<div className={s.editItemBtnGroup}>
 											{index !== itemHiden ? (
 												<button
@@ -342,11 +376,10 @@ const Services = () => {
 													Зберегти
 												</button>
 											)}
-
 											<button
 												type="button"
 												className={s.deleteBtn}
-												onClick={hundlerDelete}
+												onClick={() => hundlerDelete(item._id)}
 											>
 												Видалити
 											</button>
@@ -370,7 +403,7 @@ const Services = () => {
 												{isType !== 1 && (
 													<VisualField
 														field={item.price}
-														nameField="Вартість"
+														nameField="Price"
 														type="input"
 													/>
 												)}
@@ -418,7 +451,9 @@ const Services = () => {
 												)}
 											</>
 										)}
-
+										{successMessage && (
+											<p className={s.successMessage}>{successMessage}</p>
+										)}
 										<div className={s.editItemBtnGroup}>
 											{index !== itemHiden ? (
 												<button
@@ -441,11 +476,10 @@ const Services = () => {
 													Зберегти
 												</button>
 											)}
-
 											<button
 												type="button"
 												className={s.deleteBtn}
-												onClick={hundlerDelete}
+												onClick={() => hundlerDelete(item._id)}
 											>
 												Видалити
 											</button>
@@ -469,7 +503,7 @@ const Services = () => {
 												{isType !== 1 && (
 													<VisualField
 														field={item.price}
-														nameField="Вартість"
+														nameField="Price"
 														type="input"
 													/>
 												)}
@@ -517,7 +551,9 @@ const Services = () => {
 												)}
 											</>
 										)}
-
+										{successMessage && (
+											<p className={s.successMessage}>{successMessage}</p>
+										)}
 										<div className={s.editItemBtnGroup}>
 											{index !== itemHiden ? (
 												<button
@@ -540,11 +576,10 @@ const Services = () => {
 													Зберегти
 												</button>
 											)}
-
 											<button
 												type="button"
 												className={s.deleteBtn}
-												onClick={hundlerDelete}
+												onClick={() => hundlerDelete(item._id)}
 											>
 												Видалити
 											</button>
@@ -654,6 +689,7 @@ const Services = () => {
 								)}
 							</>
 						)}
+
 						{selectLang === 2 && (
 							<>
 								{itemHiden === null ? (
@@ -691,11 +727,11 @@ const Services = () => {
 											<>
 												<VisualField
 													field="Jak przebiegają zajęcia:"
-													nameField="Jak przebiegają zajęcia:"
+													nameField="Jak przebігати заняття:"
 												/>
 												<VisualField
 													field="Dla kogo jest odpowiedni:"
-													nameField="Dla kogo jest odpowiedni:"
+													nameField="Dla кого?"
 												/>
 											</>
 										)}
@@ -703,6 +739,7 @@ const Services = () => {
 								)}
 							</>
 						)}
+
 						{selectLang === 3 && (
 							<>
 								{itemHiden === null ? (
@@ -740,11 +777,11 @@ const Services = () => {
 											<>
 												<VisualField
 													field="Wie die Kurse durchgeführt werden:"
-													nameField="Wie die Kurse durchgeführt werden:"
+													nameField="Wie..."
 												/>
 												<VisualField
 													field="Für wen ist es geeignet:"
-													nameField="Für wen ist es geeignet:"
+													nameField="Für..."
 												/>
 											</>
 										)}
@@ -752,6 +789,7 @@ const Services = () => {
 								)}
 							</>
 						)}
+
 						{isType === 0 &&
 							(itemHiden === null ? (
 								<ServicesField
@@ -766,6 +804,10 @@ const Services = () => {
 									type="input"
 								/>
 							))}
+
+						{successMessage && (
+							<p className={s.successMessage}>{successMessage}</p>
+						)}
 
 						<button className={s.aboutAddServices}>Додати послугу</button>
 						{isType === 0 && (

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Formik } from "formik";
 import s from "./Contacts.module.css";
 import { ContactsMenuFormProps } from "@/types/types";
@@ -11,6 +11,7 @@ import { selectContacts } from "@/redux/contacts/selectors";
 
 const Contacts = () => {
 	const dispatch = useDispatch<AppDispatch>();
+	const [successMessage, setSuccessMessage] = useState(""); // <-- повідомлення про успіх
 	useEffect(() => {
 		dispatch(getAllContacts());
 	}, [dispatch]);
@@ -35,7 +36,10 @@ const Contacts = () => {
 
 		// console.log("formData", formData);
 		// console.log("UploadContacts", uploadContacts?._id);
-		dispatch(updateContacts({ id: uploadContacts?._id, formData }));
+		dispatch(updateContacts({ id: uploadContacts?._id, formData })).then(() => {
+			setSuccessMessage("Данні успішно збережено!");
+			setTimeout(() => setSuccessMessage(""), 3000);
+		});
 	};
 
 	return (
@@ -51,6 +55,7 @@ const Contacts = () => {
 					<ContactField title="Інстаграм" fieldName="instagram" />
 					<ContactField title="Фейсбук" fieldName="facebook" />
 				</ul>
+				{successMessage && <p className={s.successMessage}>{successMessage}</p>}
 				<button type="submit" className={s.addSocial}>
 					Зберегти
 				</button>

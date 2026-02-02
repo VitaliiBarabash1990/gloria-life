@@ -17,6 +17,7 @@ const categories = ["Всі фото", "Психологія", "Барберст
 export const Galery: React.FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const [activeTab, setActiveTab] = useState<number>(0);
+	const [successMessage, setSuccessMessage] = useState(""); // <-- повідомлення про успіх
 
 	useEffect(() => {
 		dispatch(getGallery());
@@ -96,7 +97,10 @@ export const Galery: React.FC = () => {
 				);
 			}
 		}
-		dispatch(getGallery()); // оновити після збереження
+		dispatch(getGallery()).then(() => {
+			setSuccessMessage("Фото успішно збережено!");
+			setTimeout(() => setSuccessMessage(""), 3000);
+		}); // оновити після збереження
 	};
 
 	const getFilteredImages = (values: GalleryFormProps) => {
@@ -184,6 +188,9 @@ export const Galery: React.FC = () => {
 
 					<ErrorMessage name="imgs" component="p" className={s.error} />
 
+					{successMessage && (
+						<p className={s.successMessage}>{successMessage}</p>
+					)}
 					<div className={s.btnGroup}>
 						<button type="submit" className={s.saveBtn}>
 							Зберегти зміни

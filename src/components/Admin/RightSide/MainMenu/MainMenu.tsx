@@ -17,6 +17,7 @@ const PLACEHOLDER = "/img/hero/Blog_button.png";
 const MainMenu = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const [selectItem, setSelectItem] = useState(0);
+	const [successMessage, setSuccessMessage] = useState(""); // <-- повідомлення про успіх
 
 	const main = useSelector(selectMain);
 
@@ -176,7 +177,10 @@ const MainMenu = () => {
 		// для дебагу (між іншим)
 		// console.log("FORMDATA entries:", formData);
 
-		dispatch(updateMain({ id: main._id, formData }));
+		dispatch(updateMain({ id: main._id, formData })).then(() => {
+			setSuccessMessage("Змінні оновленно!");
+			setTimeout(() => setSuccessMessage(""), 3000);
+		});
 	};
 
 	return (
@@ -341,6 +345,10 @@ const MainMenu = () => {
 
 						<ErrorMessage name="img" component="p" className={s.error} />
 					</div>
+
+					{successMessage && (
+						<p className={s.successMessage}>{successMessage}</p>
+					)}
 
 					<button type="submit" className={s.sendBtn}>
 						Відправити Данні!

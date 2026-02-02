@@ -26,6 +26,7 @@ const Blog = () => {
 	const [addArticle, setAddArticle] = useState(false);
 	const [indexItem, setIndexItem] = useState(0);
 	const [editArticle, setEditArticle] = useState(false);
+	const [successMessage, setSuccessMessage] = useState(""); // <-- повідомлення про успіх
 
 	const carrentVariant =
 		isType === 0 ? selectBarberArticles : selectPsychologyArticles;
@@ -47,7 +48,7 @@ const Blog = () => {
 
 	useEffect(() => {
 		if (currentItem?.imgs && !addArticle) {
-			setPreviewImages(currentItem.imgs); // очікується масив зображень
+			setPreviewImages(currentItem.imgs);
 		} else {
 			setPreviewImages([]);
 		}
@@ -70,11 +71,10 @@ const Blog = () => {
 		articleEn: addArticle ? "" : currentItem?.en?.article || "",
 		articleDe: addArticle ? "" : currentItem?.de?.article || "",
 		type: isType === 0 ? "barber" : "psychology",
-		imgs: [null, null, null, null], // максимум 4 картинки
+		imgs: [null, null, null, null],
 		existingImgs: addArticle ? [] : currentItem?.imgs || [],
 	};
 
-	// Обробник зміни зображення
 	const handleImageChange = (
 		e: React.ChangeEvent<HTMLInputElement>,
 		setFieldValue: FormikProps<ArticleFormProps>["setFieldValue"],
@@ -99,7 +99,6 @@ const Blog = () => {
 		setFieldValue("existingImgs", newExisting);
 	};
 
-	// Видалення окремого зображення
 	const handleImageDelete = (
 		setFieldValue: FormikProps<ArticleFormProps>["setFieldValue"],
 		index: number
@@ -127,14 +126,10 @@ const Blog = () => {
 	const hundlerSubmit = (values: typeof initialValues) => {
 		const formData = new FormData();
 
-		// додаємо картинки
 		values.imgs.forEach((img) => {
-			if (img) {
-				formData.append("imgs", img);
-			}
+			if (img) formData.append("imgs", img);
 		});
 
-		// відправляємо existingImgs як JSON, залишаємо null для замінених позицій
 		formData.append("existingImgs", JSON.stringify(values.existingImgs));
 
 		Object.entries(values).forEach(([key, value]) => {
@@ -145,11 +140,15 @@ const Blog = () => {
 		});
 
 		if (addArticle) {
-			// console.log("FormData", formData);
-			dispatch(createArticle(formData));
+			dispatch(createArticle(formData)).then(() => {
+				setSuccessMessage("Статтю успішно додано!");
+				setTimeout(() => setSuccessMessage(""), 3000);
+			});
 		} else if (currentItem?._id) {
-			// console.log("FormDataPatch", formData);
-			dispatch(updateArticle({ id: currentItem._id, formData }));
+			dispatch(updateArticle({ id: currentItem._id, formData })).then(() => {
+				setSuccessMessage("Зміни успішно збережено!");
+				setTimeout(() => setSuccessMessage(""), 3000);
+			});
 		}
 	};
 
@@ -162,6 +161,7 @@ const Blog = () => {
 		>
 			{({ errors, setFieldValue, resetForm }) => (
 				<Form className={s.mainForm}>
+					{/* Блок перемикачів */}
 					<div className={s.blockSwitchers}>
 						<ul className={s.typeList}>
 							<li
@@ -177,6 +177,7 @@ const Blog = () => {
 								Психологія
 							</li>
 						</ul>
+
 						<ul className={s.articleList}>
 							{article.length > 0 ? (
 								article.map((_, index) => (
@@ -352,7 +353,6 @@ const Blog = () => {
 										)}
 									</ul>
 
-									{/* Блок завантаження кількох фото */}
 									<div className={s.photoLabel}>
 										<div className={s.imgGrid}>
 											{[0, 1, 2, 3].map((i) => (
@@ -423,6 +423,10 @@ const Blog = () => {
 											className={s.error}
 										/>
 									</div>
+
+									{successMessage && (
+										<p className={s.successMessage}>{successMessage}</p>
+									)}
 
 									<div className={s.btnAbout}>
 										<button type="submit" className={s.sendBtn}>
