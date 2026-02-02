@@ -44,7 +44,7 @@ const Header = () => {
 		<WrapperForComponents paddingTop={paddingTop} paddingBottom={paddingBottom}>
 			<div className={s.headerWrapper}>
 				<Link href="/" className={s.logoTitle}>
-					GLORIA.LIFE
+					GLORIA-BEAUTY.LIFE
 				</Link>
 				<BurgerButton openMenu={openMenu} setOpenMenu={setOpenMenu} />
 			</div>
