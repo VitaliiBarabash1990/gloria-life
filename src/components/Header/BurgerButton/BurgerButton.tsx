@@ -1,6 +1,8 @@
+"use client";
 import React, { Dispatch, SetStateAction } from "react";
 import s from "./BurgerButton.module.css";
 import clsx from "clsx";
+import { usePathname, useRouter } from "@/i18n/routing";
 
 type BurgerProps = {
 	setOpenMenu: Dispatch<SetStateAction<boolean>>;
@@ -8,8 +10,15 @@ type BurgerProps = {
 };
 
 const BurgerButton = ({ setOpenMenu, openMenu }: BurgerProps) => {
-	// console.log("OpenMenu", openMenu);
+	const router = useRouter();
+	const pathname = usePathname();
+
 	const hundlerBurgerMenu = () => {
+		if (pathname.startsWith("/admin")) {
+			router.push("/");
+			return;
+		}
+
 		setOpenMenu((prev) => !prev);
 	};
 	return (

@@ -1,5 +1,6 @@
 {
 	"Navigation": {
+		"admin": "Admin",
 		"about_me": "My Path",
 		"blog": "Blog",
 		"barber": "Barber-reservation",

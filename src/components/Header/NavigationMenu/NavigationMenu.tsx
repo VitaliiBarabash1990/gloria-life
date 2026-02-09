@@ -9,8 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { getAllContacts } from "@/redux/contacts/operations";
 import { selectContacts } from "@/redux/contacts/selectors";
-import { routing } from "@/i18n/routing";
+import { Link, routing } from "@/i18n/routing";
 import { usePathname, useRouter } from "@/i18n/routing"; // 🔹 без useParams
+import { selectIsLoggedIn } from "@/redux/auth/selectors";
 
 type MyComponentProps = {
 	setOpenMenu: React.Dispatch<SetStateAction<boolean>>;
@@ -36,15 +37,20 @@ export const NavigationMenu = ({ setOpenMenu }: MyComponentProps) => {
 	}, [dispatch]);
 
 	const contacts = useSelector(selectContacts);
+	const isLogin = useSelector(selectIsLoggedIn);
 
 	const linkDatas: LinkData[] = [
-		{ id: 0, link: "AboutMe", text: t("about_me") },
-		{ id: 1, link: "BlogSwiper", text: t("blog") },
-		{ id: 2, link: "Barber", text: t("barber") },
-		{ id: 3, link: "Psychologist", text: t("psychology") },
-		{ id: 4, link: "Gallery", text: t("gallery") },
-		{ id: 5, link: "Contacts", text: t("contacts") },
+		{ id: 0, link: "Admin", text: t("admin") },
+		{ id: 1, link: "AboutMe", text: t("about_me") },
+		{ id: 2, link: "BlogSwiper", text: t("blog") },
+		{ id: 3, link: "Barber", text: t("barber") },
+		{ id: 4, link: "Psychologist", text: t("psychology") },
+		{ id: 5, link: "Gallery", text: t("gallery") },
+		{ id: 6, link: "Contacts", text: t("contacts") },
 	];
+	const isLoginLinkDatas = isLogin
+		? linkDatas
+		: linkDatas.filter((item) => item.id !== 0);
 
 	const socIconList = [
 		{ id: 0, link: contacts?.instagram, icon: "/sprite.svg#icon-instagram" },
@@ -67,16 +73,27 @@ export const NavigationMenu = ({ setOpenMenu }: MyComponentProps) => {
 		<WrapperForComponents>
 			<div className={s.navMenuWrapper}>
 				<ul className={s.navMenuList}>
-					{linkDatas.map((linkData) => (
+					{isLoginLinkDatas.map((linkData) => (
 						<li key={linkData.id} className={s.navMenuItem}>
-							<LocalizedScrollLink
-								href="/"
-								scrollId={linkData.link}
-								className={s.navMenuLink}
-								onClick={handlerSubmit}
-							>
-								{linkData.text}
-							</LocalizedScrollLink>
+							{linkData.id === 0 ? (
+								<Link
+									href="/admin"
+									className={s.navMenuLink}
+									onClick={handlerSubmit}
+								>
+									{linkData.text}
+								</Link>
+							) : (
+								<LocalizedScrollLink
+									href="/"
+									scrollId={linkData.link}
+									className={s.navMenuLink}
+									onClick={handlerSubmit}
+								>
+									{linkData.text}
+								</LocalizedScrollLink>
+							)}
+
 							<div className={s.fadingLine}></div>
 						</li>
 					))}
