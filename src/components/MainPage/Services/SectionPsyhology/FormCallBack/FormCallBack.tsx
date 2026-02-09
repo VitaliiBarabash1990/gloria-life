@@ -1,16 +1,18 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import s from "./FormCallBack.module.css";
 import { useTranslations } from "next-intl";
-import { sendOrderEmail } from "@/redux/auth/operations";
+// import { sendOrderEmail } from "@/redux/auth/operations";
 import toast from "react-hot-toast";
 import { CallBackFormProps } from "@/types/types";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
+import { sendOrderTelegram } from "@/redux/auth/operations";
 
 const FormCallBack = () => {
 	const dispatch = useDispatch<AppDispatch>();
+	const [isLoading, setIsLoading] = useState(false);
 	const initialValues: CallBackFormProps = {
 		name: "",
 		phone: "",
@@ -19,16 +21,33 @@ const FormCallBack = () => {
 
 	const hundlerSumbitEmail = async (
 		values: CallBackFormProps,
-		options: FormikHelpers<CallBackFormProps>
+		options: FormikHelpers<CallBackFormProps>,
 	) => {
 		const newContact = {
 			name: values.name,
 			phone: values.phone,
 		};
 		// console.log("FormData", newContact);
-		dispatch(sendOrderEmail(newContact));
-		succsessContact();
-		options.resetForm();
+		// dispatch(sendOrderEmail(newContact));
+		try {
+			setIsLoading(true);
+			const response = await fetch("/api/send-email", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(newContact),
+			});
+
+			dispatch(sendOrderTelegram(newContact));
+
+			if (response.ok) {
+				succsessContact();
+				options.resetForm();
+			}
+		} catch (error) {
+			console.error("Error sending email:", error);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	const t = useTranslations("Services");
@@ -66,7 +85,7 @@ const FormCallBack = () => {
 					</div>
 					<div className={s.formItem}>
 						<button type="submit" className={s.formBtn}>
-							{t("btn")}
+							{isLoading ? "Send..." : t("btn")}
 							<div className={s.btnWrap}>
 								<svg className={s.btnIcon}>
 									<use href="/sprite.svg#icon-heart"></use>

@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import { AuthResponse, SendOrderPayload } from "@/types/types";
 
 export const gloriaAPI = axios.create({
-	baseURL: "http://localhost:4000/",
-	// baseURL: "https://gloria-life-back.onrender.com",
+	// baseURL: "http://localhost:4000/",
+	baseURL: "https://gloria-life-back.onrender.com",
 	withCredentials: true,
 });
 
@@ -53,7 +53,7 @@ export const logOut = createAsyncThunk<void, void, { rejectValue: string }>(
 			toast.error("Error, server not answer");
 			return thunkAPI.rejectWithValue(message);
 		}
-	}
+	},
 );
 
 export const sendOrderEmail = createAsyncThunk<
